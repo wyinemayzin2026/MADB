@@ -64,7 +64,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', User::class),
+            'model' => App\Models\Staff::class, // App\Models\User::class အစား ဒါကို ပြောင်းပါ
         ],
 
         // 'users' => [

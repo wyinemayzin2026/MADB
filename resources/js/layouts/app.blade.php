@@ -40,7 +40,7 @@
                 </div>
                 <div class="flex items-center gap-4">
                     <button
-                        class="bg-blue-900 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-blue-800 transition shadow-lg">
+                        class="bg-green-700 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-blue-800 transition shadow-lg">
                         အကောင့်၀င်ရန်
                     </button>
                 </div>

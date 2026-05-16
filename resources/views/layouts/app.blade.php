@@ -42,10 +42,10 @@
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <button
-                        class="bg-green-700 text-white px-6 py-2 rounded-full font-bold hover:bg-green-800 shadow-md transition transform hover:scale-105">
-                        အကောင့်၀င်ရန်
-                    </button>
+                    <a href="{{ route('staff.login') }}"
+                        class="{{ Route::is('staff.login') ? 'bg-gray-400' : 'bg-green-700' }} text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-blue-800 transition shadow-lg inline-block">
+                        အကောင့်ဝင်ရန်
+                    </a>
                 </div>
             </div>
         </div>

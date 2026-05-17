@@ -17,8 +17,12 @@
                 ကူညီဆောင်ရွက်ပေးစို့
             </h2>
             <div class="flex gap-4">
-                <button
-                    class="bg-green-600 hover:bg-green-700 px-8 py-4 rounded-xl font-bold text-lg shadow-lg transition">ချေးငွေလျှောက်ထားရန်</button>
+                @if(!Auth::guard('borrower')->check())
+                    <a href="{{ route('borrower.login') }}"
+                        class="inline-block bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-green-100 transition hover:-translate-y-0.5 text-center">
+                        ချေးငွေလျှောက်ထားရန်
+                    </a>
+                @endif
                 <button
                     class="bg-white/20 backdrop-blur-md hover:bg-white/30 px-8 py-4 rounded-xl font-bold text-lg border border-white transition">အသေးစိတ်ဖတ်ရန်</button>
             </div>

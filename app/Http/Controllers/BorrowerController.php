@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Borrower; // Borrower Model ကို တိုက်ရိုက်သုံးစွဲမည်
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class BorrowerController extends Controller
 {
@@ -37,6 +38,7 @@ class BorrowerController extends Controller
             'date_of_birth' => 'required|date',
             'gender' => 'required|in:male,female,other',
             'address' => 'required|string',
+            'password' => 'required|string|min:8|confirmed',
         ], [
             'full_name.required' => 'နာမည်အပြည့်အစုံကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
             'full_name.string' => 'နာမည်သည် စာသားအမျိုးအစား ဖြစ်ရပါမည်။',
@@ -57,7 +59,12 @@ class BorrowerController extends Controller
             'gender.required' => 'ကျား/မ အမျိုးအစားကို ရွေးချယ်ပေးရန် လိုအပ်ပါသည်။',
             'gender.in' => 'ရွေးချယ်ထားသော ကျား/မ အမျိုးအစားသည် မမှန်ကန်ပါ။',
             'address.required' => 'နေရပ်လိပ်စာကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
+            'password.required' => 'လျှို့ဝှက်နံပါတ် (Password) ကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
+            'password.min' => 'လျှို့ဝှက်နံပါတ်သည် အနည်းဆုံး စာလုံးရေ ၈ လုံး ရှိရပါမည်။',
+            'password.confirmed' => 'ရိုက်ထည့်ထားသော လျှို့ဝှက်နံပါတ် နှစ်ခု တိုက်ဆိုင်မှု မရှိပါ။',
         ]);
+
+        $validated['password'] = Hash::make($request->password);
 
         Borrower::create($validated);
 
@@ -83,6 +90,7 @@ class BorrowerController extends Controller
             'date_of_birth' => 'required|date',
             'gender' => 'required|in:male,female,other',
             'address' => 'required|string',
+            'password' => 'nullable|string|min:8',
         ], [
             'full_name.required' => 'နာမည်အပြည့်အစုံကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
             'full_name.string' => 'နာမည်သည် စာသားအမျိုးအစား ဖြစ်ရပါမည်။',
@@ -103,7 +111,14 @@ class BorrowerController extends Controller
             'gender.required' => 'ကျား/မ အမျိုးအစားကို ရွေးချယ်ပေးရန် လိုအပ်ပါသည်။',
             'gender.in' => 'ရွေးချယ်ထားသော ကျား/မ အမျိုးအစားသည် မမှန်ကန်ပါ။',
             'address.required' => 'နေရပ်လိပ်စာကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
+            'password.min' => 'လျှို့ဝှက်နံပါတ်သည် အနည်းဆုံး စာလုံးရေ ၈ လုံး ရှိရပါမည်။',
         ]);
+
+        if ($request->filled('password')) {
+            $validated['password'] = Hash::make($request->password);
+        } else {
+            unset($validated['password']);
+        }
 
         $account->update($validated);
 

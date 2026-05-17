@@ -42,10 +42,39 @@
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <a href="{{ route('staff.login') }}"
-                        class="{{ Route::is('staff.login') ? 'bg-gray-400' : 'bg-green-700' }} text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-blue-800 transition shadow-lg inline-block">
-                        အကောင့်ဝင်ရန်
-                    </a>
+                    @if(Auth::guard('borrower')->check())
+                        <div class="relative inline-block text-left group">
+                            <button type="button"
+                                class="flex items-center gap-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 px-5 py-2.5 rounded-full text-sm font-bold border border-emerald-200 transition shadow-sm outline-none">
+                                <i class="fas fa-user-circle text-emerald-600 text-base"></i>
+                                <span>{{ Auth::guard('borrower')->user()->full_name }}</span>
+                                <i
+                                    class="fas fa-chevron-down text-[10px] text-emerald-600 transition-transform group-hover:rotate-180"></i>
+                            </button>
+
+                            <div
+                                class="absolute right-0 w-48 mt-1 origin-top-right bg-white rounded-2xl shadow-xl border border-slate-100 p-1.5 hidden group-hover:block animate-fade-in z-50">
+
+                                <hr class="border-slate-100 my-1">
+
+                                <a href="#"
+                                    onclick="event.preventDefault(); document.getElementById('borrower-logout-form').submit();"
+                                    class="flex items-center gap-2.5 px-4 py-3 text-xs font-bold text-rose-600 hover:bg-rose-50 rounded-xl transition">
+                                    <i class="fas fa-sign-out-alt"></i> စနစ်မှထွက်ရန်
+                                </a>
+
+                                <form id="borrower-logout-form" action="{{ route('borrower.logout') }}" method="POST"
+                                    class="hidden">
+                                    @csrf
+                                </form>
+                            </div>
+                        </div>
+                    @else
+                        <a href="{{ route('staff.login') }}"
+                            class="bg-green-700 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-blue-800 transition shadow-lg inline-block">
+                            အကောင့်ဝင်ရန်
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

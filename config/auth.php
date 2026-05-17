@@ -36,11 +36,16 @@ return [
     | Supported: "session"
     |
     */
-
     'guards' => [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+
+        // ➕ ဤနေရာတွင် borrower guard ကို ဖြည့်စွက်ပါ
+        'borrower' => [
+            'driver' => 'session',
+            'provider' => 'borrowers', // သက်ဆိုင်ရာ provider နာမည်ကို ညွှန်းပါ
         ],
     ],
 
@@ -67,10 +72,10 @@ return [
             'model' => App\Models\Staff::class, // App\Models\User::class အစား ဒါကို ပြောင်းပါ
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'borrowers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Borrower::class, // သင့် model လမ်းကြောင်း မှန်ကန်ပါစေ
+        ],
     ],
 
     /*

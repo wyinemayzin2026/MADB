@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Staff\AuthController;
 use App\Http\Controllers\BorrowerController;
+use App\Http\Controllers\BorrowerLoginController;
 
 Route::get('/', function () {
     return view('welcome'); // or 'index' depending on your filename
@@ -39,3 +40,7 @@ Route::get('/borrowers', [BorrowerController::class, 'index'])->name('borrowers.
 Route::post('/savings-accounts', [BorrowerController::class, 'store'])->name('accounts.store');
 Route::put('/savings-accounts/{id}', [BorrowerController::class, 'update'])->name('accounts.update');
 Route::delete('/savings-accounts/{id}', [BorrowerController::class, 'destroy'])->name('accounts.destroy');
+
+Route::get('/borrower/login', [BorrowerLoginController::class, 'showLoginForm'])->name('borrower.login');
+Route::post('/borrower/login', [BorrowerLoginController::class, 'loginSubmit'])->name('borrower.login.submit');
+Route::post('/borrower/logout', [App\Http\Controllers\BorrowerLoginController::class, 'logout'])->name('borrower.logout');

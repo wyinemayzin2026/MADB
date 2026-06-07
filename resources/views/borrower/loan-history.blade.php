@@ -59,7 +59,7 @@
                                     @if($loan->status == 'pending')
                                         <span class="px-3 py-1 text-xs font-bold bg-amber-100 text-amber-800 rounded-full"><i
                                                 class="fa-solid fa-spinner animate-spin mr-1"></i> စိစစ်ဆဲ</span>
-                                    @elseif($loan->status == 'approved')
+                                    @elseif($loan->status == 'accepted')
                                         <span class="px-3 py-1 text-xs font-bold bg-green-100 text-green-800 rounded-full"><i
                                                 class="fa-solid fa-circle-check mr-1"></i> ခွင့်ပြုပြီး</span>
                                     @else
@@ -244,7 +244,7 @@
             if (loan.status === 'pending') {
                 alertBox.className = "p-3 rounded-xl text-sm font-bold flex items-center mb-2 bg-amber-50 text-amber-800 border border-amber-200";
                 alertBox.innerHTML = "⚠️ လက်ရှိလျှောက်လွှာအခြေအနေ: ဘဏ်မှ စိစစ်နေဆဲဖြစ်ပါသည် (Pending)";
-            } else if (loan.status === 'approved') {
+            } else if (loan.status === 'accepted') {
                 alertBox.className = "p-3 rounded-xl text-sm font-bold flex items-center mb-2 bg-green-50 text-green-800 border border-green-200";
                 alertBox.innerHTML = "✅ လက်ရှိလျှောက်လွှာအခြေအနေ: ချေးငွေခွင့်ပြုချက် ရရှိပြီးပါပြီ (Approved)";
             } else {

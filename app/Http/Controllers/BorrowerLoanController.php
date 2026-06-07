@@ -114,4 +114,19 @@ class BorrowerLoanController extends Controller
 
         return view('borrower.loan-history', compact('loans'));
     }
+
+    // BorrowerLoanController.php
+    public function index()
+    {
+        $loans = BorrowerLoan::with('borrower')->get();
+        return view('staff.loan', compact('loans'));
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $loan = BorrowerLoan::findOrFail($id);
+        $loan->status = $request->status;
+        $loan->save();
+        return back()->with('success', 'Status updated successfully!');
+    }
 }

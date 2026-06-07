@@ -51,3 +51,6 @@ Route::get('/borrower/loan', [BorrowerLoanController::class, 'create'])->name('b
 // လျှောက်လွှာ Data များကို Store လုပ်ရန် Route
 Route::post('/borrower/loan/store', [BorrowerLoanController::class, 'store'])->name('borrower.loan.store');
 Route::get('/borrower/loan/history', [BorrowerLoanController::class, 'history'])->name('borrower.loan.history');
+
+Route::get('/loans/index', [BorrowerLoanController::class, 'index'])->name('loans.index');
+Route::put('/loans/{id}/status', [BorrowerLoanController::class, 'updateStatus'])->name('loans.updateStatus');

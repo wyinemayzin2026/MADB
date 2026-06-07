@@ -138,7 +138,7 @@
                     <i class="fas fa-hand-holding-dollar me-3 w-5 text-lg text-emerald-600"></i> ငွေစုစာရင်းအကောင့်များ
                 </a>
 
-                <a href="#"
+                <a href="{{ route('loans.index') }}"
                     class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">
                     <i class="fas fa-piggy-bank me-3 w-5 text-lg text-emerald-600"></i> စုဆောင်းငွေစာရင်း
                 </a>
@@ -267,6 +267,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Frontend Core Logic UI Scripts -->
     <script>

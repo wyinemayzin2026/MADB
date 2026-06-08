@@ -216,46 +216,56 @@
             if (loan.status === 'accepted') {
                 alertBox.className = "p-3 rounded-xl text-sm font-bold flex items-center mb-2 bg-green-50 text-green-800 border border-green-200";
                 alertBox.innerHTML = "✅ ချေးငွေခွင့်ပြုချက် ရရှိပြီးပါပြီ (Approved)";
+                alertBox.innerHTML = `
+            <div class="flex justify-between items-center w-full">
+                <span>✅ ချေးငွေခွင့်ပြုချက် ရရှိပြီးပါပြီ (Approved)</span>
+                <a href="/loan/repay-detail/${loan.id}"
+                   class="ml-4 bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded-lg text-xs shadow transition">
+                   ပေးချေရန်သွားမည် ➔
+                </a>
+            </div>
+        `;
 
                 // Remainder Section ကို ဤပုံစံအတိုင်း အစားထိုးလိုက်ပါ
                 // openLoanModal function အတွင်းရှိ remainderContainer.innerHTML အပိုင်းကို ဤသို့ပြောင်းပါ
                 if (loan.loan_remainder) {
-                    const totalAmount = parseFloat(loan.loan_remainder.total_repayment_amount || 0);
-                    const displayAmount = totalAmount.toLocaleString('en-US');
+                    const totalAmount = parseFloat(loan.loan_remainder.total_repayment_amount || 0).toLocaleString('en-US');
 
                     remainderContainer.innerHTML = `
-        <div class="bg-white border-t-4 border-green-700 rounded-lg shadow-xl p-6 mb-6 relative overflow-hidden">
-            <div class="flex justify-between items-start mb-6">
-                <div>
-                    <h3 class="text-green-900 font-bold text-lg uppercase tracking-wider">ပြန်ဆပ်ရန် စာရင်း</h3>
-                    <p class="text-xs text-gray-500 font-medium">LOAN REPAYMENT SCHEDULE</p>
+            <div class="bg-white border-t-4 border-green-700 rounded-lg shadow-xl p-6 mb-6 relative overflow-hidden">
+                <div class="absolute -right-6 -top-6 opacity-5">
+                    <i class="fa-solid fa-file-invoice-dollar text-[120px]"></i>
                 </div>
-                <button onclick="confirmRepayment(${loan.id})"
-                        class="bg-green-100 hover:bg-green-200 px-3 py-1 rounded border border-green-300 transition cursor-pointer">
-                    <span class="text-[10px] font-bold text-green-800 uppercase underline">Status: Pending Payment (နှိပ်၍ဆပ်ရန်)</span>
-                </button>
-            </div>
+
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h3 class="text-green-900 font-bold text-lg uppercase tracking-wider">ချေးငွေ ပြန်ဆပ်ရန် စာရင်း</h3>
+                        <p class="text-xs text-gray-500 font-medium">LOAN REPAYMENT SCHEDULE</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <p class="text-[11px] text-gray-400 uppercase font-bold mb-1">စုစုပေါင်းဆပ်ရန်ပမာဏ</p>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-2xl font-black text-gray-900">${totalAmount}</span>
+                            <span class="text-sm font-bold text-gray-500">ကျပ်</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-gray-400 uppercase font-bold mb-1">နောက်ဆုံးထားပေးချေရမည့်ရက်</p>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-xl font-bold text-green-700">${loan.loan_remainder.repayment_date}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-dashed border-gray-200">
+                    <p class="text-[10px] text-gray-400 italic">
+                        * သတ်မှတ်ရက်အတွင်း အပြည့်အဝပေးချေရန်နှင့် နောက်ကျပါက ငွေပေးချေမှုပုံစံအတိုင်း အတိုးနှုန်း သက်ရောက်နိုင်ပါသည်။
+                    </p>
+                </div>
             </div>`;
-                }
-
-                // Modal အောက်တွင် ဤ function ကို ထည့်ပါ
-                function confirmRepayment(loanId) {
-                    if (confirm('ဤချေးငွေကို အမှန်တကယ် ပြန်ဆပ်မှာ သေချာပါသလား?')) {
-                        // Form တစ်ခု dynamic တည်ဆောက်ပြီး post ပို့ခြင်း
-                        let form = document.createElement('form');
-                        form.method = 'POST';
-                        form.action = `/loan/repay/${loanId}`;
-
-                        let csrf = document.createElement('input');
-                        csrf.type = 'hidden';
-                        csrf.name = '_token';
-                        csrf.value = '{{ csrf_token() }}';
-
-                        form.appendChild(csrf);
-                        document.body.appendChild(form);
-                        form.submit();
-
-                    }
                 }
             } else if (loan.status === 'pending') {
                 alertBox.className = "p-3 rounded-xl text-sm font-bold flex items-center mb-2 bg-amber-50 text-amber-800 border border-amber-200";

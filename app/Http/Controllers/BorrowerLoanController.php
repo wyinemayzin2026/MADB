@@ -183,4 +183,40 @@ class BorrowerLoanController extends Controller
 
         return back()->with('success', 'ငွေပေးချေမှု အောင်မြင်ပါသည်။ ပေးသွင်းငွေမှာ ' . number_format($totalAmount) . ' ကျပ် ဖြစ်ပါသည်။');
     }
+
+    public function showRepaymentDetail($id)
+    {
+        $loan = BorrowerLoan::with('loanRemainder')->findOrFail($id);
+        $remainder = $loan->loanRemainder;
+
+        $today = Carbon::today()->startOfDay();
+        $repaymentDate = Carbon::parse($remainder->repayment_date)->startOfDay();
+
+        $penalty = 0;
+        $isOverdue = $today->gt($repaymentDate);
+
+        if ($isOverdue) {
+            $penalty = $remainder->total_repayment_amount * 0.05;
+        }
+
+        $netTotal = $remainder->total_repayment_amount + $penalty;
+
+        $remainder->net_total_repayment_amount = $netTotal;
+        $remainder->save();
+
+        return view('repayment_detail', compact('loan', 'remainder', 'penalty', 'netTotal', 'isOverdue'));
+    }
+
+    // app/Http/Controllers/BorrowerLoanController.php ထဲတွင်
+
+    public function processPayment(Request $request, $id)
+    {
+        $loan = BorrowerLoan::with('loanRemainder')->findOrFail($id);
+        $remainder = $loan->loanRemainder;
+
+        $remainder->status = 'repaid';
+        $remainder->update();
+
+        return back()->with('success', 'ချေးငွေကို အောင်မြင်စွာ ပြန်လည်ပေးချေပြီးပါပြီ။');
+    }
 }

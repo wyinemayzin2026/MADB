@@ -54,3 +54,6 @@ Route::get('/borrower/loan/history', [BorrowerLoanController::class, 'history'])
 
 Route::get('/loans/index', [BorrowerLoanController::class, 'index'])->name('loans.index');
 Route::put('/loans/{id}/status', [BorrowerLoanController::class, 'updateStatus'])->name('loans.updateStatus');
+
+Route::get('/loan/repay-detail/{id}', [BorrowerLoanController::class, 'showRepaymentDetail'])->name('loan.repay.detail');
+Route::post('/loan/repay/process/{id}', [BorrowerLoanController::class, 'processPayment'])->name('loan.repay.process');

@@ -47,7 +47,7 @@
 
                         <div class="mt-8 pt-8 border-t border-gray-100 flex gap-4">
                             <a href="#"
-                                class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition"><i
+                                class="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition"><i
                                     class="fab fa-facebook-f"></i></a>
                             <a href="#"
                                 class="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center hover:scale-110 transition"><i

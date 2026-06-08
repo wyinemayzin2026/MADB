@@ -13,4 +13,9 @@ class BorrowerLoan extends Model
     {
         return $this->belongsTo(Borrower::class);
     }
+
+    public function loanRemainder()
+    {
+        return $this->hasOne(LoanRemainders::class, 'loan_id');
+    }
 }

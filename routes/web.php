@@ -45,7 +45,7 @@ Route::delete('/savings-accounts/{id}', [BorrowerController::class, 'destroy'])-
 Route::get('/borrower/login', [BorrowerLoginController::class, 'showLoginForm'])->name('borrower.login');
 Route::post('/borrower/login', [BorrowerLoginController::class, 'loginSubmit'])->name('borrower.login.submit');
 Route::post('/borrower/logout', [BorrowerLoginController::class, 'logout'])->name('borrower.logout');
-
+Route::post('/loan/repay/{loanId}', [BorrowerLoanController::class, 'processRepayment'])->name('loan.repay');
 Route::get('/borrower/loan', [BorrowerLoanController::class, 'create'])->name('borrower.loan');
 
 // လျှောက်လွှာ Data များကို Store လုပ်ရန် Route

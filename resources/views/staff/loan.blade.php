@@ -82,12 +82,12 @@
                                         ကြည့်ရန်
                                     </button>
                                     @if($loan->status == 'pending')
-                                        <form action="{{ route('loans.updateStatus', $loan->id) }}" method="POST" class="d-inline">
+                                        <form action="{{ route('staff.loans.updateStatus', $loan->id) }}" method="POST" class="d-inline">
                                             @csrf @method('PUT')
                                             <input type="hidden" name="status" value="accepted">
                                             <button type="submit" class="btn btn-sm btn-success btn-action">လက်ခံ</button>
                                         </form>
-                                        <form action="{{ route('loans.updateStatus', $loan->id) }}" method="POST" class="d-inline">
+                                        <form action="{{ route('staff.loans.updateStatus', $loan->id) }}" method="POST" class="d-inline">
                                             @csrf @method('PUT')
                                             <input type="hidden" name="status" value="rejected">
                                             <button type="submit" class="btn btn-sm btn-danger btn-action">ပယ်ချမည်</button>

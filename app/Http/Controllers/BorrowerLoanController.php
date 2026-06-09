@@ -219,4 +219,27 @@ class BorrowerLoanController extends Controller
 
         return back()->with('success', 'ချေးငွေကို အောင်မြင်စွာ ပြန်လည်ပေးချေပြီးပါပြီ။');
     }
+
+    public function loanPaidList()
+    {
+        $repayments = LoanRemainders::with(['borrowerLoan.borrower'])
+            ->where('status', '!=', 'pending')
+            ->latest()
+            ->get();
+
+        return view('staff.repaid', compact('repayments'));
+    }
+
+    // BorrowerLoanController.php
+    public function updateStatusReaminder(Request $request, $id)
+    {
+        // $id သည် LoanRemainder ၏ id ဖြစ်ရပါမည်
+        $repayment = LoanRemainders::findOrFail($id);
+
+        $repayment->update([
+            'status' => $request->status
+        ]);
+
+        return back()->with('success', 'Status အောင်မြင်စွာ ပြောင်းလဲပြီးပါပြီ။');
+    }
 }

@@ -143,9 +143,10 @@
                     <i class="fas fa-piggy-bank me-3 w-5 text-lg text-emerald-600"></i> ချေးငွေလျှောက်လွှာများ
                 </a>
 
-                <a href="#"
+                <a href="{{ route('loans.repayments') }}"
                     class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">
-                    <i class="fas fa-file-shield me-3 w-5 text-lg text-emerald-600"></i> စာရင်းဇယားအစီရင်ခံစာ
+                    <i class="fas fa-file-shield me-3 w-5 text-lg text-emerald-600"></i>
+                    တောင်သူချေးငွေ ပြန်ဆပ်စာရင်း
                 </a>
 
                 <div class="pt-4 mt-4 border-t border-slate-100">

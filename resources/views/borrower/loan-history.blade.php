@@ -218,10 +218,10 @@
                 alertBox.innerHTML = "✅ ချေးငွေခွင့်ပြုချက် ရရှိပြီးပါပြီ (Approved)";
                 alertBox.innerHTML = `
             <div class="flex justify-between items-center w-full">
-                <span>✅ ချေးငွေခွင့်ပြုချက် ရရှိပြီးပါပြီ (Approved)</span>
+                <span>✅ ချေးငွေ အောင်မြင်စွာ ချေးယူပီး  ဖစ်ပါသည် </span>
                 <a href="/loan/repay-detail/${loan.id}"
                    class="ml-4 bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded-lg text-xs shadow transition">
-                   ပေးချေရန်သွားမည် ➔
+                   ချေးငွေ ပြန်လည်ဆပ်ရန်သွားမည် ➔
                 </a>
             </div>
         `;

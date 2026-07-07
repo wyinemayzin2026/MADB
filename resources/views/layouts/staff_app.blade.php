@@ -123,7 +123,7 @@
             <nav class="space-y-1.5">
                 <a href="{{ route('staff.dashboard') }}"
                     class="flex items-center p-3.5 {{ Request::is('staff.dashboard') ? 'bg-emerald-700 text-white shadow-xl shadow-emerald-100 font-bold' : 'text-slate-600 hover:bg-slate-50 font-semibold' }} rounded-2xl transition-all">
-                    <i class="fas fa-chart-pie me-3 w-5 text-lg"></i> ပင်မဒိုင်ခွက်
+                    <i class="fas fa-chart-pie me-3 w-5 text-lg"></i> ပင်မစာမျက်နှာ
                 </a>
 
                 {{-- <a href="{{ route('taxpayers.list') }}"

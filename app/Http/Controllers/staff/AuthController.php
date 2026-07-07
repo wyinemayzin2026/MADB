@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
+use App\Models\Borrower;
+use App\Models\BorrowerLoan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -34,6 +36,13 @@ class AuthController extends Controller
 
     public function showStaffDashboard()
     {
+        // $totalBorrower = Borrower::count();
+        // $todayLoanAmount = BorrowerLoan::sum('total_amount');
+        // $winterLoanCount = BorrowerLoan::where('season_type','winter')->count();
+        // $rainLoanCount = BorrowerLoan::where('season_type','rainy')->count();
+
+        // dd($totalBorrower, $todayLoanAmount , $winterLoanCount, $rainLoanCount);
+
         return view('staff.dashboard');
     }
 

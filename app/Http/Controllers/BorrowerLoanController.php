@@ -58,7 +58,7 @@ class BorrowerLoanController extends Controller
             'season_type.required' => 'စိုက်ပျိုးမည့် ရာသီဥတုကို ရွေးချယ်ပေးပါ။',
             'atone_none.required' => 'အတိုး/အရင်း ဆပ်ရမည့်ပုံစံကို ရွေးချယ်ပေးပါ။',
             'guarantor_name.required' => 'အာမခံသူ အမည် ဖြည့်စွက်ရန် လိုအပ်ပါသည်။',
-            'tax_form_image.required' => 'ပုံစံခွန် မူရင်းပုံ တင်ရန် လိုအပ်ပါသည်။',
+            'tax_form_image.required' => 'ပုံစံ(၇) မူရင်းပုံ တင်ရန် လိုအပ်ပါသည်။',
             'household_chart_image.required' => 'အိမ်ထောင်စုစာရင်းပုံ တင်ရန် လိုအပ်ပါသည်။',
             'nrc_front_image.required' => 'မှတ်ပုံတင် အရှေ့ပုံ တင်ရန် လိုအပ်ပါသည်။',
             'nrc_back_image.required' => 'မှတ်ပုံတင် အနောက်ပုံ တင်ရန် လိုအပ်ပါသည်။',
@@ -201,21 +201,31 @@ class BorrowerLoanController extends Controller
 
         $netTotal = $remainder->total_repayment_amount + $penalty;
 
+        $total = $remainder->total_repayment_amount;
+
         $remainder->net_total_repayment_amount = $netTotal;
         $remainder->save();
 
-        return view('repayment_detail', compact('loan', 'remainder', 'penalty', 'netTotal', 'isOverdue'));
+        return view('repayment_detail', compact('loan', 'remainder', 'penalty', 'netTotal', 'isOverdue', 'total'));
     }
-
-    // app/Http/Controllers/BorrowerLoanController.php ထဲတွင်
 
     public function processPayment(Request $request, $id)
     {
         $loan = BorrowerLoan::with('loanRemainder')->findOrFail($id);
         $remainder = $loan->loanRemainder;
 
+        $today = Carbon::today();
+        $repaymentDate = Carbon::parse($remainder->repayment_date);
+
+        $penalty = 0;
+        if ($today->gt($repaymentDate)) {
+            $penalty = $remainder->total_repayment_amount * 0.05;
+        }
+
+        $remainder->net_total_repayment_amount = $remainder->total_repayment_amount + $penalty;
         $remainder->status = 'repaid';
-        $remainder->update();
+
+        $remainder->save();
 
         return back()->with('success', 'ချေးငွေကို အောင်မြင်စွာ ပြန်လည်ပေးချေပြီးပါပြီ။');
     }
@@ -226,6 +236,14 @@ class BorrowerLoanController extends Controller
             ->where('status', '!=', 'pending')
             ->latest()
             ->get();
+
+        $repayments->transform(function ($item) {
+            $today = now();
+            $repaymentDate = \Carbon\Carbon::parse($item->repayment_date);
+
+            $item->is_overdue = $today->greaterThan($repaymentDate);
+            return $item;
+        });
 
         return view('staff.repaid', compact('repayments'));
     }

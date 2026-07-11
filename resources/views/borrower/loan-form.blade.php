@@ -155,7 +155,7 @@
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
                                 <div class="bg-gray-50 p-4 rounded-xl border @error('tax_form_image') border-red-500 bg-red-50 @else border-gray-200 @enderror">
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">ပုံစံခွန် မူရင်းပုံ (Tax Form Image)</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">ပုံစံ(၇)  မူရင်းပုံ (Tax Form Image)</label>
                                     <input type="file" name="tax_form_image" required
                                         class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
                                     @error('tax_form_image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror

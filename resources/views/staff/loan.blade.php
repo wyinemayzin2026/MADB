@@ -173,7 +173,7 @@ function viewLoan(loan) {
         </div>
         <div class="col-md-5">
             <h6 class="mb-3">တင်သွင်းထားသော စာရွက်စာတမ်းများ:</h6>
-            <p><b>ပုံစံခွန်:</b><br><a href="/storage/${loan.tax_form_image}" target="_blank"><img src="/storage/${loan.tax_form_image}" width="200" class="img-thumbnail mt-1"></a></p>
+            <p><b>ပုံစံ(၇) :</b><br><a href="/storage/${loan.tax_form_image}" target="_blank"><img src="/storage/${loan.tax_form_image}" width="200" class="img-thumbnail mt-1"></a></p>
             <p><b>အိမ်ထောင်စုဇယား:</b><br><a href="/storage/${loan.household_chart_image}" target="_blank"><img src="/storage/${loan.household_chart_image}" width="200" class="img-thumbnail mt-1"></a></p>
             <p><b>မှတ်ပုံတင် (အရှေ့):</b><br><a href="/storage/${loan.nrc_front_image}" target="_blank"><img src="/storage/${loan.nrc_front_image}" width="200" class="img-thumbnail mt-1"></a></p>
             <p><b>မှတ်ပုံတင် (အနောက်):</b><br><a href="/storage/${loan.nrc_back_image}" target="_blank"><img src="/storage/${loan.nrc_back_image}" width="200" class="img-thumbnail mt-1"></a></p>

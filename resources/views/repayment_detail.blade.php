@@ -10,7 +10,12 @@
     <div class="bg-gray-50 p-5 rounded-xl space-y-4">
         <div class="flex justify-between items-center">
             <span class="text-gray-600">မူရင်းငွေ:</span>
-            <span class="font-semibold text-gray-900">{{ number_format($remainder->total_repayment_amount) }} ကျပ်</span>
+            <span class="font-semibold text-gray-900">{{ number_format($loan->total_amount) }} ကျပ်</span>
+        </div>
+
+         <div class="flex justify-between items-center">
+            <span class="text-gray-600">အတိုး၅%နှင့် ပြန်ပေးရန် ငွေ:</span>
+            <span class="font-semibold text-gray-900">{{ number_format($total) }} ကျပ်</span>
         </div>
 
         @if($isOverdue)

@@ -29,7 +29,7 @@ return new class extends Migration
 
             $table->string('guarantor_name');
 
-            $table->string('tax_form_image')->nullable();      // ပုံစံခွန် မူရင်းပုံ
+            $table->string('tax_form_image')->nullable();
             $table->string('household_chart_image')->nullable(); // အိမ်ထောင်စုဇယားပုံ
             $table->string('nrc_front_image')->nullable();       // မှတ်ပုံတင်အရှေ့
             $table->string('nrc_back_image')->nullable();        // မှတ်ပုံတင်အနောက်

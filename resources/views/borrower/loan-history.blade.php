@@ -155,7 +155,7 @@
                         စာရွက်စာတမ်းများ</h4>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                         <div class="text-center">
-                            <p class="text-[11px] text-gray-400 font-bold mb-1">ပုံစံခွန်</p><a id="link_tax" href="#"
+                            <p class="text-[11px] text-gray-400 font-bold mb-1">ပုံစံ(၇) </p><a id="link_tax" href="#"
                                 target="_blank"><img id="img_tax" src=""
                                     class="w-full h-24 object-cover rounded-lg border hover:scale-105 transition shadow-sm"></a>
                         </div>
@@ -195,55 +195,60 @@
         });
 
         function openLoanModal(loan, storageUrl) {
-            document.getElementById('m_borrower_id').innerText = "000" + loan.borrower_id;
-            document.getElementById('m_occupation').innerText = loan.occupation;
-            document.getElementById('m_monthly_income').innerText = parseInt(loan.monthly_income).toLocaleString() + " ကျပ်";
-            document.getElementById('m_loan_type').innerText = loan.loan_type;
-            document.getElementById('m_season_type').innerText = (loan.season_type === 'rainy') ? "🌧️ မိုးသီးနှံ" : "❄️ ဆောင်းသီးနှံ";
-            document.getElementById('m_acres').innerText = loan.acres + " ဧက";
-            document.getElementById('m_rate').innerText = loan.rate + " %";
-            document.getElementById('m_total_amount').innerText = parseInt(loan.total_amount).toLocaleString() + " ကျပ်";
-            document.getElementById('m_atone_none').innerText = loan.atone_none;
-            document.getElementById('m_guarantor_name').innerText = loan.guarantor_name;
-            document.getElementById('m_start_date').innerText = loan.loan_start_date || 'မသတ်မှတ်ရသေးပါ';
-            document.getElementById('m_end_date').innerText = loan.loan_end_date || 'မသတ်မှတ်ရသေးပါ';
-            document.getElementById('m_workplace_address').innerText = loan.workplace_address;
+    document.getElementById('m_borrower_id').innerText = "000" + loan.borrower_id;
+    document.getElementById('m_occupation').innerText = loan.occupation;
+    document.getElementById('m_monthly_income').innerText = parseInt(loan.monthly_income).toLocaleString() + " ကျပ်";
+    document.getElementById('m_loan_type').innerText = loan.loan_type;
+    document.getElementById('m_season_type').innerText = (loan.season_type === 'rainy') ? "🌧️ မိုးသီးနှံ" : "❄️ ဆောင်းသီးနှံ";
+    document.getElementById('m_acres').innerText = loan.acres + " ဧက";
+    document.getElementById('m_rate').innerText = loan.rate + " %";
+    document.getElementById('m_total_amount').innerText = parseInt(loan.total_amount).toLocaleString() + " ကျပ်";
+    document.getElementById('m_atone_none').innerText = loan.atone_none;
+    document.getElementById('m_guarantor_name').innerText = loan.guarantor_name;
+    document.getElementById('m_start_date').innerText = loan.loan_start_date || 'မသတ်မှတ်ရသေးပါ';
+    document.getElementById('m_end_date').innerText = loan.loan_end_date || 'မသတ်မှတ်ရသေးပါ';
+    document.getElementById('m_workplace_address').innerText = loan.workplace_address;
 
-            const alertBox = document.getElementById('m_status_alert');
-            const remainderContainer = document.getElementById('remainder_container');
-            remainderContainer.innerHTML = '';
+    const alertBox = document.getElementById('m_status_alert');
+    const remainderContainer = document.getElementById('remainder_container');
+    remainderContainer.innerHTML = '';
 
-            if (loan.status === 'accepted') {
-                alertBox.className = "p-3 rounded-xl text-sm font-bold flex items-center mb-2 bg-green-50 text-green-800 border border-green-200";
-                alertBox.innerHTML = "✅ ချေးငွေခွင့်ပြုချက် ရရှိပြီးပါပြီ (Approved)";
-                alertBox.innerHTML = `
+    if (loan.status === 'accepted') {
+        // Overdue Logic
+        let isOverdue = false;
+        if (loan.loan_remainder) {
+            const today = new Date(); today.setHours(0,0,0,0);
+            const repaymentDate = new Date(loan.loan_remainder.repayment_date);
+            isOverdue = today > repaymentDate;
+        }
+
+        // Alert Box Update
+        alertBox.className = isOverdue
+            ? "p-3 rounded-xl text-sm font-bold flex items-center mb-2 bg-red-50 text-red-800 border border-red-200"
+            : "p-3 rounded-xl text-sm font-bold flex items-center mb-2 bg-green-50 text-green-800 border border-green-200";
+
+        alertBox.innerHTML = `
             <div class="flex justify-between items-center w-full">
-                <span>✅ ချေးငွေ အောင်မြင်စွာ ချေးယူပီး  ဖစ်ပါသည် </span>
-                <a href="/loan/repay-detail/${loan.id}"
-                   class="ml-4 bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded-lg text-xs shadow transition">
-                   ချေးငွေ ပြန်လည်ဆပ်ရန်သွားမည် ➔
+                <span>${isOverdue ? '⚠️ သတိပေးချက် - ရက်ကျော်လွန်နေပါသည်' : '✅ ချေးငွေ အောင်မြင်စွာ ချေးယူပြီးဖြစ်ပါသည်'}</span>
+                <a href="/loan/repay-detail/${loan.id}" class="ml-4 bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded-lg text-xs shadow transition">
+                    ချေးငွေ ပြန်လည်ဆပ်ရန်သွားမည် ➔
                 </a>
-            </div>
-        `;
+            </div>`;
 
-                // Remainder Section ကို ဤပုံစံအတိုင်း အစားထိုးလိုက်ပါ
-                // openLoanModal function အတွင်းရှိ remainderContainer.innerHTML အပိုင်းကို ဤသို့ပြောင်းပါ
-                if (loan.loan_remainder) {
-                    const totalAmount = parseFloat(loan.loan_remainder.total_repayment_amount || 0).toLocaleString('en-US');
+        // Remainder Section Update
+        if (loan.loan_remainder) {
+            const totalAmount = parseFloat(loan.loan_remainder.total_repayment_amount || 0).toLocaleString('en-US');
 
-                    remainderContainer.innerHTML = `
-            <div class="bg-white border-t-4 border-green-700 rounded-lg shadow-xl p-6 mb-6 relative overflow-hidden">
+            remainderContainer.innerHTML = `
+            <div class="bg-white border-t-4 ${isOverdue ? 'border-red-600' : 'border-green-700'} rounded-lg shadow-xl p-6 mb-6 relative overflow-hidden">
                 <div class="absolute -right-6 -top-6 opacity-5">
                     <i class="fa-solid fa-file-invoice-dollar text-[120px]"></i>
                 </div>
-
                 <div class="flex justify-between items-start mb-6">
                     <div>
-                        <h3 class="text-green-900 font-bold text-lg uppercase tracking-wider">ချေးငွေ ပြန်ဆပ်ရန် စာရင်း</h3>
-                        <p class="text-xs text-gray-500 font-medium">LOAN REPAYMENT SCHEDULE</p>
+                        <h3 class="${isOverdue ? 'text-red-700' : 'text-green-900'} font-bold text-lg uppercase tracking-wider">ချေးငွေ ပြန်ဆပ်ရန် စာရင်း</h3>
                     </div>
                 </div>
-
                 <div class="grid grid-cols-2 gap-6">
                     <div>
                         <p class="text-[11px] text-gray-400 uppercase font-bold mb-1">စုစုပေါင်းဆပ်ရန်ပမာဏ</p>
@@ -251,41 +256,37 @@
                             <span class="text-2xl font-black text-gray-900">${totalAmount}</span>
                             <span class="text-sm font-bold text-gray-500">ကျပ်</span>
                         </div>
+                        ${isOverdue ? '<p class="text-[11px] font-bold text-red-600 mt-1">⚠️ နောက်ကျကြေး 5% ပေးဆောင်ရပါမည်</p>' : ''}
                     </div>
                     <div>
                         <p class="text-[11px] text-gray-400 uppercase font-bold mb-1">နောက်ဆုံးထားပေးချေရမည့်ရက်</p>
                         <div class="flex items-baseline gap-1">
-                            <span class="text-xl font-bold text-green-700">${loan.loan_remainder.repayment_date}</span>
+                            <span class="text-xl font-bold ${isOverdue ? 'text-red-600' : 'text-green-700'}">${loan.loan_remainder.repayment_date}</span>
                         </div>
                     </div>
                 </div>
-
-                <div class="mt-6 pt-4 border-t border-dashed border-gray-200">
-                    <p class="text-[10px] text-gray-400 italic">
-                        * သတ်မှတ်ရက်အတွင်း အပြည့်အဝပေးချေရန်နှင့် နောက်ကျပါက ငွေပေးချေမှုပုံစံအတိုင်း အတိုးနှုန်း သက်ရောက်နိုင်ပါသည်။
-                    </p>
-                </div>
             </div>`;
-                }
-            } else if (loan.status === 'pending') {
-                alertBox.className = "p-3 rounded-xl text-sm font-bold flex items-center mb-2 bg-amber-50 text-amber-800 border border-amber-200";
-                alertBox.innerHTML = "⚠️ ဘဏ်မှ စိစစ်နေဆဲဖြစ်ပါသည် (Pending)";
-            } else {
-                alertBox.className = "p-3 rounded-xl text-sm font-bold flex items-center mb-2 bg-red-50 text-red-800 border border-red-200";
-                alertBox.innerHTML = "❌ ချေးငွေ လျှောက်ထားမှုကို ပယ်ချထားပါသည် (Rejected)";
-            }
-
-            document.getElementById('img_tax').src = storageUrl + '/' + loan.tax_form_image;
-            document.getElementById('link_tax').href = storageUrl + '/' + loan.tax_form_image;
-            document.getElementById('img_household').src = storageUrl + '/' + loan.household_chart_image;
-            document.getElementById('link_household').href = storageUrl + '/' + loan.household_chart_image;
-            document.getElementById('img_nrc_front').src = storageUrl + '/' + loan.nrc_front_image;
-            document.getElementById('link_nrc_front').href = storageUrl + '/' + loan.nrc_front_image;
-            document.getElementById('img_nrc_back').src = storageUrl + '/' + loan.nrc_back_image;
-            document.getElementById('link_nrc_back').href = storageUrl + '/' + loan.nrc_back_image;
-
-            document.getElementById('loanModal').classList.remove('hidden');
         }
+    } else if (loan.status === 'pending') {
+        alertBox.className = "p-3 rounded-xl text-sm font-bold flex items-center mb-2 bg-amber-50 text-amber-800 border border-amber-200";
+        alertBox.innerHTML = "⚠️ ဘဏ်မှ စိစစ်နေဆဲဖြစ်ပါသည် (Pending)";
+    } else {
+        alertBox.className = "p-3 rounded-xl text-sm font-bold flex items-center mb-2 bg-red-50 text-red-800 border border-red-200";
+        alertBox.innerHTML = "❌ ချေးငွေ လျှောက်ထားမှုကို ပယ်ချထားပါသည် (Rejected)";
+    }
+
+    // Image Setters
+    document.getElementById('img_tax').src = storageUrl + '/' + loan.tax_form_image;
+    document.getElementById('link_tax').href = storageUrl + '/' + loan.tax_form_image;
+    document.getElementById('img_household').src = storageUrl + '/' + loan.household_chart_image;
+    document.getElementById('link_household').href = storageUrl + '/' + loan.household_chart_image;
+    document.getElementById('img_nrc_front').src = storageUrl + '/' + loan.nrc_front_image;
+    document.getElementById('link_nrc_front').href = storageUrl + '/' + loan.nrc_front_image;
+    document.getElementById('img_nrc_back').src = storageUrl + '/' + loan.nrc_back_image;
+    document.getElementById('link_nrc_back').href = storageUrl + '/' + loan.nrc_back_image;
+
+    document.getElementById('loanModal').classList.remove('hidden');
+}
 
         function closeLoanModal() {
             document.getElementById('loanModal').classList.add('hidden');

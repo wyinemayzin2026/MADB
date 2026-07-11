@@ -47,7 +47,7 @@
                             <th>တောင်သူအမည်</th>
                             <th>မူရင်းချေးငွေ</th>
                             <th>ပြန်ဆပ်ငွေ</th>
-
+                            <th>ရက်လွန်ဒဏ်ကြေး</th>
                             <th>ရက်စွဲ</th>
                             <th class="text-center">လုပ်ဆောင်ချက်</th>
                         </tr>
@@ -57,8 +57,14 @@
                             <tr>
                                 <td class="fw-semibold">{{ $item->borrowerLoan->borrower->full_name ?? 'N/A' }}</td>
                                 <td>{{ number_format($item->borrowerLoan->total_amount ?? 0, 0) }} MMK</td>
-                                <td>{{ number_format($item->total_repayment_amount ?? 0, 0) }} MMK</td>
-
+                                <td>{{ number_format($item->net_total_repayment_amount ?? 0, 0) }} MMK</td>
+                                <td>
+                                    @if($item->is_overdue)
+                                    ပေးဆောင်ရန်လိုသည်
+                                    @else
+                                    မလိုအပ်ပါ
+                                    @endif
+                                </td>
                                 <td>{{ \Carbon\Carbon::parse($item->repayment_date)->format('d-m-Y') }}</td>
                                 <td class="text-center">
                                     <button type="button" class="btn btn-sm btn-info text-white"
@@ -120,6 +126,9 @@
             let borrower = loan.borrower;
             let statusMyanmar = '';
             let badgeClass = '';
+            let penaltyText = item.is_overdue ? 'ပေးဆောင်ရန်လိုသည်' : 'မလိုအပ်ပါ';
+            let isOverdue = item.is_overdue;
+            let penaltyAmount = isOverdue ? (parseFloat(item.total_repayment_amount) * 0.05) : 0;
 
             if (item.status === 'repaid') {
                 statusMyanmar = 'တောင်သူမှ ငွေပြန်လည်ဆပ်ထားသည်';
@@ -152,10 +161,18 @@
                     <li class="list-group-item d-flex justify-content-between"><span>ချေးငွေအမျိုးအစား:</span> <strong>${loan.loan_type || '-'}</strong></li>
                     <li class="list-group-item d-flex justify-content-between"><span>ချေးငွေကန့်သတ်ချက်:</span> <strong>${parseFloat(loan.loan_limit || 0).toLocaleString()}</strong></li>
                     <li class="list-group-item d-flex justify-content-between"><span>အတိုးနှုန်း:</span> <strong>${loan.rate || 0}%</strong></li>
+                    <li class="list-group-item d-flex justify-content-between"><span>ရက်လွန်ဒဏ်ကြေး:</span> <strong>${penaltyText}</strong></li>
                     <li class="list-group-item d-flex justify-content-between"><span>မူရင်းချေးငွေ:</span> <strong>${parseFloat(loan.total_amount || 0).toLocaleString()} MMK</strong></li>
+                    <li class="list-group-item d-flex justify-content-between">
+                <span>ရက်လွန်ဒဏ်ကြေး:</span>
+                <strong class="${isOverdue ? 'text-danger' : 'text-success'}">
+                    ${penaltyAmount.toLocaleString()} MMK
+                </strong>
+            </li>
                     <li class="list-group-item d-flex justify-content-between"><span>ကာလ:</span> <strong>${loan.loan_start_date} - ${loan.loan_end_date}</strong></li>
                     <li class="list-group-item d-flex justify-content-between"><span>အာမခံသူ:</span> <strong>${loan.guarantor_name || '-'}</strong></li>
-                    <li class="list-group-item d-flex justify-content-between"><span>ပြန်ဆပ်ရမည့်ပမာဏ:</span> <strong>${parseFloat(item.total_repayment_amount || 0).toLocaleString()} MMK</strong></li>
+                    <li class="list-group-item d-flex justify-content-between"><span>အတိုးနှင့်အရင်း စုစုပေါင်း:</span> <strong>${parseFloat(item.total_repayment_amount || 0).toLocaleString()} MMK</strong></li>
+                    <li class="list-group-item d-flex justify-content-between"><span>ပြန်ဆပ်ရမည့်ပမာဏ:</span> <strong>${parseFloat(item.net_total_repayment_amount || 0).toLocaleString()} MMK</strong></li>
                     <li class="list-group-item d-flex justify-content-between"><span>ပြန်ဆပ်ရမည့်ရက်:</span> <strong>${item.repayment_date || '-'}</strong></li>
 
                 </ul>

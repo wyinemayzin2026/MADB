@@ -28,8 +28,7 @@
                         ချေးငွေလျှောက်ထားရန်
                     </a>
                 @endif
-                <button
-                    class="bg-white/20 backdrop-blur-md hover:bg-white/30 px-8 py-4 rounded-xl font-bold text-lg border border-white transition">အသေးစိတ်ဖတ်ရန်</button>
+
             </div>
         </div>
 

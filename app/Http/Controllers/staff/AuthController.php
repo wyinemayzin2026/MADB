@@ -36,14 +36,45 @@ class AuthController extends Controller
 
     public function showStaffDashboard()
     {
-        // $totalBorrower = Borrower::count();
-        // $todayLoanAmount = BorrowerLoan::sum('total_amount');
-        // $winterLoanCount = BorrowerLoan::where('season_type','winter')->count();
-        // $rainLoanCount = BorrowerLoan::where('season_type','rainy')->count();
+        // 1. Data for Status Stacked Chart
+        $statusStats = BorrowerLoan::select('loan_type', 'status')
+            ->selectRaw('SUM(total_amount) as total')
+            ->groupBy('loan_type', 'status')
+            ->get();
 
-        // dd($totalBorrower, $todayLoanAmount , $winterLoanCount, $rainLoanCount);
+        $chartDataStatus = $statusStats->groupBy('loan_type')->map(function ($items) {
+            return $items->pluck('total', 'status');
+        });
 
-        return view('staff.dashboard');
+        // 2. Data for Seasonal Comparison Chart
+        $seasonStats = BorrowerLoan::select('loan_type', 'season_type')
+            ->selectRaw('SUM(total_amount) as total')
+            ->groupBy('loan_type', 'season_type')
+            ->get();
+
+        $chartDataSeason = $seasonStats->groupBy('loan_type')->map(function ($items) {
+            return [
+                'rainy' => $items->where('season_type', 'rainy')->sum('total'),
+                'winter' => $items->where('season_type', 'winter')->sum('total'),
+            ];
+        });
+
+        // Summary Cards Data
+        $totalBorrower = Borrower::count();
+        $todayLoanAmount = BorrowerLoan::sum('total_amount');
+        $winterLoanCount = BorrowerLoan::where('season_type', 'winter')->count();
+        $rainLoanCount = BorrowerLoan::where('season_type', 'rainy')->count();
+        $allStatuses = ['pending', 'approved', 'rejected'];
+
+        return view('staff.dashboard', compact(
+            'chartDataStatus',
+            'chartDataSeason',
+            'allStatuses',
+            'totalBorrower',
+            'todayLoanAmount',
+            'winterLoanCount',
+            'rainLoanCount'
+        ));
     }
 
     // Logout Logic

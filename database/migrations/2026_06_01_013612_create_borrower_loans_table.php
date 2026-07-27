@@ -28,14 +28,16 @@ return new class extends Migration
             $table->date('loan_end_date');
 
             $table->string('guarantor_name');
+            $table->string('guarantor_front_image')->nullable();
+            $table->string('guarantor_nrc_back_image')->nullable();
 
             $table->string('tax_form_image')->nullable();
-            $table->string('household_chart_image')->nullable(); // အိမ်ထောင်စုဇယားပုံ
-            $table->string('nrc_front_image')->nullable();       // မှတ်ပုံတင်အရှေ့
-            $table->string('nrc_back_image')->nullable();        // မှတ်ပုံတင်အနောက်
+            $table->string('household_chart_image')->nullable();
+            $table->string('nrc_front_image')->nullable();
+            $table->string('nrc_back_image')->nullable();
 
             $table->string('status')->default('pending');
-            $table->string('rejected_reason');
+            $table->string('rejected_reason')->nullable();
             $table->boolean('is_closed')->default(false);
             $table->timestamps();
         });

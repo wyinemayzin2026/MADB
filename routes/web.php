@@ -72,3 +72,6 @@ Route::prefix('staff')->name('staff.')->group(function () {
 
     Route::delete('/{staff}', [StaffController::class, 'destroy'])->name('destroy');
 });
+
+Route::get('/borrower/loans/{id}/edit', [BorrowerLoanController::class, 'loanEdit'])->name('borrower.loans.edit');
+Route::put('/borrower/loans/{id}', [BorrowerLoanController::class, 'loanUpdate'])->name('borrower.loans.update');

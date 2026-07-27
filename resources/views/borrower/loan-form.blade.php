@@ -22,7 +22,7 @@
                     <div class="w-full">
                         <p class="font-bold text-base">ယခုနှစ်အတွက် ချေးငွေလျှောက်ထားခွင့် ကုန်ဆုံးပါပြီ</p>
                         <p class="text-sm mt-1 text-red-700">
-                            လေးစားအပ်ပါသော မိဘပြည်သူတောင်သူဦးကြီးခင်ဗျာ... လူကြီးမင်းသည် ယခုနှစ် ({{ Carbon\Carbon::now()->year }}) အတွက် မိုးသီးနှံ ကော ဆောင်း/နွေသီးနှံ အတွက်ပါ ချေးငွေ (၂) ကြိမ်စလုံး အောင်မြင်စွာ လျှောက်ထားပြီးဖြစ်ပါသဖြင့် ယခုနှစ်အတွင်း ထပ်မံလျှောက်ထားခွင့် မရှိတော့ပါ။ ယခုတင်ထားသော လျှောက်လွှာများ၏ အခြေအနေကို မှတ်တမ်းတွင် ဆက်လက်စောင့်ဆိုင်း စစ်ဆေးနိုင်ပါသည်။
+                            လေးစားအပ်ပါသော မိဘပြည်သူတောင်သူဦးကြီးခင်ဗျာ... လူကြီးမင်းသည် ယခုနှစ် ({{ Carbon\Carbon::now()->year }}) အတွက် မိုးသီးနှံ ကော ဆောင်း/နွေသီးနှံ အတွက်ပါ ချေးငွေ (၂) ကြိမ်စလုံး လျှောက်ထားပြီးဖြစ်ပါသဖြင့် ယခုနှစ်အတွင်း ထပ်မံလျှောက်ထားခွင့် မရှိတော့ပါ။ ယခုတင်ထားသော လျှောက်လွှာများ၏ အခြေအနေကို မှတ်တမ်းတွင် ဆက်လက်စောင့်ဆိုင်း စစ်ဆေးနိုင်ပါသည်။
                         </p>
                         <div class="mt-4">
                             <a href="{{ route('borrower.loan.history') }}" class="inline-flex items-center justify-center bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg shadow transition text-sm">
@@ -155,7 +155,7 @@
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
                                 <div class="bg-gray-50 p-4 rounded-xl border @error('tax_form_image') border-red-500 bg-red-50 @else border-gray-200 @enderror">
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">ပုံစံ(၇)  မူရင်းပုံ (Tax Form Image)</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">ပုံစံ(၇) မူရင်းပုံ (Tax Form Image)</label>
                                     <input type="file" name="tax_form_image" required
                                         class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
                                     @error('tax_form_image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
@@ -181,6 +181,23 @@
                                         class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
                                     @error('nrc_back_image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                                 </div>
+
+                                <!-- အာမခံသူ၏ မှတ်ပုံတင် အရှေ့ပုံ (Guarantor NRC Front Image) -->
+                                <div class="bg-gray-50 p-4 rounded-xl border @error('guarantor_front_image') border-red-500 bg-red-50 @else border-gray-200 @enderror">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">အာမခံသူ မှတ်ပုံတင် အရှေ့ပုံ (Guarantor NRC Front)</label>
+                                    <input type="file" name="guarantor_front_image" required
+                                        class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
+                                    @error('guarantor_front_image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                                </div>
+
+                                <!-- အာမခံသူ၏ မှတ်ပုံတင် အနောက်ပုံ (Guarantor NRC Back Image) -->
+                                <div class="bg-gray-50 p-4 rounded-xl border @error('guarantor_nrc_back_image') border-red-500 bg-red-50 @else border-gray-200 @enderror">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">အာမခံသူ မှတ်ပုံတင် အနောက်ပုံ (Guarantor NRC Back)</label>
+                                    <input type="file" name="guarantor_nrc_back_image" required
+                                        class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
+                                    @error('guarantor_nrc_back_image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                                </div>
+
                             </div>
                         </div>
 

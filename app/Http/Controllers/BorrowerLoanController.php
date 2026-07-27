@@ -16,7 +16,8 @@ class BorrowerLoanController extends Controller
         $appliedSeasons = BorrowerLoan::with(['borrower', 'loanRemainder'])
             ->where('borrower_id', $borrower_id)
             ->whereYear('created_at', $currentYear)
-            ->pluck('season_type')
+            ->whereNotIn('status', ['resubmitted']) // status စစ်ခြင်းကို pluck မတိုင်မီ ထည့်ပါ
+            ->pluck('season_type')                  // လိုချင်သည့် column ကိုမှ pluck လုပ်ပါ
             ->toArray();
 
         $hasAppliedRainy = in_array('rainy', $appliedSeasons);
@@ -44,6 +45,8 @@ class BorrowerLoanController extends Controller
             'household_chart_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'nrc_front_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'nrc_back_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'guarantor_front_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'guarantor_nrc_back_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ], [
             // မြန်မာလို ပြသမည့် Error Messages များ
             'borrower_id.required' => 'ချေးငွေလျှောက်ထားသူ ID မရှိပါသဖြင့် လျှောက်ထား၍မရပါ။',
@@ -51,7 +54,7 @@ class BorrowerLoanController extends Controller
             'occupation.required' => 'အလုပ်အကိုင် ဖြည့်စွက်ရန် လိုအပ်ပါသည်။',
             'monthly_income.required' => 'လစဉ်ဝင်ငွေ ထည့်သွင်းရန် လိုအပ်ပါသည်။',
             'monthly_income.numeric' => 'လစဉ်ဝင်ငွေကို ဂဏန်းသီးသန့်သာ ရိုက်ထည့်ပေးပါ။',
-            'workplace_address' => 'အလုပ်နေရာ လိပ်စာ ဖြည့်စွက်ရန် လိုအပ်ပါသည်။',
+            'workplace_address.required' => 'အလုပ်နေရာ လိပ်စာ ဖြည့်စွက်ရန် လိုအပ်ပါသည်။',
             'acres.required' => 'စိုက်ပျိုးမည့် ဧကပမာဏ ထည့်သွင်းရန် လိုအပ်ပါသည်။',
             'acres.min' => 'ချေးငွေကို အနည်းဆုံး (၁) ဧကမှ စတင်လျှောက်ထားနိုင်ပါသည်။',
             'acres.max' => 'ချေးငွေကို အများဆုံး (၁၀) ဧကအထိသာ လျှောက်ထားနိုင်ပါသည်။',
@@ -62,6 +65,8 @@ class BorrowerLoanController extends Controller
             'household_chart_image.required' => 'အိမ်ထောင်စုစာရင်းပုံ တင်ရန် လိုအပ်ပါသည်။',
             'nrc_front_image.required' => 'မှတ်ပုံတင် အရှေ့ပုံ တင်ရန် လိုအပ်ပါသည်။',
             'nrc_back_image.required' => 'မှတ်ပုံတင် အနောက်ပုံ တင်ရန် လိုအပ်ပါသည်။',
+            'guarantor_front_image.required' => 'အာမခံသူ မှတ်ပုံတင် အရှေ့ပုံ တင်ရန် လိုအပ်ပါသည်။',
+            'guarantor_nrc_back_image.required' => 'အာမခံသူ မှတ်ပုံတင် အနောက်ပုံ တင်ရန် လိုအပ်ပါသည်။',
             '*.image' => 'တင်လိုက်သော ဖိုင်သည် ဓာတ်ပုံဖိုင် (Image) သာ ဖြစ်ရပါမည်။',
             '*.mimes' => 'ဓာတ်ပုံများသည် jpeg, png, jpg format များသာ ဖြစ်ရပါမည်။',
             '*.max' => 'ဓာတ်ပုံတစ်ပုံချင်းစီ၏ Size သည် 2MB ထက် မကျော်ရပါ။',
@@ -72,17 +77,17 @@ class BorrowerLoanController extends Controller
         $amount_per_acre = ($request->season_type === 'rainy') ? 300000 : 250000;
         $total_amount = $acres * $amount_per_acre;
 
-        // ၃။ သက်တမ်း ၁ နှစ် သတ်မှတ်ခြင်း
-        // Determine dates based on season_type
-        $currentYear = Carbon::now()->year;
+        // ၃။ သက်တမ်း ၁ နှစ် သတ်မှတ်ခြင်း (Determine dates based on season_type)
+        $currentYear = \Illuminate\Support\Carbon::now()->year;
 
         if ($request->season_type === 'rainy') {
             // Rainy: May 1 of current year to Sep 30 of current year
-            $startDate = Carbon::create($currentYear, 5, 1);
-            $endDate = Carbon::create($currentYear, 9, 30);
+            $startDate = \Illuminate\Support\Carbon::create($currentYear, 5, 1);
+            $endDate = \Illuminate\Support\Carbon::create($currentYear, 9, 30);
         } else {
-            $startDate = Carbon::create($currentYear, 10, 1);
-            $endDate = Carbon::create($currentYear + 1, 1, 31);
+            // Winter/Summer: Oct 1 of current year to Jan 31 of next year
+            $startDate = \Illuminate\Support\Carbon::create($currentYear, 10, 1);
+            $endDate = \Illuminate\Support\Carbon::create($currentYear + 1, 1, 31);
         }
 
         // ၄။ Database ထဲသို့ သိမ်းဆည်းခြင်း
@@ -103,16 +108,29 @@ class BorrowerLoanController extends Controller
         $loan->loan_end_date = $endDate->format('Y-m-d');
         $loan->guarantor_name = $request->guarantor_name;
 
-        if ($request->hasFile('tax_form_image'))
+        // ဓာတ်ပုံများ သိမ်းဆည်းခြင်း
+        if ($request->hasFile('tax_form_image')) {
             $loan->tax_form_image = $request->file('tax_form_image')->store('loan_documents', 'public');
-        if ($request->hasFile('household_chart_image'))
+        }
+        if ($request->hasFile('household_chart_image')) {
             $loan->household_chart_image = $request->file('household_chart_image')->store('loan_documents', 'public');
-        if ($request->hasFile('nrc_front_image'))
+        }
+        if ($request->hasFile('nrc_front_image')) {
             $loan->nrc_front_image = $request->file('nrc_front_image')->store('loan_documents', 'public');
-        if ($request->hasFile('nrc_back_image'))
+        }
+        if ($request->hasFile('nrc_back_image')) {
             $loan->nrc_back_image = $request->file('nrc_back_image')->store('loan_documents', 'public');
+        }
+        // အာမခံသူ မှတ်ပုံတင်ပုံများ (Guarantor Images)
+        if ($request->hasFile('guarantor_front_image')) {
+            $loan->guarantor_front_image = $request->file('guarantor_front_image')->store('loan_documents', 'public');
+        }
+        if ($request->hasFile('guarantor_nrc_back_image')) {
+            $loan->guarantor_nrc_back_image = $request->file('guarantor_nrc_back_image')->store('loan_documents', 'public');
+        }
 
         $loan->status = 'pending';
+        $loan->rejected_reason = null;
         $loan->save();
 
         return redirect()->route('borrower.loan')->with('success', 'ချေးငွေလျှောက်လွှာ တင်သွင်းမှု အောင်မြင်ပါသည်။ လူကြီးမင်း၏ လျှောက်လွှာကို စနစ်မှ စိစစ်နေပါသည်။');
@@ -141,24 +159,41 @@ class BorrowerLoanController extends Controller
     {
         $loan = BorrowerLoan::findOrFail($id);
 
-        if ($request->status === 'accepted') {
+        if ($request->has('close_loan') && $request->close_loan == true) {
+            $loan->is_closed = true;
+            $loan->status = 'rejected';
+            $loan->save();
+            return back()->with('success', 'ချေးငွေကို အပြီးတိုင် ပိတ်သိမ်းလိုက်ပါပြီ!');
+        }
 
+        if ($request->status === 'accepted') {
             $interest = $loan->total_amount * 0.05;
             $totalRepayment = $loan->total_amount + $interest;
 
             $remainder = new LoanRemainders();
             $remainder->loan_id = $loan->id;
             $remainder->total_repayment_amount = $totalRepayment;
-
             $remainder->repayment_date = Carbon::parse($loan->created_at)->addYear();
-
             $remainder->save();
+
+            $loan->status = 'accepted';
+            $loan->rejected_reason = null;
+        } elseif ($request->status === 'resubmitted') {
+            $request->validate([
+                'rejected_reason' => 'required|string',
+            ], [
+                'rejected_reason.required' => 'ငြင်းပယ်ရသည့် အကြောင်းအရင်းကို ဖြည့်သွင်းပေးပါ၊'
+            ]);
+
+            $loan->status = 'resubmitted';
+            $loan->rejected_reason = $request->rejected_reason;
+        } else {
+            $loan->status = $request->status;
         }
 
-        $loan->status = $request->status;
         $loan->save();
 
-        return back()->with('success', 'အောင်မြင်စွာ ပြင်ဆင်ပီးပါပီ!');
+        return back()->with('success', 'အောင်မြင်စွာ ပြင်ဆင်ပြီးပါပြီ!');
     }
 
     public function processRepayment(Request $request, $loanId)
@@ -259,5 +294,73 @@ class BorrowerLoanController extends Controller
         ]);
 
         return back()->with('success', 'Status အောင်မြင်စွာ ပြောင်းလဲပြီးပါပြီ။');
+    }
+
+    public function loanEdit($id)
+    {
+        $loan = BorrowerLoan::findOrFail($id);
+        $borrower_id = $loan->borrower_id;
+        $currentYear = date('Y');
+
+        // pending သို့မဟုတ် resubmitted ဖြစ်မှသာ ပြင်ဆင်ခွင့်ပေးမည်
+        if (!in_array($loan->status, ['pending', 'resubmitted'])) {
+            return redirect()->back()->with('error', 'ဤလျှောက်လွှာကို ပြင်ဆင်ခွင့်မရှိတော့ပါ။');
+        }
+
+        // လက်ရှိ edit လုပ်နေသည့် record မှလွဲ၍ ကျန်ရှိသော လျှောက်ထားပြီးသား ရာသီများကို စစ်မည်
+        $appliedSeasons = BorrowerLoan::where('borrower_id', $borrower_id)
+            ->where('id', '!=', $id) // လက်ရှိ edit လုပ်နေသော loan record ကို ခေတ္တချန်လှပ်ထားမည်
+            ->whereYear('created_at', $currentYear)
+            ->whereNotIn('status', ['resubmitted']) // သို့မဟုတ် 'rejected' စသည်ဖြင့်
+            ->pluck('season_type')
+            ->toArray();
+
+        $hasAppliedRainy = in_array('rainy', $appliedSeasons);
+        $hasAppliedWinter = in_array('winter', $appliedSeasons);
+
+        return view('borrower.loans.edit', compact('loan', 'hasAppliedRainy', 'hasAppliedWinter'));
+    }
+
+    public function loanUpdate(Request $request, $id)
+    {
+        $loan = BorrowerLoan::findOrFail($id);
+
+        $request->validate([
+            'occupation' => 'required|string',
+            'monthly_income' => 'required|numeric',
+            'workplace_address' => 'required|string',
+            'season_type' => 'required',
+            'acres' => 'required|numeric|min:1|max:10',
+            'guarantor_name' => 'required|string',
+            'tax_form_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'household_chart_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'nrc_front_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'nrc_back_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'guarantor_front_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'guarantor_nrc_back_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        // ပုံအသစ်တင်ခဲ့ရင် Update လုပ်မည်၊ မတင်ရင် ယခင်ပုံဟောင်းအတိုင်းထားမည်
+        $imageFields = ['tax_form_image', 'household_chart_image', 'nrc_front_image', 'nrc_back_image', 'guarantor_front_image', 'guarantor_nrc_back_image'];
+        foreach ($imageFields as $field) {
+            if ($request->hasFile($field)) {
+                $loan->$field = $request->file($field)->store('loan_documents', 'public');
+            }
+        }
+
+        $loan->occupation = $request->occupation;
+        $loan->monthly_income = $request->monthly_income;
+        $loan->workplace_address = $request->workplace_address;
+        $loan->season_type = $request->season_type;
+        $loan->acres = $request->acres;
+        $loan->total_amount = ($request->season_type === 'rainy') ? ($request->acres * 300000) : ($request->acres * 250000);
+        $loan->guarantor_name = $request->guarantor_name;
+
+        // ပြန်တင်လိုက်သည့်အတွက် status ကို pending သို့ ပြန်ပြောင်းမည်
+        $loan->status = 'pending';
+        $loan->rejected_reason = null;
+        $loan->save();
+
+        return redirect()->route('borrower.loan.history')->with('success', 'ချေးငွေလျှောက်လွှာ ပြန်လည်ပြင်ဆင် တင်သွင်းပြီးပါပြီ။');
     }
 }

@@ -99,8 +99,7 @@
                         <i class="fas fa-university text-xs"></i>
                     </div>
                     <div class="w-[calc(100%-4rem)] md:w-[45%] p-6 rounded-2xl bg-white shadow-lg border border-gray-100">
-                        <time class="font-bold text-green-700 text-xl">၃။ မြန်မာ့စိုက်ပျိုးရေးဘဏ်အဖြစ် သီးခြားရပ်တည်ခြင်း
-                            (၁၉၇၆ ခုနှစ်)</time>
+                        <time class="font-bold text-green-700 text-xl">၃။(၁၉၇၆ ခုနှစ်)</time>
                         <p class="text-gray-600 mt-2 fs">၁၉၇၅ ခုနှစ်တွင် ပြဋ္ဌာန်းခဲ့သော ဘဏ်များဥပဒေအရ ၁၉၇၆ ခုနှစ်၊ ဧပြီလ
                             (၁) ရက်နေ့တွင် "မြန်မာ့စိုက်ပျိုးရေးဘဏ်" (Myanma Agricultural Bank - MAB) အဖြစ်
                             သီးခြားဘဏ်တစ်ခုအနေဖြင့် ပြန်လည်ဖွဲ့စည်း တည်ထောင်ခဲ့ပါသည်။</p>

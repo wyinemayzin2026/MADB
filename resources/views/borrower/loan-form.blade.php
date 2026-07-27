@@ -7,7 +7,7 @@
 
             <div class="bg-green-600 p-6 text-white text-center">
                 <h2 class="text-2xl font-bold">စိုက်ပျိုးစရိတ် ချေးငွေလျှောက်လွှာပုံစံ</h2>
-                <p class="text-sm text-green-100 mt-1">ကျေးဇူးပြု၍ အချက်အလက်များကို မှန်ကန်စွာ ဖြည့်စွက်ပေးပါရန်</p>
+                <p class="text-sm text-green-100 mt-1">မှန်ကန်စွာ ဖြည့်စွက်ပေးပါရန်</p>
             </div>
 
             @if(session('success'))
@@ -25,7 +25,7 @@
                             လေးစားအပ်ပါသော မိဘပြည်သူတောင်သူဦးကြီးခင်ဗျာ... လူကြီးမင်းသည် ယခုနှစ် ({{ Carbon\Carbon::now()->year }}) အတွက် မိုးသီးနှံ ကော ဆောင်း/နွေသီးနှံ အတွက်ပါ ချေးငွေ (၂) ကြိမ်စလုံး လျှောက်ထားပြီးဖြစ်ပါသဖြင့် ယခုနှစ်အတွင်း ထပ်မံလျှောက်ထားခွင့် မရှိတော့ပါ။ ယခုတင်ထားသော လျှောက်လွှာများ၏ အခြေအနေကို မှတ်တမ်းတွင် ဆက်လက်စောင့်ဆိုင်း စစ်ဆေးနိုင်ပါသည်။
                         </p>
                         <div class="mt-4">
-                            <a href="{{ route('borrower.loan.history') }}" class="inline-flex items-center justify-center bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg shadow transition text-sm">
+                            <a href="{{ route('borrower.loan.history') }}" class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow transition text-sm">
                                 📜 မိမိ၏ လျှောက်လွှာရာဇဝင်ကို ကြည့်မည်
                             </a>
                         </div>
@@ -59,28 +59,28 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                                 <div class="md:col-span-2">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">ချေးငွေလျှောက်ထားသူ ကုဒ်နံပါတ် (Borrower ID)</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">ချေးငွေလျှောက်ထားသူ ကုဒ်နံပါတ်</label>
                                     <input type="text" name="borrower_id" value="{{ $borrower_id }}" readonly
                                         class="w-full bg-gray-100 border border-gray-300 rounded-lg p-2.5 text-gray-700 font-bold cursor-not-allowed">
                                     @error('borrower_id') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                                 </div>
 
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">အလုပ်အကိုင် (Occupation)</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">အလုပ်အကိုင်</label>
                                     <input type="text" name="occupation" value="{{ old('occupation') }}" required
                                         class="w-full border @error('occupation') border-red-500 @else border-gray-300 @enderror rounded-lg p-2.5 focus:ring-2 focus:ring-green-500 focus:outline-none" placeholder="ဥပမာ - လယ်သမား">
                                     @error('occupation') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                                 </div>
 
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">လစဉ်ဝင်ငွေ (Monthly Income)</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">လစဉ်ဝင်ငွေ</label>
                                     <input type="number" name="monthly_income" value="{{ old('monthly_income') }}" required
                                         class="w-full border @error('monthly_income') border-red-500 @else border-gray-300 @enderror rounded-lg p-2.5 focus:ring-2 focus:ring-green-500 focus:outline-none" placeholder="ကျပ်">
                                     @error('monthly_income') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                                 </div>
 
                                 <div class="md:col-span-2">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">အလုပ်နေရာ လိပ်စာ (Workplace Address)</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">အလုပ်နေရာ လိပ်စာ</label>
                                     <textarea name="workplace_address" rows="2" required
                                         class="w-full border @error('workplace_address') border-red-500 @else border-gray-300 @enderror rounded-lg p-2.5 focus:ring-2 focus:ring-green-500 focus:outline-none" placeholder="လုပ်ကိုင်သည့် လယ်/ယာ တည်နေရာ လိပ်စာအပြည့်အစုံ">{{ old('workplace_address') }}</textarea>
                                     @error('workplace_address') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
@@ -93,13 +93,13 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">ချေးငွေအမျိုးအစား (Loan Type)</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">ချေးငွေအမျိုးအစား</label>
                                     <input type="text" name="loan_type" value="စိုက်ပျိုးစရိတ်ချေးငွေ" readonly
                                         class="w-full bg-gray-100 border border-gray-300 rounded-lg p-2.5 text-gray-600 font-medium cursor-not-allowed">
                                 </div>
 
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">အတိုး/အရင်း ဆပ်ရမည့်ပုံစံ (Atone None)</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">အတိုး/အရင်း ဆပ်ရမည့်ပုံစံ</label>
                                     <select name="atone_none" required class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-green-500 focus:outline-none">
                                         <option value="နှစ်ချုပ်စနစ်" {{ old('atone_none') == 'နှစ်ချုပ်စနစ်' ? 'selected' : '' }}>နှစ်ချုပ်စနစ် (၁ နှစ်ပြည့်မှ အတိုးအရင်းဆပ်)</option>
                                     </select>
@@ -107,12 +107,12 @@
                                 </div>
 
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">စိုက်ပျိုးမည့် ရာသီဥတု (Season Type)</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">စိုက်ပျိုးမည့် ရာသီဥတု</label>
                                     <select name="season_type" id="season_type" required class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-green-500 focus:outline-none">
-                                        <option value="rainy" @if($hasAppliedRainy) disabled class="text-gray-400 bg-gray-100" @endif {{ old('season_type') == 'rainy' ? 'selected' : '' }}>
+                                        <option value="rainy" @if($hasAppliedRainy) disabled class=" bg-gray-100" @endif {{ old('season_type') == 'rainy' ? 'selected' : '' }}>
                                             မိုးသီးနှံ (၁ ဧက - ၃ သိန်း) @if($hasAppliedRainy) [ယခုနှစ်အတွက် လျှောက်ပြီးသား] @endif
                                         </option>
-                                        <option value="winter" @if($hasAppliedWinter) disabled class="text-gray-400 bg-gray-100" @endif {{ old('season_type') == 'winter' ? 'selected' : '' }}>
+                                        <option value="winter" @if($hasAppliedWinter) disabled class=" bg-gray-100" @endif {{ old('season_type') == 'winter' ? 'selected' : '' }}>
                                             ဆောင်းသီးနှံ (၁ ဧက - ၂ သိန်းခွဲ) @if($hasAppliedWinter) [ယခုနှစ်အတွက် လျှောက်ပြီးသား] @endif
                                         </option>
                                     </select>
@@ -120,7 +120,7 @@
                                 </div>
 
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">စိုက်ပျိုးမည့် ဧကပမာဏ (Limit: 1 - 10 ဧက)</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">စိုက်ပျိုးမည့် ဧကပမာဏ (1 - 10 ဧက)</label>
                                     <input type="number" name="acres" id="acres" min="1" max="10" value="{{ old('acres', 1) }}"
                                         required class="w-full border @error('acres') border-red-500 @else border-gray-300 @enderror rounded-lg p-2.5 focus:ring-2 focus:ring-green-500 focus:outline-none">
                                     @error('acres') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
@@ -129,18 +129,18 @@
 
                             <div class="mt-4 bg-gray-50 rounded-xl p-4 grid grid-cols-2 gap-4 border border-dashed border-gray-200">
                                 <div>
-                                    <p class="text-xs text-gray-500">သတ်မှတ်အတိုးနှုန်း (Rate)</p>
+                                    <p class="text-xs text-gray-500">သတ်မှတ်အတိုးနှုန်း</p>
                                     <p class="text-lg font-bold text-gray-800">5 %</p>
                                 </div>
                                 <div>
-                                    <p class="text-xs text-gray-500">ခန့်မှန်းရရှိမည့် စုစုပေါင်းချေးငွေ (Total Amount)</p>
+                                    <p class="text-xs text-gray-500">ခန့်မှန်းရရှိမည့် စုစုပေါင်းချေးငွေ</p>
                                     <p class="text-lg font-bold text-green-600" id="display_total">300,000 ကျပ်</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="border-b border-gray-100 pb-5 mb-6">
-                            <h3 class="text-lg font-bold text-gray-800 mb-4 text-green-600">၃။ အာမခံသူ အချက်အလက် (Guarantor)</h3>
+                            <h3 class="text-lg font-bold text-gray-800 mb-4 text-green-600">၃။ အာမခံသူ အချက်အလက်/h3>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">အာမခံသူ အမည် (ရွာလူကြီး / ကော်မတီဝင်)</label>
                                 <input type="text" name="guarantor_name" value="{{ old('guarantor_name') }}" required
@@ -155,28 +155,28 @@
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
                                 <div class="bg-gray-50 p-4 rounded-xl border @error('tax_form_image') border-red-500 bg-red-50 @else border-gray-200 @enderror">
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">ပုံစံ(၇) မူရင်းပုံ (Tax Form Image)</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">ပုံစံ(၇) မူရင်းပုံ </label>
                                     <input type="file" name="tax_form_image" required
                                         class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
                                     @error('tax_form_image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                                 </div>
 
                                 <div class="bg-gray-50 p-4 rounded-xl border @error('household_chart_image') border-red-500 bg-red-50 @else border-gray-200 @enderror">
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">အိမ်ထောင်စုစာရင်းပုံ (Household Chart Image)</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">အိမ်ထောင်စုစာရင်းပုံ </label>
                                     <input type="file" name="household_chart_image" required
                                         class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
                                     @error('household_chart_image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                                 </div>
 
                                 <div class="bg-gray-50 p-4 rounded-xl border @error('nrc_front_image') border-red-500 bg-red-50 @else border-gray-200 @enderror">
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">မှတ်ပုံတင် အရှေ့ပုံ (NRC Front Image)</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">မှတ်ပုံတင် အရှေ့ပုံ</label>
                                     <input type="file" name="nrc_front_image" required
                                         class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
                                     @error('nrc_front_image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                                 </div>
 
                                 <div class="bg-gray-50 p-4 rounded-xl border @error('nrc_back_image') border-red-500 bg-red-50 @else border-gray-200 @enderror">
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">မှတ်ပုံတင် အနောက်ပုံ (NRC Back Image)</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">မှတ်ပုံတင် အနောက်ပုံ </label>
                                     <input type="file" name="nrc_back_image" required
                                         class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
                                     @error('nrc_back_image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
@@ -184,7 +184,7 @@
 
                                 <!-- အာမခံသူ၏ မှတ်ပုံတင် အရှေ့ပုံ (Guarantor NRC Front Image) -->
                                 <div class="bg-gray-50 p-4 rounded-xl border @error('guarantor_front_image') border-red-500 bg-red-50 @else border-gray-200 @enderror">
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">အာမခံသူ မှတ်ပုံတင် အရှေ့ပုံ (Guarantor NRC Front)</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">အာမခံသူ မှတ်ပုံတင် အရှေ့ပုံ </label>
                                     <input type="file" name="guarantor_front_image" required
                                         class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
                                     @error('guarantor_front_image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
@@ -192,7 +192,7 @@
 
                                 <!-- အာမခံသူ၏ မှတ်ပုံတင် အနောက်ပုံ (Guarantor NRC Back Image) -->
                                 <div class="bg-gray-50 p-4 rounded-xl border @error('guarantor_nrc_back_image') border-red-500 bg-red-50 @else border-gray-200 @enderror">
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">အာမခံသူ မှတ်ပုံတင် အနောက်ပုံ (Guarantor NRC Back)</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">အာမခံသူ မှတ်ပုံတင် အနောက်ပုံ</label>
                                     <input type="file" name="guarantor_nrc_back_image" required
                                         class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
                                     @error('guarantor_nrc_back_image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror

@@ -12,9 +12,8 @@
             <span
                 class="bg-yellow-500 text-black px-4 py-1 rounded-sm font-bold text-sm mb-4 uppercase tracking-widest">မြန်မာ့စိုက်ပျိုးရေး၏
                 ယုံကြည်စိတ်ချရသော မိတ်ဖက်</span>
-            <h2 class="text-4xl md:text-6xl font-black mb-6 leading-tight drop-shadow-xl line-height">
-                တောင်သူဦးကြီးများ၏ <br> <span class="text-yellow-400">ဘဝဖွံ့ဖြိုးတိုးတက်ဖို့</span> <br> တို့ဘဏ်က
-                ကူညီဆောင်ရွက်ပေးစို့
+            <h2 class="text-3xl font-black mb-6 leading-tight drop-shadow-xl line-height">
+                တောင်သူဦးကြီးများ၏ ဘဝဖွံ့ဖြိုးတိုးတက်ဖို့ တို့ဘဏ်က ကူညီဆောင်ရွက်ပေးစို့
             </h2>
             <div class="flex gap-4">
                 @if(!Auth::guard('borrower')->check())
@@ -55,8 +54,8 @@
                 <h4 class="text-xl font-bold text-gray-800 mb-4">စိုက်ပျိုးစရိတ်ချေးငွေ</h4>
                 <p class="text-gray-600 leading-relaxed">မိုးစပါး၊ ဆောင်းသီးနှံနှင့် အခြားသီးနှံများအတွက်
                     စိုက်ပျိုးစရိတ်များကို အတိုးနှုန်းသက်သာစွာဖြင့် ထုတ်ချေးပေးပါသည်။</p>
-                <a href="#" class="mt-6 inline-block text-green-700 font-bold hover:underline italic">ပိုမိုဖတ်ရှုရန်
-                    →</a>
+                {{-- <a href="#" class="mt-6 inline-block text-green-700 font-bold hover:underline italic">ပိုမိုဖတ်ရှုရန်
+                    →</a> --}}
             </div>
 
             <div
@@ -68,8 +67,8 @@
                 <h4 class="text-xl font-bold text-gray-800 mb-4">လယ်ယာသုံးစက်ကိရိယာချေးငွေ</h4>
                 <p class="text-gray-600 leading-relaxed">ထွန်စက်၊ ရိတ်သိမ်းခြွေလှေ့စက်များနှင့် အခြားစက်ကိရိယာများကို
                     အရစ်ကျစနစ်ဖြင့် ဝယ်ယူနိုင်ရန် ကူညီပေးပါသည်။</p>
-                <a href="#" class="mt-6 inline-block text-yellow-600 font-bold hover:underline italic">ပိုမိုဖတ်ရှုရန်
-                    →</a>
+                {{-- <a href="#" class="mt-6 inline-block text-yellow-600 font-bold hover:underline italic">ပိုမိုဖတ်ရှုရန်
+                    →</a> --}}
             </div>
 
             <div
@@ -81,8 +80,8 @@
                 <h4 class="text-xl font-bold text-gray-800 mb-4">စုဆောင်းငွေဝန်ဆောင်မှု</h4>
                 <p class="text-gray-600 leading-relaxed">တောင်သူဦးကြီးများ၏ ပိုလျှံငွေများကို လုံခြုံစိတ်ချစွာ
                     စုဆောင်းနိုင်ပြီး အတိုးနှုန်းကောင်းကောင်း ရရှိနိုင်ပါသည်။</p>
-                <a href="#" class="mt-6 inline-block text-green-700 font-bold hover:underline italic">ပိုမိုဖတ်ရှုရန်
-                    →</a>
+                {{-- <a href="#" class="mt-6 inline-block text-green-700 font-bold hover:underline italic">ပိုမိုဖတ်ရှုရန်
+                    →</a> --}}
             </div>
         </div>
     </section>

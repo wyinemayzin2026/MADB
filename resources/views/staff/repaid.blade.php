@@ -56,8 +56,8 @@
                         @foreach($repayments as $item)
                             <tr>
                                 <td class="fw-semibold">{{ $item->borrowerLoan->borrower->full_name ?? 'N/A' }}</td>
-                                <td>{{ number_format($item->borrowerLoan->total_amount ?? 0, 0) }} MMK</td>
-                                <td>{{ number_format($item->net_total_repayment_amount ?? 0, 0) }} MMK</td>
+                                <td>{{ number_format($item->borrowerLoan->total_amount ?? 0, 0) }} ကျပ်</td>
+                                <td>{{ number_format($item->net_total_repayment_amount ?? 0, 0) }} ကျပ်</td>
                                 <td>
                                     @if($item->is_overdue)
                                     ပေးဆောင်ရန်လိုသည်

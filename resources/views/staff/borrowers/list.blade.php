@@ -29,7 +29,7 @@
                 <form action="{{ route('borrowers.list') }}" method="GET" class="flex gap-3">
                     <div class="relative group">
                         <i
-                            class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-600 transition-colors"></i>
+                            class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 group-focus-within:text-indigo-600 transition-colors"></i>
                         <input type="text" name="search" value="{{ request('search') }}" placeholder="အမည်ဖြင့်ရှာဖွေရန်..."
                             class="pl-11 pr-4 py-3.5 bg-white border border-slate-200 rounded-2xl text-sm font-bold text-[#0f172a] focus:ring-4 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all w-64 shadow-sm">
                     </div>
@@ -50,22 +50,22 @@
                 <table id="accountTable" class="w-full text-left border-collapse">
                     <thead>
                         <tr class="border-b border-slate-50">
-                            <th class="px-6 py-6 text-[10px] text-indigo-700 text-slate-400 uppercase tracking-[2px]">
+                            <th class="px-6 py-6 text-[10px]   uppercase tracking-[2px]">
                                 နာမည်အပြည့်</th>
-                            <th class="px-6 py-6 text-[10px] text-indigo-700 text-slate-400 uppercase tracking-[2px]">
+                            <th class="px-6 py-6 text-[10px]  uppercase tracking-[2px]">
                                 မှတ်ပုံတင်နံပါတ်</th>
-                            <th class="px-6 py-6 text-[10px] text-indigo-700 text-slate-400 uppercase tracking-[2px]">
+                            <th class="px-6 py-6 text-[10px]  uppercase tracking-[2px]">
                                 ဆက်သွယ်ရန်ဖုန်း</th>
-                            <th class="px-6 py-6 text-[10px] text-indigo-700 text-slate-400 uppercase tracking-[2px]">Email
+                            <th class="px-6 py-6 text-[10px]  uppercase tracking-[2px]">Email
                                 Address</th>
-                            <th class="px-6 py-6 text-[10px] text-indigo-700 text-slate-400 uppercase tracking-[2px]">
+                            <th class="px-6 py-6 text-[10px]  uppercase tracking-[2px]">
                                 မွေးနေ့</th>
-                            <th class="px-6 py-6 text-[10px] text-indigo-700 text-slate-400 uppercase tracking-[2px]">ကျား/မ
+                            <th class="px-6 py-6 text-[10px]  uppercase tracking-[2px]">ကျား/မ
                             </th>
-                            <th class="px-6 py-6 text-[10px] text-indigo-700 text-slate-400 uppercase tracking-[2px]">
+                            <th class="px-6 py-6 text-[10px]  uppercase tracking-[2px]">
                                 နေရပ်လိပ်စာ</th>
                             <th
-                                class="px-6 py-6 text-[10px] text-indigo-700 text-slate-400 uppercase tracking-[2px] no-export">
+                                class="px-6 py-6 text-[10px]   uppercase tracking-[2px] no-export">
                                 ပြင်ဆင်ချက်</th>
                         </tr>
                     </thead>
@@ -80,7 +80,7 @@
                                     {{ $account->phone_number }}</td>
                                 <td class="px-6 py-6 text-xs font-bold text-slate-600 tracking-wider">
                                     {{ $account->email ?? '-' }}</td>
-                                <td class="px-6 py-6 text-xs font-bold text-slate-400 tracking-widest">
+                                <td class="px-6 py-6 text-xs font-bold  tracking-widest">
                                     {{ $account->date_of_birth }}</td>
                                 <td class="px-6 py-6 text-xs font-bold text-slate-600">
                                     {{ $account->gender == 'male' ? 'ကျား' : ($account->gender == 'female' ? 'မ' : 'အခြား') }}
@@ -126,7 +126,7 @@
         <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-xl transform transition-all">
             <div class="p-6 border-b flex justify-between items-center">
                 <h3 id="modal-title" class="text-lg font-bold text-slate-800">ငွေစုစာရင်းအကောင့်အသစ်ဖွင့်ရန်</h3>
-                <button type="button" class="close-modal text-slate-400 hover:text-slate-600">
+                <button type="button" class="close-modal  hover:text-slate-600">
                     <i class="fas fa-times text-xl"></i>
                 </button>
             </div>
@@ -138,7 +138,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-semibold mb-1 text-slate-700">နာမည်အပြည့်</label>
+                        <label class="block  text-sm font-semibold mb-1 ">နာမည်အပြည့်</label>
                         <input type="text" id="full_name" name="full_name" value="{{ old('full_name') }}" required
                             class="w-full p-2.5 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none">
                         @error('full_name') <p class="text-rose-500 text-xs mt-1 error-msg">{{ $message }}</p> @enderror
@@ -162,7 +162,7 @@
                             <div class="col-span-4 md:col-span-3">
                                 <select id="nrc_township" name="nrc_township" required disabled
                                     class="w-full p-2.5 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm font-bold text-slate-700 bg-white">
-                                    <option value="">Township</option>
+                                    <option value="">မြို့နယ်</option>
                                 </select>
                             </div>
 
@@ -192,7 +192,7 @@
                         @error('phone_number') <p class="text-rose-500 text-xs mt-1 error-msg">{{ $message }}</p> @enderror
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold mb-1 text-slate-700">Email Address</label>
+                        <label class="block text-sm font-semibold mb-1 text-slate-700">အီးမေးလ်</label>
                         <input type="email" id="email" name="email" value="{{ old('email') }}"
                             class="w-full p-2.5 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none">
                         @error('email') <p class="text-rose-500 text-xs mt-1 error-msg">{{ $message }}</p> @enderror
@@ -278,7 +278,7 @@
 
             function updateTownshipDropdown(state, selectedTownship) {
                 var $townshipSelect = $('#nrc_township');
-                $townshipSelect.empty().append('<option value="">Township</option>');
+                $townshipSelect.empty().append('<option value="">မြို့နယ်</option>');
 
                 if (state && nrcData[state]) {
                     $townshipSelect.prop('disabled', false);
@@ -413,7 +413,7 @@
                 $('#account-form')[0].reset();
                 $('#account-id').val('');
                 $('.error-msg').remove();
-                $('#nrc_township').empty().append('<option value="">Township</option>').prop('disabled', true);
+                $('#nrc_township').empty().append('<option value="">မြို့နယ်</option>').prop('disabled', true);
             }
         });
     </script>

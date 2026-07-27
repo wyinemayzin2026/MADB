@@ -13,14 +13,14 @@
                     <div class="w-12 h-12 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center border border-white/20">
                         <i class="fas fa-university text-xl"></i>
                     </div>
-                    <div>
-                        <h3 class="font-bold text-xl tracking-wide">MADB System</h3>
-                        <p class="text-[10px] text-emerald-200 tracking-wider font-semibold uppercase">Digital Banking</p>
-                    </div>
+                   <div>
+    <h3 class="font-bold text-xl tracking-wide">မြန်မာ့လယ်ယာဖွံ့ဖြိုးရေးဘဏ်</h3>
+    <p class="text-[10px] text-emerald-200 mt-5 tracking-wider font-semibold uppercase">ဒီဂျစ်တယ် ဘဏ်လုပ်ငန်း စနစ်</p>
+</div>
                 </div>
 
                 <div class="space-y-4 relative z-10 my-auto">
-                    <h2 class="text-3xl leading-snug font-bold">မြန်မာလယ်ယာ<br>ဖွံ့ဖြိုးရေးဘဏ်</h2>
+                    <h2 class="text-3xl leading-snug font-bold">မြန်မာ့လယ်ယာ<br>ဖွံ့ဖြိုးရေးဘဏ်</h2>
                     <div class="h-1 w-16 bg-emerald-400 rounded-full"></div>
                     <p class="text-emerald-100/80 text-sm leading-relaxed font-light">တောင်သူလယ်သမားများနှင့် ကျေးလက်ပြည်သူများ၏ လူမှုစီးပွားဘဝ ဖွံ့ဖြိုးတိုးတက်ရေးအတွက် ယုံကြည်စိတ်ချရသော ဘဏ်လုပ်ငန်းဝန်ဆောင်မှု။</p>
                 </div>
@@ -38,7 +38,7 @@
                     </div>
                     <div class="text-left">
                         <h3 class="font-bold text-lg text-slate-800 leading-tight">MADB</h3>
-                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">မြန်မာလယ်ယာဖွံ့ဖြိုးရေးဘဏ်</p>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">မြန်မာ့လယ်ယာဖွံ့ဖြိုးရေးဘဏ်</p>
                     </div>
                 </div>
 
@@ -77,7 +77,7 @@
                             <div class="col-span-4">
                                 <select id="nrc_township" name="nrc_township" required disabled
                                     class="w-full bg-transparent outline-none text-sm font-bold text-slate-700 cursor-pointer p-1">
-                                    <option value="">Township</option>
+                                    <option value="">မြို့နယ်</option>
                                 </select>
                             </div>
 
@@ -157,7 +157,7 @@
 
             function updateTownshipDropdown(state, selectedTownship) {
                 var $townshipSelect = $('#nrc_township');
-                $townshipSelect.empty().append('<option value="">Township</option>');
+                $townshipSelect.empty().append('<option value="">မြို့နယ်</option>');
 
                 if (state && nrcData[state]) {
                     $townshipSelect.prop('disabled', false);

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>မြန်မာလယ်ယာဖွံ့ဖြိုးရေးဘဏ် (MADB) | Dashboard</title>
+    <title>မြန်မာ့လယ်ယာဖွံ့ဖြိုးရေးဘဏ် (MADB) | Dashboard</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -86,7 +86,7 @@
             </div>
             <div>
                 <h1 class="text-green-800 font-bold text-lg leading-tight">MADB</h1>
-                <p class="text-xs text-yellow-600 font-semibold tracking-tighter">မြန်မာလယ်ယာဖွံ့ဖြိုးရေးဘဏ်</p>
+                <p class="text-xs text-yellow-600 font-semibold tracking-tighter">မြန်မာ့လယ်ယာဖွံ့ဖြိုးရေးဘဏ်</p>
             </div>
         </div>
 

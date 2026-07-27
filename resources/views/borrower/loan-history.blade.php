@@ -9,7 +9,6 @@
             <div class="flex flex-col sm:flex-row justify-between items-center border-b border-gray-200 pb-4 mb-6">
                 <div>
                     <h2 class="text-2xl font-bold text-gray-800">📋 မိမိ၏ ချေးငွေလျှောက်လွှာ မှတ်တမ်းများ</h2>
-                    <p class="text-sm text-gray-500 mt-1">သင်လျှောက်ထားခဲ့ဖူးသော စိုက်ပျိုးစရိတ်ချေးငွေစာရင်း အပြည့်အစုံ</p>
                 </div>
                 <div class="mt-4 sm:mt-0">
                     <a href="{{ route('borrower.loan') }}"
@@ -23,12 +22,12 @@
                 <table id="loanTable" class="w-full text-sm text-left text-gray-600 border border-gray-200 rounded-lg">
                     <thead class="bg-gray-100 text-gray-700 font-bold border-b border-gray-200 text-xs uppercase">
                         <tr>
-                            <th class="px-4 py-3">ID</th>
+                            <th class="px-4 py-3">အမှတ်စဥ်</th>
                             <th class="px-4 py-3">အလုပ်အကိုင်</th>
                             <th class="px-4 py-3">ရာသီ / ဧက</th>
                             <th class="px-4 py-3">စုစုပေါင်းချေးငွေ</th>
                             <th class="px-4 py-3">လျှောက်ထားသည့်နေ့</th>
-                            <th class="px-4 py-3 text-center">အခြေအနေ (Status)</th>
+                            <th class="px-4 py-3 text-center">အခြေအနေ</th>
                             <th class="px-4 py-3 text-center">လုပ်ဆောင်ချက်</th>
                         </tr>
                     </thead>
@@ -50,7 +49,7 @@
                                 </td>
                                 <td class="px-4 py-4 font-bold text-green-600 text-base">
                                     {{ number_format($loan->total_amount) }} <span
-                                        class="text-xs text-gray-400 font-normal">ကျပ်</span>
+                                        class="text-xs  font-normal">ကျပ်</span>
                                 </td>
                                 <td class="px-4 py-4 text-gray-500 text-xs">{{ $loan->created_at->format('Y-m-d H:i') }}
                                 </td>
@@ -82,7 +81,7 @@
                                     <button type="button"
                                         onclick="openLoanModal({{ json_encode($loan) }}, '{{ asset('storage') }}')"
                                         class="bg-green-600 hover:bg-green-700 text-white font-bold py-1.5 px-3 rounded-lg text-xs shadow transition inline-flex items-center">
-                                        <i class="fa-solid fa-eye mr-1"></i> View အပြည့်စုံပြပါ
+                                        <i class="fa-solid fa-eye mr-1"></i> အပြည့်စုံပြပါ
                                     </button>
                                 </td>
                             </tr>
@@ -111,55 +110,55 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
-                        <p class="text-xs text-gray-400 font-bold uppercase">စုငွေစာရင်းနံပါတ်</p>
+                        <p class="text-xs  font-bold uppercase">စုငွေစာရင်းနံပါတ်</p>
                         <p id="m_borrower_id" class="text-gray-800 font-semibold mt-0.5">-</p>
                     </div>
                     <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
-                        <p class="text-xs text-gray-400 font-bold">အလုပ်အကိုင်</p>
+                        <p class="text-xs  font-bold">အလုပ်အကိုင်</p>
                         <p id="m_occupation" class="text-gray-800 font-semibold mt-0.5">-</p>
                     </div>
                     <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
-                        <p class="text-xs text-gray-400 font-bold">လစဉ်ဝင်ငွေ</p>
+                        <p class="text-xs  font-bold">လစဉ်ဝင်ငွေ</p>
                         <p id="m_monthly_income" class="text-gray-800 font-semibold mt-0.5">-</p>
                     </div>
                     <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
-                        <p class="text-xs text-gray-400 font-bold">ချေးငွေအမျိုးအစား</p>
+                        <p class="text-xs  font-bold">ချေးငွေအမျိုးအစား</p>
                         <p id="m_loan_type" class="text-gray-800 font-semibold mt-0.5">-</p>
                     </div>
                     <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
-                        <p class="text-xs text-gray-400 font-bold">ရာသီဥတု</p>
+                        <p class="text-xs  font-bold">ရာသီဥတု</p>
                         <p id="m_season_type" class="text-gray-800 font-semibold mt-0.5">-</p>
                     </div>
                     <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
-                        <p class="text-xs text-gray-400 font-bold">ဧကပမာဏ</p>
+                        <p class="text-xs  font-bold">ဧကပမာဏ</p>
                         <p id="m_acres" class="text-gray-800 font-semibold mt-0.5">-</p>
                     </div>
                     <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
-                        <p class="text-xs text-gray-400 font-bold">သတ်မှတ်အတိုးနှုန်း</p>
+                        <p class="text-xs  font-bold">သတ်မှတ်အတိုးနှုန်း</p>
                         <p id="m_rate" class="text-gray-800 font-semibold mt-0.5">-</p>
                     </div>
                     <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
-                        <p class="text-xs text-gray-400 font-bold">စုစုပေါင်းချေးငွေပမာဏ</p>
+                        <p class="text-xs  font-bold">စုစုပေါင်းချေးငွေပမာဏ</p>
                         <p id="m_total_amount" class="text-green-600 font-bold text-lg mt-0.5">-</p>
                     </div>
                     <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
-                        <p class="text-xs text-gray-400 font-bold">အတိုး/အရင်း ဆပ်ရမည့်ပုံစံ</p>
+                        <p class="text-xs  font-bold">အတိုး/အရင်း ဆပ်ရမည့်ပုံစံ</p>
                         <p id="m_atone_none" class="text-gray-800 font-semibold mt-0.5">-</p>
                     </div>
                     <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
-                        <p class="text-xs text-gray-400 font-bold">အာမခံသူအမည်</p>
+                        <p class="text-xs  font-bold">အာမခံသူအမည်</p>
                         <p id="m_guarantor_name" class="text-gray-800 font-semibold mt-0.5">-</p>
                     </div>
                     <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
-                        <p class="text-xs text-gray-400 font-bold">Start Date</p>
+                        <p class="text-xs  font-bold">Start Date</p>
                         <p id="m_start_date" class="text-gray-800 font-semibold mt-0.5">-</p>
                     </div>
                     <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
-                        <p class="text-xs text-gray-400 font-bold">End Date</p>
+                        <p class="text-xs  font-bold">End Date</p>
                         <p id="m_end_date" class="text-red-600 font-semibold mt-0.5">-</p>
                     </div>
                     <div class="bg-gray-50 p-3 rounded-xl border border-gray-100 md:col-span-2">
-                        <p class="text-xs text-gray-400 font-bold">အလုပ်နေရာ လိပ်စာ</p>
+                        <p class="text-xs  font-bold">အလုပ်နေရာ လိပ်စာ</p>
                         <p id="m_workplace_address" class="text-gray-800 mt-0.5 text-sm">-</p>
                     </div>
                 </div>
@@ -169,23 +168,23 @@
                         စာရွက်စာတမ်းများ</h4>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                         <div class="text-center">
-                            <p class="text-[11px] text-gray-400 font-bold mb-1">ပုံစံ(၇) </p><a id="link_tax"
+                            <p class="text-[11px]  font-bold mb-1">ပုံစံ(၇) </p><a id="link_tax"
                                 href="#" target="_blank"><img id="img_tax" src=""
                                     class="w-full h-24 object-cover rounded-lg border hover:scale-105 transition shadow-sm"></a>
                         </div>
                         <div class="text-center">
-                            <p class="text-[11px] text-gray-400 font-bold mb-1">အိမ်ထောင်စု</p><a id="link_household"
+                            <p class="text-[11px]  font-bold mb-1">အိမ်ထောင်စု</p><a id="link_household"
                                 href="#" target="_blank"><img id="img_household" src=""
                                     class="w-full h-24 object-cover rounded-lg border hover:scale-105 transition shadow-sm"></a>
                         </div>
                         <div class="text-center">
-                            <p class="text-[11px] text-gray-400 font-bold mb-1">မှတ်ပုံတင် (ရှေ့)</p><a
+                            <p class="text-[11px]  font-bold mb-1">မှတ်ပုံတင် (ရှေ့)</p><a
                                 id="link_nrc_front" href="#" target="_blank"><img id="img_nrc_front"
                                     src=""
                                     class="w-full h-24 object-cover rounded-lg border hover:scale-105 transition shadow-sm"></a>
                         </div>
                         <div class="text-center">
-                            <p class="text-[11px] text-gray-400 font-bold mb-1">မှတ်ပုံတင် (နောက်)</p><a
+                            <p class="text-[11px]  font-bold mb-1">မှတ်ပုံတင် (နောက်)</p><a
                                 id="link_nrc_back" href="#" target="_blank"><img id="img_nrc_back" src=""
                                     class="w-full h-24 object-cover rounded-lg border hover:scale-105 transition shadow-sm"></a>
                         </div>
@@ -273,7 +272,7 @@
                     </div>
                     <div class="grid grid-cols-2 gap-6">
                         <div>
-                            <p class="text-[11px] text-gray-400 uppercase font-bold mb-1">စုစုပေါင်းဆပ်ရန်ပမာဏ</p>
+                            <p class="text-[11px]  uppercase font-bold mb-1">စုစုပေါင်းဆပ်ရန်ပမာဏ</p>
                             <div class="flex items-baseline gap-1">
                                 <span class="text-2xl font-black text-gray-900">${totalAmount}</span>
                                 <span class="text-sm font-bold text-gray-500">ကျပ်</span>
@@ -281,7 +280,7 @@
                             ${isOverdue ? '<p class="text-[11px] font-bold text-red-600 mt-1">⚠️ နောက်ကျကြေး 5% ပေးဆောင်ရပါမည်</p>' : ''}
                         </div>
                         <div>
-                            <p class="text-[11px] text-gray-400 uppercase font-bold mb-1">နောက်ဆုံးထားပေးချေရမည့်ရက်</p>
+                            <p class="text-[11px]  uppercase font-bold mb-1">နောက်ဆုံးထားပေးချေရမည့်ရက်</p>
                             <div class="flex items-baseline gap-1">
                                 <span class="text-xl font-bold ${isOverdue ? 'text-red-600' : 'text-green-700'}">${loan.loan_remainder.repayment_date}</span>
                             </div>
@@ -295,11 +294,11 @@
 
                 alertBox.className =
                     "p-3 rounded-xl text-sm font-bold block mb-2 bg-red-50 text-red-800 border border-red-200";
-                alertBox.innerHTML = `❌ ချေးငွေ လျှောက်ထားမှုကို ပြန်လည်ပြင်ဆင်ရန် ပယ်ချထားပါသည် (Rejected) ${reasonText}`;
+                alertBox.innerHTML = `❌ ချေးငွေ လျှောက်ထားမှုကို ပြန်လည်ပြင်ဆင်ရန် ပယ်ချထားပါသည်${reasonText}`;
             } else if (loan.status === 'pending') {
                 alertBox.className =
                     "p-3 rounded-xl text-sm font-bold flex items-center mb-2 bg-amber-50 text-amber-800 border border-amber-200";
-                alertBox.innerHTML = "⚠️ ဘဏ်မှ စိစစ်နေဆဲဖြစ်ပါသည် (Pending)";
+                alertBox.innerHTML = "⚠️ ဘဏ်မှ စိစစ်နေဆဲဖြစ်ပါသည်";
             } else {
                 let reasonText = loan.rejected_reason ?
                     `<br><span class="text-xs font-normal mt-1 block"><b>အကြောင်းအရင်း:</b> ${loan.rejected_reason}</span>` :
@@ -307,7 +306,7 @@
 
                 alertBox.className =
                     "p-3 rounded-xl text-sm font-bold block mb-2 bg-red-50 text-red-800 border border-red-200";
-                alertBox.innerHTML = `❌ ချေးငွေ လျှောက်ထားမှုကို ပယ်ချထားပါသည် (Rejected) ${reasonText}`;
+                alertBox.innerHTML = `❌ ချေးငွေ လျှောက်ထားမှုကို ပယ်ချထားပါသည် ${reasonText}`;
             }
 
             // Image Setters

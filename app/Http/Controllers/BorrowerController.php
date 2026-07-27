@@ -65,9 +65,9 @@ class BorrowerController extends Controller
 
             'phone_number.required' => 'ဆက်သွယ်ရန်ဖုန်းနံပါတ်ကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
 
-            'email.email' => 'မှန်ကန်သော Email Address ပုံစံ ဖြစ်ရပါမည်။',
+            'email.email' => 'မှန်ကန်သော အီးမေးလ် ပုံစံ ဖြစ်ရပါမည်။',
             'email.max' => 'Email သည် စာလုံးရေ ၂၅၅ လုံးထက် မကျော်ရပါ။',
-            'email.unique' => 'ဤ Email Address သည် စနစ်ထဲတွင် ရှိနှင့်ပြီးသားဖြစ်ပါသည်။',
+            'email.unique' => 'ဤ အီးမေးလ် သည် စနစ်ထဲတွင် ရှိနှင့်ပြီးသားဖြစ်ပါသည်။',
 
             'date_of_birth.required' => 'မွေးနေ့ရက်စွဲကို ရွေးချယ်ပေးရန် လိုအပ်ပါသည်။',
             'date_of_birth.date' => 'မွေးနေ့သည် မှန်ကန်သော ရက်စွဲပုံစံ ဖြစ်ရပါမည်။',
@@ -117,9 +117,9 @@ class BorrowerController extends Controller
 
             'phone_number.required' => 'ဆက်သွယ်ရန်ဖုန်းနံပါတ်ကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
 
-            'email.email' => 'မှန်ကန်သော Email Address ပုံစံ ဖြစ်ရပါမည်။',
+            'email.email' => 'မှန်ကန်သော အီးမေးလ် ပုံစံ ဖြစ်ရပါမည်။',
             'email.max' => 'Email သည် စာလုံးရေ ၂၅၅ လုံးထက် မကျော်ရပါ။',
-            'email.unique' => 'ဤ Email Address သည် စနစ်ထဲတွင် ရှိနှင့်ပြီးသားဖြစ်ပါသည်။',
+            'email.unique' => 'ဤ အီးမေးလ် သည် စနစ်ထဲတွင် ရှိနှင့်ပြီးသားဖြစ်ပါသည်။',
 
             'date_of_birth.required' => 'မွေးနေ့ရက်စွဲကို ရွေးချယ်ပေးရန် လိုအပ်ပါသည်။',
             'date_of_birth.date' => 'မွေးနေ့သည် မှန်ကန်သော ရက်စွဲပုံစံ ဖြစ်ရပါမည်။',

@@ -35,6 +35,8 @@ return new class extends Migration
             $table->string('nrc_back_image')->nullable();        // မှတ်ပုံတင်အနောက်
 
             $table->string('status')->default('pending');
+            $table->string('rejected_reason');
+            $table->boolean('is_closed')->default(false);
             $table->timestamps();
         });
     }

@@ -33,7 +33,6 @@ class StaffSeeder extends Seeder
             Staff::create([
                 'eid' => 1000 + $index,
                 'name' => $name,
-                'nrc' => $this->generateNRC($index), // NRC အသစ်ထည့်သွင်းခြင်း
                 'address' => 'MADB ရုံးဝင်းအတွင်း',
                 'phone' => '091234567' . $index,
                 'email' => 'staff' . $index . '@ird.gov.mm',

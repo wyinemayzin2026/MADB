@@ -12,18 +12,7 @@ class Staff extends Authenticatable
 
     protected $table = 'staff';
 
-    protected $fillable = [
-        'eid',
-        'nrc',
-        'name',
-        'address',
-        'phone',
-        'email',
-        'position',    // ရာထူး
-        'role',        // System Role (admin/staff)
-        'image_path',  // ပုံလမ်းကြောင်း
-        'password',    // လျှို့ဝှက်နံပါတ်
-    ];
+    protected $guarded = [];
 
     protected $hidden = [
         'password',

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Borrower; // Borrower Model ကို တိုက်ရိုက်သုံးစွဲမည်
+use App\Models\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -19,6 +20,21 @@ class BorrowerController extends Controller
         $accounts = $query->paginate(10)->withQueryString();
 
         return view('staff.borrowers.list', compact('accounts'));
+    }
+
+    public function staffList(Request $request)
+    {
+        $query = Staff::latest();
+
+        if ($request->filled('search')) {
+            $query->where('full_name', 'like', '%' . $request->search . '%');
+        }
+
+        $accounts = $query->paginate(10)->withQueryString();
+
+        dd($accounts);
+
+        return view('staff.staff.list', compact('accounts'));
     }
 
     public function store(Request $request)

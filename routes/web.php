@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StaffController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Staff\AuthController;
 use App\Http\Controllers\BorrowerController;
@@ -59,3 +60,15 @@ Route::get('/loan/repay-detail/{id}', [BorrowerLoanController::class, 'showRepay
 Route::post('/loan/repay/process/{id}', [BorrowerLoanController::class, 'processPayment'])->name('loan.repay.process');
 Route::get('/loan-repayments', [BorrowerLoanController::class, 'loanPaidList'])->name('loans.repayments');
 Route::put('/loans/{id}/status', [BorrowerLoanController::class, 'updateStatusReaminder'])->name('loans.updateStatus');
+
+Route::prefix('staff')->name('staff.')->group(function () {
+    Route::get('/list', [StaffController::class, 'index'])->name('list');
+    Route::get('/data', [StaffController::class, 'getData'])->name('data');
+    Route::post('/', [StaffController::class, 'store'])->name('store');
+    Route::get('/{staff}/edit', [StaffController::class, 'edit'])->name('edit');
+
+    // Route::post အစား Route::put သို့မဟုတ် Route::match ပြောင်းပါ
+    Route::put('/{staff}', [StaffController::class, 'update'])->name('update');
+
+    Route::delete('/{staff}', [StaffController::class, 'destroy'])->name('destroy');
+});

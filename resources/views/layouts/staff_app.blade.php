@@ -126,12 +126,10 @@
                     <i class="fas fa-chart-pie me-3 w-5 text-lg"></i> ပင်မစာမျက်နှာ
                 </a>
 
-                {{-- <a href="{{ route('taxpayers.list') }}"
-                    class="flex items-center p-3.5 {{ Request::is('taxpayers*') ? 'bg-emerald-700 text-white shadow-xl shadow-emerald-100 font-bold' : 'text-slate-600 hover:bg-slate-50 font-semibold' }} rounded-2xl transition-all">
-                    <i
-                        class="fas fa-users-rectangle me-3 w-5 text-lg {{ Request::is('taxpayers*') ? 'text-white' : 'text-emerald-600' }}"></i>
-                    တောင်သူလယ်သမားများ
-                </a> --}}
+                <a href="{{ route('staff.list') }}"
+                    class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">
+                    <i class="fas fa-hand-holding-dollar me-3 w-5 text-lg text-emerald-600"></i> ၀န်ထမ်းအကောင့်များ
+                </a>
 
                 <a href="{{ route('borrowers.list') }}"
                     class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">

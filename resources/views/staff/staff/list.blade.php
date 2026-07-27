@@ -13,13 +13,13 @@
         <!-- Header & Action Button -->
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
             <div>
-                <h1 class="text-2xl font-bold text-slate-800">၀န်ထမ်းအကောင့်များ (Staff Management)</h1>
-                <p class="text-slate-500 text-sm">Manage employee accounts, positions, and permissions.</p>
+                <h1 class="text-2xl font-bold text-slate-800">၀န်ထမ်းအကောင့်များ </h1>
+
             </div>
             <div>
                 <button id="btn-add-staff" type="button"
                     class="inline-flex items-center px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm rounded-xl shadow-sm transition-all duration-200">
-                    <i class="fas fa-plus me-2"></i> ၀န်ထမ်းသစ်ထည့်မည် (Add Staff)
+                    <i class="fas fa-plus me-2"></i> ၀န်ထမ်းသစ်ထည့်မည်
                 </button>
             </div>
         </div>
@@ -29,16 +29,16 @@
             <div class="overflow-x-auto">
                 <table id="staff-table" class="w-full text-left text-sm text-slate-600">
                     <thead class="bg-emerald-50/50 text-emerald-900 font-semibold border-b border-emerald-100">
-                        <tr>
-                            <th class="p-3">EID</th>
-                            <th class="p-3">Staff Profile</th>
-                            <th class="p-3">Email</th>
-                            <th class="p-3">Phone</th>
-                            <th class="p-3">Position</th>
-                            <th class="p-3">Role</th>
-                            <th class="p-3">Address</th>
-                            <th class="p-3 text-center">Actions</th>
-                        </tr>
+                       <tr>
+    <th class="p-3">အိုင်ဒီ</th>
+    <th class="p-3">နာမည်</th>
+    <th class="p-3">အီးမေးလ်</th>
+    <th class="p-3">ဖုန်းနံပါတ်</th>
+    <th class="p-3">ရာထူး</th>
+    <th class="p-3">လုပ်ပိုင်ခွင့်</th>
+    <th class="p-3">နေရပ်လိပ်စာ</th>
+    <th class="p-3 text-center">လုပ်ဆောင်ချက်များ</th>
+</tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100">
                         @forelse($staffs as $staff)
@@ -68,10 +68,10 @@
                                 <td class="p-3 text-center">
                                     <div class="flex items-center justify-center gap-2">
                                         <button type="button" class="px-2.5 py-1.5 bg-slate-100 hover:bg-emerald-50 hover:text-emerald-600 text-slate-600 rounded-lg text-xs font-medium transition-all edit-btn" data-id="{{ $staff->id }}">
-                                            <i class="fas fa-edit me-1"></i> Edit
+                                            <i class="fas fa-edit me-1"></i> ပြင်ဆင်မည်
                                         </button>
                                         <button type="button" class="px-2.5 py-1.5 bg-slate-100 hover:bg-rose-50 hover:text-rose-600 text-slate-600 rounded-lg text-xs font-medium transition-all delete-btn" data-id="{{ $staff->id }}">
-                                            <i class="fas fa-trash me-1"></i> Delete
+                                            <i class="fas fa-trash me-1"></i> ဖျက်မည်
                                         </button>
                                     </div>
                                 </td>
@@ -108,7 +108,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- EID Field -->
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1">EID (Employee ID)</label>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">ဝန်ထမ်း အိုင်ဒီ</label>
                         <input type="number" name="eid" id="eid" value="{{ old('eid') }}"
                             class="w-full px-3.5 py-2.5 rounded-xl border @error('eid') border-rose-500 @else border-slate-200 @enderror focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
                         @error('eid')
@@ -118,7 +118,7 @@
 
                     <!-- Name Field -->
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1">Full Name</label>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">အမည်</label>
                         <input type="text" name="name" id="name" value="{{ old('name') }}"
                             class="w-full px-3.5 py-2.5 rounded-xl border @error('name') border-rose-500 @else border-slate-200 @enderror focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
                         @error('name')
@@ -128,7 +128,7 @@
 
                     <!-- Email Field -->
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1">Email</label>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">အီးမေးလ် လိပ်စာ</label>
                         <input type="email" name="email" id="email" value="{{ old('email') }}"
                             class="w-full px-3.5 py-2.5 rounded-xl border @error('email') border-rose-500 @else border-slate-200 @enderror focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
                         @error('email')
@@ -138,7 +138,7 @@
 
                     <!-- Phone Field -->
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1">Phone</label>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">ဖုန်းနံပါတ်</label>
                         <input type="text" name="phone" id="phone" value="{{ old('phone') }}"
                             class="w-full px-3.5 py-2.5 rounded-xl border @error('phone') border-rose-500 @else border-slate-200 @enderror focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
                         @error('phone')
@@ -148,7 +148,7 @@
 
                     <!-- Position Field -->
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1">Position</label>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">ရာထူး</label>
                         <input type="text" name="position" id="position" value="{{ old('position') }}"
                             class="w-full px-3.5 py-2.5 rounded-xl border @error('position') border-rose-500 @else border-slate-200 @enderror focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
                         @error('position')
@@ -158,7 +158,7 @@
 
                     <!-- Role Field -->
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1">Role</label>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">လုပ်ပိုင်ခွင့်</label>
                         <select name="role" id="role"
                             class="w-full px-3.5 py-2.5 rounded-xl border @error('role') border-rose-500 @else border-slate-200 @enderror focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 bg-white">
                             <option value="staff" {{ old('role') == 'staff' ? 'selected' : '' }}>Staff</option>
@@ -171,7 +171,7 @@
 
                     <!-- Password Field -->
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-1">Password <span class="text-xs font-normal text-slate-400">(Leave blank to keep)</span></label>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">စကားဝှက် <span class="text-xs font-normal text-slate-400">(Leave blank to keep)</span></label>
                         <input type="password" name="password" id="password"
                             class="w-full px-3.5 py-2.5 rounded-xl border @error('password') border-rose-500 @else border-slate-200 @enderror focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
                         @error('password')
@@ -181,7 +181,7 @@
 
                     <!-- Profile Image Field -->
                     <div class="md:col-span-2">
-                        <label class="block text-sm font-semibold text-slate-700 mb-1">Profile Image</label>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">ပရိုဖိုင် ဓာတ်ပုံ</label>
 
                         <!-- Old Image Preview Container -->
                         <div id="imagePreviewContainer" class="hidden mb-3 flex items-center gap-3 p-2 bg-slate-50 border border-slate-200 rounded-xl">
@@ -201,7 +201,7 @@
 
                     <!-- Address Field -->
                     <div class="md:col-span-2">
-                        <label class="block text-sm font-semibold text-slate-700 mb-1">Address</label>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">နေရပ်လိပ်စာ</label>
                         <textarea name="address" id="address" rows="2"
                             class="w-full px-3.5 py-2.5 rounded-xl border @error('address') border-rose-500 @else border-slate-200 @enderror focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">{{ old('address') }}</textarea>
                         @error('address')
@@ -212,9 +212,9 @@
 
                 <div class="mt-6 flex justify-end gap-3 pt-4 border-t border-slate-100">
                     <button type="button"
-                        class="closeModal px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-medium text-sm transition-all">Cancel</button>
+                        class="closeModal px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-medium text-sm transition-all">ဆက်မလုပ်တော့ပါ</button>
                     <button type="submit" id="saveBtn"
-                        class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-medium text-sm transition-all">Save Staff</button>
+                        class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-medium text-sm transition-all">ဆက်လုပ်မည်</button>
                 </div>
             </form>
         </div>

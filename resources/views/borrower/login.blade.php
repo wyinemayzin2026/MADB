@@ -84,10 +84,10 @@
                             <div class="col-span-4">
                                 <select id="nrc_type" name="nrc_type" required
                                     class="w-full bg-transparent outline-none text-sm font-bold text-slate-700 cursor-pointer p-1">
-                                    <option value="(N)" {{ old('nrc_type') == '(N)' ? 'selected' : '' }}>(N)</option>
-                                    <option value="(P)" {{ old('nrc_type') == '(P)' ? 'selected' : '' }}>(P)</option>
-                                    <option value="(E)" {{ old('nrc_type') == '(E)' ? 'selected' : '' }}>(E)</option>
-                                    <option value="(T)" {{ old('nrc_type') == '(T)' ? 'selected' : '' }}>(T)</option>
+                                    <option value="(N)" {{ old('nrc_type') == '(N)' ? 'selected' : '' }}>(နိုင်)</option>
+                                    <option value="(P)" {{ old('nrc_type') == '(P)' ? 'selected' : '' }}>(ပြု)</option>
+                                    <option value="(E)" {{ old('nrc_type') == '(E)' ? 'selected' : '' }}>(ဧည့်)</option>
+                                    <option value="(T)" {{ old('nrc_type') == '(T)' ? 'selected' : '' }}>(သီ)</option>
                                 </select>
                             </div>
 

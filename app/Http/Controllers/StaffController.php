@@ -15,6 +15,10 @@ class StaffController extends Controller
             ->latest()
             ->get();
 
+        if (auth()->user()->role !== 'admin') {
+            abort(404);
+        }
+
         return view('staff.staff.list', compact('staffs'));
     }
 
@@ -22,7 +26,12 @@ class StaffController extends Controller
     {
         $validated = $request->validate([
             'eid' => 'required|numeric|unique:staff,eid',
-            'name' => 'required|string|max:255',
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                'regex:/^(?!.*[0-9\x{1040}-\x{1049}]).*$/u'
+            ],
             'email' => 'required|email|unique:staff,email',
             'position' => 'required|string|max:255',
             'role' => 'required|string|in:staff,manager,admin',
@@ -35,6 +44,7 @@ class StaffController extends Controller
             'eid.required' => 'EID (ဝန်ထမ်းနံပါတ်) ဖြည့်သွင်းရန် လိုအပ်ပါသည်။',
             'eid.numeric' => 'EID သည် ကိန်းဂဏန်းသာ ဖြစ်ရပါမည်။',
             'eid.unique' => 'ဤ EID ကို အသုံးပြုပြီးသား ဖြစ်နေပါသည်။',
+            'name.regex' => 'အမည်တွင် ကိန်းဂဏန်းများ (၁၂၃ / 123) ထည့်သွင်း၍ မရပါ။',
 
             'name.required' => 'ဝန်ထမ်းအမည် ဖြည့်သွင်းရန် လိုအပ်ပါသည်။',
 
@@ -74,7 +84,12 @@ class StaffController extends Controller
     {
         $validated = $request->validate([
             'eid' => 'required|integer|unique:staff,eid,' . $staff->id,
-            'name' => 'required|string|max:255',
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                'regex:/^(?!.*[0-9\x{1040}-\x{1049}]).*$/u'
+            ],
             'email' => 'required|email|unique:staff,email,' . $staff->id,
             'position' => 'required|string|max:255',
             'role' => 'required|string',
@@ -84,6 +99,7 @@ class StaffController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ], [
             'eid.required' => 'EID (ဝန်ထမ်းနံပါတ်) ဖြည့်သွင်းရန် လိုအပ်ပါသည်။',
+            'name.regex' => 'အမည်တွင် ကိန်းဂဏန်းများ (၁၂၃ / 123) ထည့်သွင်း၍ မရပါ။',
             'eid.integer' => 'EID သည် ကိန်းဂဏန်း (ကင်းပြည့်) သာ ဖြစ်ရပါမည်။',
             'eid.unique' => 'ဤ EID ကို အခြားဝန်ထမ်းတစ်ဦးတွင် အသုံးပြုပြီးသား ဖြစ်နေပါသည်။',
 

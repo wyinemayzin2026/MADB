@@ -126,10 +126,12 @@
                     <i class="fas fa-chart-pie me-3 w-5 text-lg"></i> ပင်မစာမျက်နှာ
                 </a>
 
-                <a href="{{ route('staff.list') }}"
-                    class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">
-                    <i class="fas fa-hand-holding-dollar me-3 w-5 text-lg text-emerald-600"></i> ၀န်ထမ်းအကောင့်များ
-                </a>
+                @if(auth()->check() && auth()->user()->role === 'admin')
+                    <a href="{{ route('staff.list') }}"
+                        class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">
+                        <i class="fas fa-hand-holding-dollar me-3 w-5 text-lg text-emerald-600"></i> ၀န်ထမ်းအကောင့်များ
+                    </a>
+                @endif
 
                 <a href="{{ route('borrowers.list') }}"
                     class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">

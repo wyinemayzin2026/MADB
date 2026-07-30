@@ -47,7 +47,12 @@ class BorrowerController extends Controller
         }
 
         $validated = $request->validate([
-            'full_name' => 'required|string|max:255',
+            'full_name' => [
+                'required',
+                'string',
+                'max:255',
+                'regex:/^(?!.*[0-9\x{1040}-\x{1049}]).*$/u'
+            ],
             'nrc_number' => 'required|string|max:255|unique:borrowers,nrc_number',
             'phone_number' => 'required|string|max:255',
             'email' => 'nullable|email|max:255|unique:borrowers,email',
@@ -59,6 +64,7 @@ class BorrowerController extends Controller
             'full_name.required' => 'နာမည်အပြည့်အစုံကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
             'full_name.string' => 'နာမည်သည် စာသားအမျိုးအစား ဖြစ်ရပါမည်။',
             'full_name.max' => 'နာမည်သည် စာလုံးရေ ၂၅၅ လုံးထက် မကျော်ရပါ။',
+            'full_name..regex' => 'အမည်တွင် ကိန်းဂဏန်းများ (၁၂၃ / 123) ထည့်သွင်း၍ မရပါ။',
 
             'nrc_number.required' => 'မှတ်ပုံတင်နံပါတ်ကို အပြည့်အစုံ ရွေးချယ်/ဖြည့်သွင်းပေးရန် လိုအပ်ပါသည်။',
             'nrc_number.unique' => 'ဤမှတ်ပုံတင်နံပါတ်သည် စနစ်ထဲတွင် ရှိနှင့်ပြီးသားဖြစ်ပါသည်။',
@@ -99,7 +105,12 @@ class BorrowerController extends Controller
         }
 
         $validated = $request->validate([
-            'full_name' => 'required|string|max:255',
+            'full_name' => [
+                'required',
+                'string',
+                'max:255',
+                'regex:/^(?!.*[0-9\x{1040}-\x{1049}]).*$/u'
+            ],
             'nrc_number' => 'required|string|max:255|unique:borrowers,nrc_number,' . $id, // ၎င်း ID ကို ချန်လှပ်၍ စစ်ဆေးမည်
             'phone_number' => 'required|string|max:255',
             'email' => 'nullable|email|max:255|unique:borrowers,email,' . $id,         // ၎င်း ID ကို ချန်လှပ်၍ စစ်ဆေးမည်
@@ -111,6 +122,7 @@ class BorrowerController extends Controller
             'full_name.required' => 'နာမည်အပြည့်အစုံကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
             'full_name.string' => 'နာမည်သည် စာသားအမျိုးအစား ဖြစ်ရပါမည်။',
             'full_name.max' => 'နာမည်သည် စာလုံးရေ ၂၅၅ လုံးထက် မကျော်ရပါ။',
+            'full_name..regex' => 'အမည်တွင် ကိန်းဂဏန်းများ (၁၂၃ / 123) ထည့်သွင်း၍ မရပါ။',
 
             'nrc_number.required' => 'မှတ်ပုံတင်နံပါတ်ကို အပြည့်အစုံ ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
             'nrc_number.unique' => 'ဤမှတ်ပုံတင်နံပါတ်သည် စနစ်ထဲတွင် ရှိနှင့်ပြီးသားဖြစ်ပါသည်။',

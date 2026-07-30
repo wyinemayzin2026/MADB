@@ -140,7 +140,7 @@
                         </div>
 
                         <div class="border-b border-gray-100 pb-5 mb-6">
-                            <h3 class="text-lg font-bold text-gray-800 mb-4 text-green-600">၃။ အာမခံသူ အချက်အလက်/h3>
+                            <h3 class="text-lg font-bold text-gray-800 mb-4 text-green-600">၃။ အာမခံသူ အချက်အလက်</h3>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">အာမခံသူ အမည် (ရွာလူကြီး / ကော်မတီဝင်)</label>
                                 <input type="text" name="guarantor_name" value="{{ old('guarantor_name') }}" required

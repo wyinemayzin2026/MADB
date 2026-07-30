@@ -91,18 +91,18 @@
 
                         <div class="mt-4 bg-gray-50 rounded-xl p-4 grid grid-cols-2 gap-4 border border-dashed border-gray-200">
                             <div>
-                                <p class="text-xs text-gray-500">သတ်မှတ်အတိုးနှုန်း (Rate)</p>
+                                <p class="text-xs text-gray-500">သတ်မှတ်အတိုးနှုန်း</p>
                                 <p class="text-lg font-bold text-gray-800">5 %</p>
                             </div>
                             <div>
-                                <p class="text-xs text-gray-500">ခန့်မှန်းရရှိမည့် စုစုပေါင်းချေးငွေ (Total Amount)</p>
+                                <p class="text-xs text-gray-500">ခန့်မှန်းရရှိမည့် စုစုပေါင်းချေးငွေ</p>
                                 <p class="text-lg font-bold text-amber-600" id="display_total">{{ number_format($loan->total_amount) }} ကျပ်</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="border-b border-gray-100 pb-5 mb-6">
-                        <h3 class="text-lg font-bold text-gray-800 mb-4 text-amber-600">၃။ အာမခံသူ အချက်အလက် (Guarantor)</h3>
+                        <h3 class="text-lg font-bold text-gray-800 mb-4 text-amber-600">၃။ အာမခံသူ အချက်အလက်/h3>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">အာမခံသူ အမည်</label>
                             <input type="text" name="guarantor_name" value="{{ old('guarantor_name', $loan->guarantor_name) }}" required

@@ -169,10 +169,10 @@
                             <div class="col-span-4 md:col-span-3">
                                 <select id="nrc_type" name="nrc_type" required
                                     class="w-full p-2.5 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm font-bold text-slate-700 bg-white">
-                                    <option value="(N)">(N)</option>
-                                    <option value="(P)">(P)</option>
-                                    <option value="(E)">(E)</option>
-                                    <option value="(T)">(T)</option>
+                                    <option value="(N)">(နိုင်)</option>
+                                    <option value="(P)">(ပြု)</option>
+                                    <option value="(E)">(ဧည့်)</option>
+                                    <option value="(T)">(သီ)</option>
                                 </select>
                             </div>
 

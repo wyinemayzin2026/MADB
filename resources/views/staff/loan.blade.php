@@ -61,6 +61,7 @@
             </div>
         @endif
 
+        <h3>ချေးငွေလျောက်လွာများ</h3>
         <div class="card shadow">
             <div class="card-body">
                 <table id="loanTable" class="table table-bordered table-striped align-middle">
@@ -69,7 +70,7 @@
                             <th>ချေးငှားသူ</th>
                             <th>ပမာဏ</th>
                             <th>ရာသီ</th>
-                            <th>Status</th>
+                            <th>အခြေ အနေ</th>
                             <th class="text-center">လုပ်ဆောင်ချက်</th>
                         </tr>
                     </thead>

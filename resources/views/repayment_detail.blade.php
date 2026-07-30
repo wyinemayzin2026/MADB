@@ -9,12 +9,16 @@
         <div class="bg-gray-50 p-5 rounded-xl space-y-4">
             <div class="flex justify-between items-center">
                 <span class="text-gray-600">မူရင်းငွေ</span>
-                <span class="font-semibold text-gray-900">{{ number_format($loan->total_amount) }} ကျပ်</span>
+                <span class="font-semibold text-gray-900">
+                    {{ str_replace(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], ['၀', '၁', '၂', '၃', '၄', '၅', '၆', '၇', '၈', '၉'], number_format($loan->total_amount)) }}ကျပ်</span>
             </div>
 
             <div class="flex justify-between items-center">
-                <span class="text-gray-600">အတိုး၅%နှင့် ပြန်ပေးရန် ငွေ</span>
-                <span class="font-semibold text-gray-900">{{ number_format($total) }} ကျပ်</span>
+                <span class="text-gray-600">အတိုး ၅%</span>
+                <span class="font-semibold text-gray-900">
+                    {{ str_replace(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], ['၀', '၁', '၂', '၃', '၄', '၅', '၆', '၇', '၈', '၉'], number_format($loan->total_amount * 0.05)) }}
+                    ကျပ်
+                </span>
             </div>
 
             @if($isOverdue)
@@ -24,15 +28,17 @@
                 </div>
             @endif
 
-            <div class="border-t border-gray-200 pt-4 mt-2">
-                <div class="flex justify-between items-center">
-                    <span class="text-lg font-bold text-gray-800">စုစုပေါင်းပေးရန်</span>
-                    <span class="text-2xl font-black text-green-700">
-                        {{ str_replace(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], ['၀', '၁', '၂', '၃', '၄', '၅', '၆', '၇', '၈', '၉'], number_format($netTotal)) }}
-                        ကျပ်
-                    </span>
+
+                <div class="border-t border-gray-200 pt-4 mt-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-lg font-bold text-gray-800">စုစုပေါင်းပေးရန်</span>
+                        <span class="text-2xl font-black text-green-700">
+                            {{ str_replace(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], ['၀', '၁', '၂', '၃', '၄', '၅', '၆', '၇', '၈', '၉'], number_format($netTotal)) }}
+                            ကျပ်
+                        </span>
+                    </div>
                 </div>
-            </div>
+
         </div>
 
         <form action="{{ route('loan.repay.process', $loan->id) }}" method="POST" class="mt-8">
@@ -50,7 +56,7 @@
             @elseif($remainder->status === 'accepted')
                 <div class="bg-green-100 p-6 rounded-xl text-center space-y-2">
                     <div class="text-4xl">✅</div>
-                    <p class="text-green-800 font-bold">ပေးချေမှု အောင်မြင်ပါသည်။</p>
+
                     <p class="text-sm text-green-700">သင်၏ပေးချေမှုအတည်ပြုခြင်းအောင်မြင်ပါသည်။</p>
                 </div>
 

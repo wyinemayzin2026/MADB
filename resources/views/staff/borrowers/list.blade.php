@@ -56,8 +56,8 @@
                                 မှတ်ပုံတင်နံပါတ်</th>
                             <th class="px-6 py-6 text-[10px]  uppercase tracking-[2px]">
                                 ဆက်သွယ်ရန်ဖုန်း</th>
-                            <th class="px-6 py-6 text-[10px]  uppercase tracking-[2px]">Email
-                                Address</th>
+                            <th class="px-6 py-6 text-[10px]  uppercase tracking-[2px]">အီးမေးလ်
+                                လိပ်စာ</th>
                             <th class="px-6 py-6 text-[10px]  uppercase tracking-[2px]">
                                 မွေးနေ့</th>
                             <th class="px-6 py-6 text-[10px]  uppercase tracking-[2px]">ကျား/မ

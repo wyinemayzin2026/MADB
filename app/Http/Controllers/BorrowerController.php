@@ -54,7 +54,12 @@ class BorrowerController extends Controller
                 'regex:/^(?!.*[0-9\x{1040}-\x{1049}]).*$/u'
             ],
             'nrc_number' => 'required|string|max:255|unique:borrowers,nrc_number',
-            'phone_number' => 'required|string|max:255',
+            'phone' => [
+                'nullable',
+                'string',
+                'max:15',
+                'regex:/^(09|\+?959|၀၉|\+?၉၅၉)[0-9\x{1040}-\x{1049}]{7,9}$/u'
+            ],
             'email' => 'nullable|email|max:255|unique:borrowers,email',
             'date_of_birth' => 'required|date',
             'gender' => 'required|in:male,female,other',
@@ -70,9 +75,11 @@ class BorrowerController extends Controller
             'nrc_number.unique' => 'ဤမှတ်ပုံတင်နံပါတ်သည် စနစ်ထဲတွင် ရှိနှင့်ပြီးသားဖြစ်ပါသည်။',
 
             'phone_number.required' => 'ဆက်သွယ်ရန်ဖုန်းနံပါတ်ကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
+            'phone.max' => 'ဖုန်းနံပါတ်သည် အများဆုံး ၁၅ လုံးထက် မပိုရပါ။',
+            'phone.regex' => 'မှန်ကန်သော မြန်မာဖုန်းနံပါတ် ဖြစ်ရပါမည်။ (ဥပမာ - 09661678119)',
 
             'email.email' => 'မှန်ကန်သော အီးမေးလ် ပုံစံ ဖြစ်ရပါမည်။',
-            'email.max' => 'Email သည် စာလုံးရေ ၂၅၅ လုံးထက် မကျော်ရပါ။',
+            'email.max' => 'အီးမေးလ် သည် စာလုံးရေ ၂၅၅ လုံးထက် မကျော်ရပါ။',
             'email.unique' => 'ဤ အီးမေးလ် သည် စနစ်ထဲတွင် ရှိနှင့်ပြီးသားဖြစ်ပါသည်။',
 
             'date_of_birth.required' => 'မွေးနေ့ရက်စွဲကို ရွေးချယ်ပေးရန် လိုအပ်ပါသည်။',
@@ -112,7 +119,12 @@ class BorrowerController extends Controller
                 'regex:/^(?!.*[0-9\x{1040}-\x{1049}]).*$/u'
             ],
             'nrc_number' => 'required|string|max:255|unique:borrowers,nrc_number,' . $id, // ၎င်း ID ကို ချန်လှပ်၍ စစ်ဆေးမည်
-            'phone_number' => 'required|string|max:255',
+            'phone' => [
+                'nullable',
+                'string',
+                'max:15',
+                'regex:/^(09|\+?959|၀၉|\+?၉၅၉)[0-9\x{1040}-\x{1049}]{7,9}$/u'
+            ],
             'email' => 'nullable|email|max:255|unique:borrowers,email,' . $id,         // ၎င်း ID ကို ချန်လှပ်၍ စစ်ဆေးမည်
             'date_of_birth' => 'required|date',
             'gender' => 'required|in:male,female,other',
@@ -128,9 +140,11 @@ class BorrowerController extends Controller
             'nrc_number.unique' => 'ဤမှတ်ပုံတင်နံပါတ်သည် စနစ်ထဲတွင် ရှိနှင့်ပြီးသားဖြစ်ပါသည်။',
 
             'phone_number.required' => 'ဆက်သွယ်ရန်ဖုန်းနံပါတ်ကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
+            'phone.max' => 'ဖုန်းနံပါတ်သည် အများဆုံး ၁၅ လုံးထက် မပိုရပါ။',
+            'phone.regex' => 'မှန်ကန်သော မြန်မာဖုန်းနံပါတ် ဖြစ်ရပါမည်။ (ဥပမာ - 09661678119)',
 
             'email.email' => 'မှန်ကန်သော အီးမေးလ် ပုံစံ ဖြစ်ရပါမည်။',
-            'email.max' => 'Email သည် စာလုံးရေ ၂၅၅ လုံးထက် မကျော်ရပါ။',
+            'email.max' => 'အီးမေးလ် သည် စာလုံးရေ ၂၅၅ လုံးထက် မကျော်ရပါ။',
             'email.unique' => 'ဤ အီးမေးလ် သည် စနစ်ထဲတွင် ရှိနှင့်ပြီးသားဖြစ်ပါသည်။',
 
             'date_of_birth.required' => 'မွေးနေ့ရက်စွဲကို ရွေးချယ်ပေးရန် လိုအပ်ပါသည်။',

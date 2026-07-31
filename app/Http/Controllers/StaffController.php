@@ -35,7 +35,12 @@ class StaffController extends Controller
             'email' => 'required|email|unique:staff,email',
             'position' => 'required|string|max:255',
             'role' => 'required|string|in:staff,manager,admin',
-            'phone' => 'nullable|string',
+            'phone' => [
+                'required',
+                'string',
+                'max:15',
+                'regex:/^(09|\+?959|၀၉|\+?၉၅၉)[0-9\x{1040}-\x{1049}]{7,9}$/u'
+            ],
             'address' => 'nullable|string',
             'password' => 'required|string|min:6',
             'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
@@ -54,7 +59,9 @@ class StaffController extends Controller
 
             'position.required' => 'ရာထူး ဖြည့်သွင်းရန် လိုအပ်ပါသည်။',
             'role.required' => 'Role ရွေးချယ်ရန် လိုအပ်ပါသည်။',
-
+            'phone.max' => 'ဖုန်းနံပါတ်သည် အများဆုံး ၁၅ လုံးထက် မပိုရပါ။',
+            'phone.regex' => 'မှန်ကန်သော မြန်မာဖုန်းနံပါတ် ဖြစ်ရပါမည်။ (ဥပမာ - 09661678119)',
+             'phone_number.required' => 'ဆက်သွယ်ရန်ဖုန်းနံပါတ်ကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
             'password.required' => 'လျှို့ဝှက်နံပါတ် ဖြည့်သွင်းရန် လိုအပ်ပါသည်။',
             'password.min' => 'လျှို့ဝှက်နံပါတ်သည် အနည်းဆုံး ၆ လုံး ရှိရပါမည်။',
 
@@ -93,7 +100,12 @@ class StaffController extends Controller
             'email' => 'required|email|unique:staff,email,' . $staff->id,
             'position' => 'required|string|max:255',
             'role' => 'required|string',
-            'phone' => 'nullable|string',
+            'phone' => [
+                'required',
+                'string',
+                'max:15',
+                'regex:/^(09|\+?959|၀၉|\+?၉၅၉)[0-9\x{1040}-\x{1049}]{7,9}$/u'
+            ],
             'address' => 'nullable|string',
             'password' => 'nullable|string|min:6',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
@@ -106,6 +118,9 @@ class StaffController extends Controller
             'name.required' => 'ဝန်ထမ်းအမည် ဖြည့်သွင်းရန် လိုအပ်ပါသည်။',
             'name.max' => 'ဝန်ထမ်းအမည်သည် စာလုံးရေ ၂၅၅ လုံးထက် မပိုရပါ။',
 
+            'phone.max' => 'ဖုန်းနံပါတ်သည် အများဆုံး ၁၅ လုံးထက် မပိုရပါ။',
+            'phone.regex' => 'မှန်ကန်သော မြန်မာဖုန်းနံပါတ် ဖြစ်ရပါမည်။ (ဥပမာ - 09661678119)',
+            'phone_number.required' => 'ဆက်သွယ်ရန်ဖုန်းနံပါတ်ကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
             'email.required' => 'အီးမေးလ် ဖြည့်သွင်းရန် လိုအပ်ပါသည်။',
             'email.email' => 'မှန်ကန်သော အီးမေးလ် ပုံစံ ဖြစ်ရပါမည်။',
             'email.unique' => 'ဤ အီးမေးလ်ကို အခြားဝန်ထမ်းတစ်ဦးတွင် အသုံးပြုပြီးသား ဖြစ်နေပါသည်။',

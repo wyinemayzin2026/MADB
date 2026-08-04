@@ -31,9 +31,6 @@ class BorrowerController extends Controller
         }
 
         $accounts = $query->paginate(10)->withQueryString();
-
-        dd($accounts);
-
         return view('staff.staff.list', compact('accounts'));
     }
 
@@ -53,39 +50,58 @@ class BorrowerController extends Controller
                 'max:255',
                 'regex:/^(?!.*[0-9\x{1040}-\x{1049}]).*$/u'
             ],
-            'nrc_number' => 'required|string|max:255|unique:borrowers,nrc_number',
+            'nrc_number' => [
+                'required',
+                'string',
+                'max:255',
+                'unique:borrowers,nrc_number',
+                'regex:/^[\x{1000}-\x{109F}a-zA-Z0-9\/\(\)]+$/u'
+            ],
 
-            // 'phone' ကို 'phone_number' သို့ ပြင်ဆင်ထားပြီး 'required' ဖြစ်အောင် လုပ်ထားသည်
             'phone_number' => [
                 'required',
                 'string',
-                'max:11',
-                'regex:/^(09|\+?959|၀၉|\+?၉၅၉)[0-9\x{1040}-\x{1049}]{7,9}$/u'
+                'regex:/^(09|၀၉)(2|4|5|6|7|8|9|၂|၄|၅|၆|၇|၈|၉)[0-9\x{1040}-\x{1049}]{8}$/u'
             ],
 
             'email' => 'nullable|email|max:255|unique:borrowers,email',
             'date_of_birth' => 'required|date',
-            'gender' => 'required|in:male,female,other',
+            'gender' => [
+                'required',
+                'in:male,female,other',
+                function ($attribute, $value, $fail) use ($request) {
+                    $name = trim($request->input('full_name'));
+
+                    // နာမည်အစ ရှေ့ဆုံး စာလုံးများကို စစ်ဆေးခြင်း
+                    if ($value === 'male') {
+                        if (preg_match('/^(ဒေါ်|မ)\b/u', $name) || preg_match('/^(ဒေါ်|မ)/u', $name)) {
+                            $fail('အမည်တွင် "ဒေါ်" သို့မဟုတ် "မ" ပါဝင်နေပါသဖြင့် ကျား/မ နေရာတွင် "မ" သာ ရွေးချယ်ရပါမည်။');
+                        }
+                    } elseif ($value === 'female') {
+                        if (preg_match('/^(ဦး|ဦး|မောင်|ကို)\b/u', $name) || preg_match('/^(ဦး|ဦး|မောင်|ကို)/u', $name)) {
+                            $fail('အမည်တွင် "ဦး/မောင်/ကို" ပါဝင်နေပါသဖြင့် ကျား/မ နေရာတွင် "ကျား" သာ ရွေးချယ်ရပါမည်။');
+                        }
+                    }
+                }
+            ],
             'address' => 'required|string',
             'password' => 'required|string|min:8|confirmed',
         ], [
             'full_name.required' => 'နာမည်အပြည့်အစုံကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
             'full_name.string' => 'နာမည်သည် စာသားအမျိုးအစား ဖြစ်ရပါမည်။',
             'full_name.max' => 'နာမည်သည် စာလုံးရေ ၂၅၅ လုံးထက် မကျော်ရပါ။',
-            'full_name.regex' => 'အမည်တွင် ကိန်းဂဏန်းများ (၁၂၃ / 123) ထည့်သွင်း၍ မရပါ။', // Dot နှစ်ခု ဖြစ်နေတာ ပြင်ထားသည်
+            'full_name.regex' => 'အမည်တွင် ကိန်းဂဏန်းများ (၁၂၃ / 123) ထည့်သွင်း၍ မရပါ။',
 
             'nrc_number.required' => 'မှတ်ပုံတင်နံပါတ်ကို အပြည့်အစုံ ရွေးချယ်/ဖြည့်သွင်းပေးရန် လိုအပ်ပါသည်။',
             'nrc_number.unique' => 'ဤမှတ်ပုံတင်နံပါတ်သည် စနစ်ထဲတွင် ရှိနှင့်ပြီးသားဖြစ်ပါသည်။',
 
-            // phone -> phone_number သို့ ပြင်ထားသည်
             'phone_number.required' => 'ဆက်သွယ်ရန်ဖုန်းနံပါတ်ကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
-            'phone_number.max' => 'ဖုန်းနံပါတ်သည် အများဆုံး ၁၁ လုံးထက် မပိုရပါ။',
-            'phone_number.regex' => 'မှန်ကန်သော မြန်မာဖုန်းနံပါတ် ဖြစ်ရပါမည်။ (ဥပမာ - 09661678119)',
+            'phone_number.regex' => 'ဖုန်းနံပါတ်သည် 09 သို့မဟုတ် ၀၉ ဖြင့်စပြီး ၁၁ လုံး အတိရှိရမည်ဖြစ်ကာ မှန်ကန်သော MPT, ATOM, Ooredoo, Mytel ဖုန်းနံပါတ် ဖြစ်ရပါမည်။',
 
             'email.email' => 'မှန်ကန်သော အီးမေးလ် ပုံစံ ဖြစ်ရပါမည်။',
             'email.max' => 'အီးမေးလ် သည် စာလုံးရေ ၂၅၅ လုံးထက် မကျော်ရပါ။',
             'email.unique' => 'ဤ အီးမေးလ် သည် စနစ်ထဲတွင် ရှိနှင့်ပြီးသားဖြစ်ပါသည်။',
-
+            'nrc_number.regex' => 'မှတ်ပုံတင်နံပါတ်ကို မြန်မာဂဏန်းနှင့် မြန်မာစာလုံးများဖြင့်သာ ဖြည့်သွင်းပေးပါ။ (ဥပမာ - ၁၂/ရခန(နိုင်)၁၂၃၄၅၆)',
             'date_of_birth.required' => 'မွေးနေ့ရက်စွဲကို ရွေးချယ်ပေးရန် လိုအပ်ပါသည်။',
             'date_of_birth.date' => 'မွေးနေ့သည် မှန်ကန်သော ရက်စွဲပုံစံ ဖြစ်ရပါမည်။',
 
@@ -122,31 +138,51 @@ class BorrowerController extends Controller
                 'max:255',
                 'regex:/^(?!.*[0-9\x{1040}-\x{1049}]).*$/u'
             ],
-            'nrc_number' => 'required|string|max:255|unique:borrowers,nrc_number,' . $id, // ၎င်း ID ကို ချန်လှပ်၍ စစ်ဆေးမည်
-            'phone' => [
-                'nullable',
+            'nrc_number' => [
+                'required',
                 'string',
-                'max:11',
-                'regex:/^(09|\+?959|၀၉|\+?၉၅၉)[0-9\x{1040}-\x{1049}]{7,9}$/u'
+                'max:255',
+                'unique:borrowers,nrc_number,' . $id,
+                'regex:/^[\x{1000}-\x{109F}a-zA-Z0-9\/\(\)]+$/u'
             ],
-            'email' => 'nullable|email|max:255|unique:borrowers,email,' . $id,         // ၎င်း ID ကို ချန်လှပ်၍ စစ်ဆေးမည်
+            'phone_number' => [
+                'required',
+                'string',
+                'regex:/^(09|၀၉)(2|4|5|6|7|8|9|၂|၄|၅|၆|၇|၈|၉)[0-9\x{1040}-\x{1049}]{8}$/u'
+            ],
+            'email' => 'nullable|email|max:255|unique:borrowers,email,' . $id,
             'date_of_birth' => 'required|date',
-            'gender' => 'required|in:male,female,other',
+            'gender' => [
+                'required',
+                'in:male,female,other',
+                function ($attribute, $value, $fail) use ($request) {
+                    $name = trim($request->input('full_name'));
+
+                    if ($value === 'male') {
+                        if (preg_match('/^(ဒေါ်|မ)\b/u', $name) || preg_match('/^(ဒေါ်|မ)/u', $name)) {
+                            $fail('အမည်တွင် "ဒေါ်" သို့မဟုတ် "မ" ပါဝင်နေပါသဖြင့် ကျား/မ နေရာတွင် "မ" သာ ရွေးချယ်ရပါမည်။');
+                        }
+                    } elseif ($value === 'female') {
+                        if (preg_match('/^(ဦး|ဦး|မောင်|ကို)\b/u', $name) || preg_match('/^(ဦး|ဦး|မောင်|ကို)/u', $name)) {
+                            $fail('အမည်တွင် "ဦး/မောင်/ကို" ပါဝင်နေပါသဖြင့် ကျား/မ နေရာတွင် "ကျား" သာ ရွေးချယ်ရပါမည်။');
+                        }
+                    }
+                }
+            ],
             'address' => 'required|string',
             'password' => 'nullable|string|min:8',
         ], [
             'full_name.required' => 'နာမည်အပြည့်အစုံကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
             'full_name.string' => 'နာမည်သည် စာသားအမျိုးအစား ဖြစ်ရပါမည်။',
             'full_name.max' => 'နာမည်သည် စာလုံးရေ ၂၅၅ လုံးထက် မကျော်ရပါ။',
-            'full_name..regex' => 'အမည်တွင် ကိန်းဂဏန်းများ (၁၂၃ / 123) ထည့်သွင်း၍ မရပါ။',
+            'full_name.regex' => 'အမည်တွင် ကိန်းဂဏန်းများ (၁၂၃ / 123) ထည့်သွင်း၍ မရပါ။',
 
             'nrc_number.required' => 'မှတ်ပုံတင်နံပါတ်ကို အပြည့်အစုံ ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
             'nrc_number.unique' => 'ဤမှတ်ပုံတင်နံပါတ်သည် စနစ်ထဲတွင် ရှိနှင့်ပြီးသားဖြစ်ပါသည်။',
 
             'phone_number.required' => 'ဆက်သွယ်ရန်ဖုန်းနံပါတ်ကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
-            'phone.max' => 'ဖုန်းနံပါတ်သည် အများဆုံး ၁၁  လုံးထက် မပိုရပါ။',
-            'phone.regex' => 'မှန်ကန်သော မြန်မာဖုန်းနံပါတ် ဖြစ်ရပါမည်။ (ဥပမာ - 09661678119)',
-
+            'phone_number.regex' => 'ဖုန်းနံပါတ်သည် 09 သို့မဟုတ် ၀၉ ဖြင့်စပြီး ၁၁ လုံး အတိရှိရမည်ဖြစ်ကာ မှန်ကန်သော MPT, ATOM, Ooredoo, Mytel ဖုန်းနံပါတ် ဖြစ်ရပါမည်။',
+            'nrc_number.regex' => 'မှတ်ပုံတင်နံပါတ်ကို မြန်မာဂဏန်းနှင့် မြန်မာစာလုံးများဖြင့်သာ ဖြည့်သွင်းပေးပါ။ (ဥပမာ - ၁၂/ရခန(နိုင်)၁၂၃၄၅၆)',
             'email.email' => 'မှန်ကန်သော အီးမေးလ် ပုံစံ ဖြစ်ရပါမည်။',
             'email.max' => 'အီးမေးလ် သည် စာလုံးရေ ၂၅၅ လုံးထက် မကျော်ရပါ။',
             'email.unique' => 'ဤ အီးမေးလ် သည် စနစ်ထဲတွင် ရှိနှင့်ပြီးသားဖြစ်ပါသည်။',

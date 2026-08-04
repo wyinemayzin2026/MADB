@@ -153,7 +153,7 @@
                     <li class="list-group-item d-flex justify-content-between"><span>တောင်သူအမည်:</span> <strong>${borrower?.full_name || 'N/A'}</strong></li>
                     <li class="list-group-item d-flex justify-content-between"><span>ဖုန်းနံပါတ်:</span> <strong>${borrower?.phone_number || '-'}</strong></li>
                     <li class="list-group-item d-flex justify-content-between"><span>အလုပ်အကိုင်:</span> <strong>${loan.occupation || '-'}</strong></li>
-                    <li class="list-group-item d-flex justify-content-between"><span>လစဉ်ဝင်ငွေ:</span> <strong>${parseFloat(loan.monthly_income || 0).toLocaleString()} MMK</strong></li>
+                    <li class="list-group-item d-flex justify-content-between"><span>လစဉ်ဝင်ငွေ:</span> <strong>${parseFloat(loan.monthly_income || 0).toLocaleString()} ကျပ်</strong></li>
                     <li class="list-group-item d-flex justify-content-between"><span>လုပ်ငန်းလိပ်စာ:</span> <strong>${loan.workplace_address || '-'}</strong></li>
                     <li class="list-group-item d-flex justify-content-between"><span>စုငွေစာရင်းနံပါတ်:</span> <strong>${loan.saving_account_number || '-'}</strong></li>
                     <li class="list-group-item d-flex justify-content-between"><span>ဧက:</span> <strong>${loan.acres || '-'}</strong></li>
@@ -162,17 +162,17 @@
                     <li class="list-group-item d-flex justify-content-between"><span>ချေးငွေကန့်သတ်ချက်:</span> <strong>${parseFloat(loan.loan_limit || 0).toLocaleString()}</strong></li>
                     <li class="list-group-item d-flex justify-content-between"><span>အတိုးနှုန်း:</span> <strong>${loan.rate || 0}%</strong></li>
                     <li class="list-group-item d-flex justify-content-between"><span>ရက်လွန်ဒဏ်ကြေး:</span> <strong>${penaltyText}</strong></li>
-                    <li class="list-group-item d-flex justify-content-between"><span>မူရင်းချေးငွေ:</span> <strong>${parseFloat(loan.total_amount || 0).toLocaleString()} MMK</strong></li>
+                    <li class="list-group-item d-flex justify-content-between"><span>မူရင်းချေးငွေ:</span> <strong>${parseFloat(loan.total_amount || 0).toLocaleString()} ကျပ်</strong></li>
                     <li class="list-group-item d-flex justify-content-between">
                 <span>ရက်လွန်ဒဏ်ကြေး:</span>
                 <strong class="${isOverdue ? 'text-danger' : 'text-success'}">
-                    ${penaltyAmount.toLocaleString()} MMK
+                    ${penaltyAmount.toLocaleString()} ကျပ်
                 </strong>
             </li>
                     <li class="list-group-item d-flex justify-content-between"><span>ကာလ:</span> <strong>${loan.loan_start_date} - ${loan.loan_end_date}</strong></li>
                     <li class="list-group-item d-flex justify-content-between"><span>အာမခံသူ:</span> <strong>${loan.guarantor_name || '-'}</strong></li>
-                    <li class="list-group-item d-flex justify-content-between"><span>အတိုးနှင့်အရင်း စုစုပေါင်း:</span> <strong>${parseFloat(item.total_repayment_amount || 0).toLocaleString()} MMK</strong></li>
-                    <li class="list-group-item d-flex justify-content-between"><span>ပြန်ဆပ်ရမည့်ပမာဏ:</span> <strong>${parseFloat(item.net_total_repayment_amount || 0).toLocaleString()} MMK</strong></li>
+                    <li class="list-group-item d-flex justify-content-between"><span>အတိုးနှင့်အရင်း စုစုပေါင်း:</span> <strong>${parseFloat(item.total_repayment_amount || 0).toLocaleString()} ကျပ်</strong></li>
+                    <li class="list-group-item d-flex justify-content-between"><span>ပြန်ဆပ်ရမည့်ပမာဏ:</span> <strong>${parseFloat(item.net_total_repayment_amount || 0).toLocaleString()} ကျပ်</strong></li>
                     <li class="list-group-item d-flex justify-content-between"><span>ပြန်ဆပ်ရမည့်ရက်:</span> <strong>${item.repayment_date || '-'}</strong></li>
 
                 </ul>

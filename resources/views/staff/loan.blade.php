@@ -78,7 +78,7 @@
                         @foreach($loans as $loan)
                             <tr>
                                 <td class="fw-semibold">{{ $loan->borrower->full_name ?? 'N/A' }}</td>
-                                <td>{{ number_format($loan->total_amount, 0) }} MMK</td>
+                                <td>{{ number_format($loan->total_amount, 0) }} ကျပ်</td>
                                 <td>
                                     <span class="badge bg-light text-dark border">
                                         {{ $loan->season_type == 'rainy' ? 'မိုးရာသီ' : ($loan->season_type == 'winter' ? 'ဆောင်းရာသီ' : ucfirst($loan->season_type)) }}

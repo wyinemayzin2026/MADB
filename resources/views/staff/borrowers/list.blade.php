@@ -138,7 +138,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block  text-sm font-semibold mb-1 ">နာမည်အပြည့်</label>
+                        <label class="block  text-sm font-semibold mb-1 ">နာမည်</label>
                         <input type="text" id="full_name" name="full_name" value="{{ old('full_name') }}" required
                             class="w-full p-2.5 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none">
                         @error('full_name') <p class="text-rose-500 text-xs mt-1 error-msg">{{ $message }}</p> @enderror

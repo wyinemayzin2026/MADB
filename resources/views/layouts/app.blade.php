@@ -65,7 +65,7 @@
 
                                 <a href="#"
                                     onclick="event.preventDefault(); document.getElementById('borrower-logout-form').submit();"
-                                    class="flex items-center gap-2.5 px-4 py-3 text-xs font-bold text-rose-600 hover:bg-rose-50 rounded-xl transition">
+                                    class="flex items-center gap-2.5 px-4 py-3 text-xs font-bold text-blue-600 hover:bg-blue-50 rounded-xl transition">
                                     <i class="fas fa-sign-out-alt"></i> စနစ်မှထွက်ရန်
                                 </a>
 
@@ -97,14 +97,12 @@
                     </div>
                     <div>
                         <h2 class="text-xl font-bold tracking-tight">MADB</h2>
-                        <p class="text-[10px] text-yellow-400 font-semibold leading-none uppercase">Agricultural
-                            Development Bank</p>
+                        <p class="text-[10px] text-yellow-400 font-semibold leading-none uppercase">မြန်မာလယ်ယာဖွံဖြိုးရေးဘဏ်</p>
                     </div>
                 </div>
-                <p class="text-gray-300 text-sm leading-relaxed pt-2">
-                    ၁၉၅၃ ခုနှစ်မှစတင်၍ မြန်မာ့လယ်ယာစီးပွားကဏ္ဍ ဖွံ့ဖြိုးတိုးတက်ရေးအတွက် တောင်သူဦးကြီးများ၏
-                    ယုံကြည်စိတ်ချရသော မိတ်ဖက်ဘဏ်အဖြစ် ရပ်တည်လျက်ရှိပါသည်။
-                </p>
+               <p class="text-gray-300 text-sm leading-relaxed pt-2 text-justify [word-break:break-word]">
+    ၁၉၅၃ ခုနှစ်မှစတင်၍ မြန်မာ့လယ်ယာစီးပွားကဏ္ဍ ဖွံ့ဖြိုးတိုးတက်ရေးအတွက် တောင်သူဦးကြီးများ၏ ယုံကြည်စိတ်ချရသော မိတ်ဖက်ဘဏ်အဖြစ် ရပ်တည်လျက်ရှိပါသည်။
+</p>
                 <div class="flex gap-4 pt-2">
                     <a href="#"
                         class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-yellow-500 transition-colors"><i

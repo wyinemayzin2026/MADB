@@ -153,7 +153,7 @@
                     <form action="{{ route('staff.logout') }}" method="POST">
                         @csrf
                         <button type="submit"
-                            class="w-full flex items-center p-3.5 text-rose-500 hover:bg-rose-50 rounded-2xl font-bold transition-all outline-none">
+                            class="w-full flex items-center p-3.5 text-blue-500 hover:bg-blue-50 rounded-2xl font-bold transition-all outline-none">
                             <i class="fas fa-sign-out-alt me-3 w-5 text-lg"></i> စနစ်မှထွက်ရန်
                         </button>
                     </form>

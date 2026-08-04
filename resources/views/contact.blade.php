@@ -25,7 +25,7 @@
                                 class="w-12 h-12 bg-green-100 text-green-700 rounded-2xl flex items-center justify-center text-xl">
                                 <i class="fas fa-building"></i>
                             </div>
-                            <h2 class="text-2xl font-bold text-gray-800">ဘဏ်ရုံးချုပ်</h2>
+                            <h2 class="text-2xl font-bold text-gray-800">ဘဏ်ရုံး</h2>
                         </div>
 
                         <div class="space-y-6">

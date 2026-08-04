@@ -50,23 +50,14 @@
                 <table id="accountTable" class="w-full text-left border-collapse">
                     <thead>
                         <tr class="border-b border-slate-50">
-                            <th class="px-6 py-6 text-[10px]   uppercase tracking-[2px]">
-                                နာမည်အပြည့်</th>
-                            <th class="px-6 py-6 text-[10px]  uppercase tracking-[2px]">
-                                မှတ်ပုံတင်နံပါတ်</th>
-                            <th class="px-6 py-6 text-[10px]  uppercase tracking-[2px]">
-                                ဆက်သွယ်ရန်ဖုန်း</th>
-                            <th class="px-6 py-6 text-[10px]  uppercase tracking-[2px]">အီးမေးလ်
-                                လိပ်စာ</th>
-                            <th class="px-6 py-6 text-[10px]  uppercase tracking-[2px]">
-                                မွေးနေ့</th>
-                            <th class="px-6 py-6 text-[10px]  uppercase tracking-[2px]">ကျား/မ
-                            </th>
-                            <th class="px-6 py-6 text-[10px]  uppercase tracking-[2px]">
-                                နေရပ်လိပ်စာ</th>
-                            <th
-                                class="px-6 py-6 text-[10px]   uppercase tracking-[2px] no-export">
-                                ပြင်ဆင်ချက်</th>
+                            <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">နာမည်အပြည့်</th>
+                            <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">မှတ်ပုံတင်နံပါတ်</th>
+                            <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">ဆက်သွယ်ရန်ဖုန်း</th>
+                            <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">အီးမေးလ်လိပ်စာ</th>
+                            <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">မွေးနေ့</th>
+                            <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">ကျား/မ</th>
+                            <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">နေရပ်လိပ်စာ</th>
+                            <th class="px-6 py-6 text-[10px] uppercase tracking-[2px] no-export">ပြင်ဆင်ချက်</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-50">
@@ -74,14 +65,10 @@
                             <tr class="hover:bg-slate-50/80 transition-colors group">
                                 <td class="px-6 py-6 text-xs font-bold text-slate-600 uppercase tracking-wider">
                                     {{ $account->full_name }}</td>
-                                <td class="px-6 py-6 text-xs font-bold text-slate-600 tracking-wider">{{ $account->nrc_number }}
-                                </td>
-                                <td class="px-6 py-6 text-xs font-bold text-slate-600 tracking-wider">
-                                    {{ $account->phone_number }}</td>
-                                <td class="px-6 py-6 text-xs font-bold text-slate-600 tracking-wider">
-                                    {{ $account->email ?? '-' }}</td>
-                                <td class="px-6 py-6 text-xs font-bold  tracking-widest">
-                                    {{ $account->date_of_birth }}</td>
+                                <td class="px-6 py-6 text-xs font-bold text-slate-600 tracking-wider">{{ $account->nrc_number }}</td>
+                                <td class="px-6 py-6 text-xs font-bold text-slate-600 tracking-wider">{{ $account->phone_number }}</td>
+                                <td class="px-6 py-6 text-xs font-bold text-slate-600 tracking-wider">{{ $account->email ?? '-' }}</td>
+                                <td class="px-6 py-6 text-xs font-bold tracking-widest">{{ $account->date_of_birth }}</td>
                                 <td class="px-6 py-6 text-xs font-bold text-slate-600">
                                     {{ $account->gender == 'male' ? 'ကျား' : ($account->gender == 'female' ? 'မ' : 'အခြား') }}
                                 </td>
@@ -89,14 +76,13 @@
                                     {{ $account->address ?? '-' }}</td>
                                 <td class="px-6 py-6 no-export">
                                     <div class="flex items-center gap-2">
-                                        <button
-                                            class="btn-edit text-indigo-600 hover:text-indigo-900 bg-indigo-50 p-2 rounded-xl"
+                                        <button class="btn-edit text-indigo-600 hover:text-indigo-900 bg-indigo-50 p-2 rounded-xl"
                                             data-id="{{ $account->id }}" data-full_name="{{ $account->full_name }}"
                                             data-nrc_number="{{ $account->nrc_number }}"
                                             data-phone_number="{{ $account->phone_number }}" data-email="{{ $account->email }}"
                                             data-date_of_birth="{{ $account->date_of_birth }}"
-                                            data-gender="{{ $account->gender }}" data-address="{{ $account->address }}"> <i
-                                                class="fas fa-edit"></i>
+                                            data-gender="{{ $account->gender }}" data-address="{{ $account->address }}">
+                                            <i class="fas fa-edit"></i>
                                         </button>
                                         <form action="{{ route('accounts.destroy', $account->id) }}" method="POST"
                                             class="delete-form inline">
@@ -121,12 +107,13 @@
         </div>
     </div>
 
+    <!-- Modal Box -->
     <div id="account-modal"
         class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-xl transform transition-all">
             <div class="p-6 border-b flex justify-between items-center">
                 <h3 id="modal-title" class="text-lg font-bold text-slate-800">ငွေစုစာရင်းအကောင့်အသစ်ဖွင့်ရန်</h3>
-                <button type="button" class="close-modal  hover:text-slate-600">
+                <button type="button" class="close-modal hover:text-slate-600">
                     <i class="fas fa-times text-xl"></i>
                 </button>
             </div>
@@ -138,7 +125,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block  text-sm font-semibold mb-1 ">နာမည်</label>
+                        <label class="block text-sm font-semibold mb-1">နာမည်</label>
                         <input type="text" id="full_name" name="full_name" value="{{ old('full_name') }}" required
                             class="w-full p-2.5 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none">
                         @error('full_name') <p class="text-rose-500 text-xs mt-1 error-msg">{{ $message }}</p> @enderror
@@ -147,18 +134,27 @@
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold mb-1 text-slate-700">မှတ်ပုံတင်နံပါတ်</label>
                         <div class="grid grid-cols-12 gap-2">
+                            {{-- တိုင်း/ပြည်နယ် Select (မြန်မာဂဏန်းများဖြင့် အစားထိုးထားပါသည်) --}}
                             <div class="col-span-3 md:col-span-2">
+                                @php
+                                    $mm_numbers = [
+                                        1 => '၁', 2 => '၂', 3 => '၃', 4 => '၄', 5 => '၅',
+                                        6 => '၆', 7 => '၇', 8 => '၈', 9 => '၉', 10 => '၁၀',
+                                        11 => '၁၁', 12 => '၁၂', 13 => '၁၃', 14 => '၁၄'
+                                    ];
+                                @endphp
                                 <select id="nrc_state" name="nrc_state" required
                                     class="w-full p-2.5 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm font-bold text-slate-700 bg-white">
                                     <option value="" disabled selected>ရွေးရန်</option>
-                                    @for ($i = 1; $i <= 14; $i++)
-                                        <option value="{{ $i }}">{{ $i }}</option>
-                                    @endfor
+                                    @foreach ($mm_numbers as $en_val => $mm_val)
+                                        <option value="{{ $mm_val }}">{{ $mm_val }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
                             <div class="col-span-1 text-center self-center font-bold text-slate-500">/</div>
 
+                            {{-- မြို့နယ် Select --}}
                             <div class="col-span-4 md:col-span-3">
                                 <select id="nrc_township" name="nrc_township" required disabled
                                     class="w-full p-2.5 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm font-bold text-slate-700 bg-white">
@@ -166,6 +162,7 @@
                                 </select>
                             </div>
 
+                            {{-- အမျိုးအစား Select --}}
                             <div class="col-span-4 md:col-span-3">
                                 <select id="nrc_type" name="nrc_type" required
                                     class="w-full p-2.5 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm font-bold text-slate-700 bg-white">
@@ -176,6 +173,7 @@
                                 </select>
                             </div>
 
+                            {{-- ဂဏန်း (၆) လုံး Input --}}
                             <div class="col-span-12 md:col-span-4">
                                 <input type="text" id="nrc_digits" name="nrc_digits" placeholder="370020" required
                                     value="{{ old('nrc_digits') }}" maxlength="6"
@@ -216,8 +214,7 @@
                     </div>
 
                     <div>
-                        <label id="lbl-password" class="block text-sm font-semibold mb-1 text-slate-700">လျှို့ဝှက်နံပါတ်
-                            (Password)</label>
+                        <label id="lbl-password" class="block text-sm font-semibold mb-1 text-slate-700">လျှို့ဝှက်နံပါတ် (Password)</label>
                         <input type="password" id="password" name="password"
                             class="w-full p-2.5 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none">
                         @error('password') <p class="text-rose-500 text-xs mt-1 error-msg">{{ $message }}</p> @enderror
@@ -255,22 +252,27 @@
 
     <script>
         $(document).ready(function () {
+            // မြန်မာဂဏန်း Key များနှင့် သတ်မှတ်ထားသော Data
             const nrcData = {
-                '1': ['မကန', 'ပသန', 'ဝမန', 'ဗမန', 'ကမန', 'ဟခန'], // ကချင် (မြစ်ကြီးနား၊ ပူတာအို စသည်)
-                '2': ['လကန', 'မဆန', 'ဒမဆ', 'ဖဆန'],             // ကယား (လွိုင်ကော် စသည်)
-                '3': ['ဘအန', 'ကကရ', 'ဖအန', 'လှက', 'ကတန'],       // ကရင် (ဘားအံ၊ ကော့ကရိတ် စသည်)
-                '4': ['ဟခန', 'တတန', 'ဖလန', 'မတန', 'ကပတ'],       // ချင်း (ဟားခါး၊ တီးတိန် စသည်)
-                '5': ['စကန', 'ရဥန', 'ကနန', 'ကလေး', 'တမု', 'မမန'], // စစ်ကိုင်း (မမန = မြင်းမူ ပါဝင်လာပါပြီ)
-                '6': ['ထဝန', 'မြန', 'လလန', 'ကသန', 'ပလန'],       // တနင်္သာရီ (ထားဝယ်၊ မြိတ် စသည်)
-                '7': ['တငန', 'ညလန', 'ပခန', 'ရမသ', 'ကတန', 'တရန'], // ပဲခူး (တောင်ငူ၊ ပြည် စသည်)
-                '8': ['မထန', 'နမန', 'ပကက', 'အောင်လံ', 'ချောက်', 'တမဒ'], // မကွေး
-                '9': ['မရန', 'တသန', 'ညဥန', 'ပဥလ', 'ကျောက်ဆည်', 'မတရ', 'ရမသ'], // မန္တလေး
-                '10': ['မဒန', 'သထန', 'ကမရ', 'ရေး', 'ဘလန', 'သဇန'], // မွန် (မော်လမြိုင်၊ သထုံ စသည်)
-                '11': ['စတန', 'တသန', 'မဥန', 'ပတန', 'ကသန', 'မဂဗ'], // ရခိုင် (စစ်တွေ၊ သံတွဲ စသည်)
-                '12': ['ကမရ', 'တမန', 'လကန', 'ဥကတ', 'ဗဟန', 'ဒဂုံ', 'မဂဒ', 'စကန', 'ရကန', 'ကတတ'], // ရန်ကုန်
-                '13': ['တကန', 'လရှန', 'တယန', 'ဟပန', 'ကကန', 'မကန', 'နဆန'], // ရှမ်း (တောင်ကြီး၊ လားရှိုး စသည်)
-                '14': ['မမန', 'ဖပန', 'ပသန', 'ဟသတ', 'ဝခမ', 'ရဒန', 'အမန', 'ကလန', 'ကခန'] // ဧရာဝတီ (ပုသိမ်၊ ဟင်္သာတ စသည်)
+                '၁': ['မကန', 'ပသန', 'ဝမန', 'ဗမန', 'ကမန', 'ဟခန'],
+                '၂': ['လကန', 'မဆန', 'ဒမဆ', 'ဖဆန'],
+                '၃': ['ဘအန', 'ကကရ', 'ဖအန', 'လှက', 'ကတန'],
+                '၄': ['ဟခန', 'တတန', 'ဖလန', 'မတန', 'ကပတ'],
+                '၅': ['စကန', 'ရဥန', 'ကနန', 'ကလေး', 'တမု', 'မမန'],
+                '၆': ['ထဝန', 'မြန', 'လလန', 'ကသန', 'ပလန'],
+                '၇': ['တငန', 'ညလန', 'ပခန', 'ရမသ', 'ကတန', 'တရန'],
+                '၈': ['မထန', 'နမန', 'ပကက', 'အောင်လံ', 'ချောက်', 'တမဒ'],
+                '၉': ['မရန', 'တသန', 'ညဥန', 'ပဥလ', 'ကျောက်ဆည်', 'မတရ', 'ရမသ'],
+                '၁၀': ['မဒန', 'သထန', 'ကမရ', 'ရေး', 'ဘလန', 'သဇန'],
+                '၁၁': ['စတန', 'တသန', 'မဥန', 'ပတန', 'ကသန', 'မဂဗ'],
+                '၁၂': ['ကမရ', 'တမန', 'လကန', 'ဥကတ', 'ဗဟန', 'ဒဂုံ', 'မဂဒ', 'စကန', 'ရကန', 'ကတတ'],
+                '၁၃': ['တကန', 'လရှန', 'တယန', 'ဟပန', 'ကကန', 'မကန', 'နဆန'],
+                '၁၄': ['မမန', 'ဖပန', 'ပသန', 'ဟသတ', 'ဝခမ', 'ရဒန', 'အမန', 'ကလန', 'ကခန']
             };
+
+            // English Number များကို Myanmar Number ဖြင့် အလိုအလျောက် ပြောင်းပေးသည့် Map
+            const enToMmMap = { '1': '၁', '2': '၂', '3': '၃', '4': '၄', '5': '၅', '6': '၆', '7': '၇', '8': '၈', '9': '၉', '10': '၁၀', '11': '၁၁', '12': '၁၂', '13': '၁၃', '14': '၁၄' };
+
             $('#nrc_state').on('change', function () {
                 var state = $(this).val();
                 updateTownshipDropdown(state, '');
@@ -279,6 +281,11 @@
             function updateTownshipDropdown(state, selectedTownship) {
                 var $townshipSelect = $('#nrc_township');
                 $townshipSelect.empty().append('<option value="">မြို့နယ်</option>');
+
+                // English ဂဏန်း ဝင်လာခဲ့ရင် မြန်မာဂဏန်းသို့ အလိုအလျောက်ပြောင်းပေးခြင်း
+                if (enToMmMap[state]) {
+                    state = enToMmMap[state];
+                }
 
                 if (state && nrcData[state]) {
                     $townshipSelect.prop('disabled', false);
@@ -297,7 +304,6 @@
                 var id = $(this).data('id');
                 $('#modal-title').text('အကောင့်အချက်အလက်ပြင်ဆင်ရန်');
 
-                // ပြင်ဆင်ချိန်တွင် password အသစ်ရိုက်ထည့်ရန်မလိုကြောင်း မှတ်ချက်ပေးခြင်း
                 $('#lbl-password').text('လျှို့ဝှက်နံပါတ်အသစ် (မပြောင်းလဲက ချန်ထားရန်)');
                 $('#password').prop('required', false);
 
@@ -321,6 +327,10 @@
                 if (fullNrc && fullNrc.includes('/') && fullNrc.includes(')')) {
                     var parts = fullNrc.split('/');
                     var state = parts[0];
+
+                    if (enToMmMap[state]) {
+                        state = enToMmMap[state];
+                    }
 
                     var remaining = parts[1];
                     var typeIndex = remaining.indexOf('(');
@@ -362,7 +372,7 @@
                 resetForm();
                 $('#modal-title').text('ငွေစုစာရင်းအကောင့်အသစ်ဖွင့်ရန်');
                 $('#lbl-password').text('လျှို့ဝှက်နံပါတ် (Password)');
-                $('#password').prop('required', true); // ဒေတာအသစ်ဖွင့်ချိန်တွင် မဖြစ်မနေလိုအပ်ပါသည်
+                $('#password').prop('required', true);
                 $('#account-form').attr('action', "{{ route('accounts.store') }}");
                 $('#method-container').html('');
                 $('#account-modal').removeClass('hidden');
@@ -389,6 +399,7 @@
                 });
             });
 
+            // Validation Error များရှိခဲ့လျှင် Modal ပြန်ဖွင့်ပေးရန်နှင့် NRC ကို ပြန်လည် Selected လုပ်ပေးရန်
             @if($errors->any())
                 $('#account-modal').removeClass('hidden');
                 @if(old('id'))
@@ -399,13 +410,17 @@
                     $('#modal-title').text('အကောင့်အချက်အလက်ပြင်ဆင်ရန်');
                     $('#lbl-password').text('လျှို့ဝှက်နံပါတ်အသစ် (မပြောင်းလဲက ချန်ထားရန်)');
                     $('#password').prop('required', false);
-
-                    @if(old('nrc_state'))
-                        updateTownshipDropdown("{{ old('nrc_state') }}", "{{ old('nrc_township') }}");
-                    @endif
                 @else
                     $('#lbl-password').text('လျှို့ဝှက်နံပါတ် (Password)');
                     $('#password').prop('required', true);
+                @endif
+
+                @if(old('nrc_state'))
+                    $('#nrc_state').val("{{ old('nrc_state') }}");
+                    updateTownshipDropdown("{{ old('nrc_state') }}", "{{ old('nrc_township') }}");
+                @endif
+                @if(old('nrc_type'))
+                    $('#nrc_type').val("{{ old('nrc_type') }}");
                 @endif
             @endif
 
@@ -418,4 +433,3 @@
         });
     </script>
 @endsection
-

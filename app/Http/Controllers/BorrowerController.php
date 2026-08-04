@@ -54,12 +54,15 @@ class BorrowerController extends Controller
                 'regex:/^(?!.*[0-9\x{1040}-\x{1049}]).*$/u'
             ],
             'nrc_number' => 'required|string|max:255|unique:borrowers,nrc_number',
-            'phone' => [
-                'nullable',
+
+            // 'phone' ကို 'phone_number' သို့ ပြင်ဆင်ထားပြီး 'required' ဖြစ်အောင် လုပ်ထားသည်
+            'phone_number' => [
+                'required',
                 'string',
-                'max:15',
+                'max:11',
                 'regex:/^(09|\+?959|၀၉|\+?၉၅၉)[0-9\x{1040}-\x{1049}]{7,9}$/u'
             ],
+
             'email' => 'nullable|email|max:255|unique:borrowers,email',
             'date_of_birth' => 'required|date',
             'gender' => 'required|in:male,female,other',
@@ -69,14 +72,15 @@ class BorrowerController extends Controller
             'full_name.required' => 'နာမည်အပြည့်အစုံကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
             'full_name.string' => 'နာမည်သည် စာသားအမျိုးအစား ဖြစ်ရပါမည်။',
             'full_name.max' => 'နာမည်သည် စာလုံးရေ ၂၅၅ လုံးထက် မကျော်ရပါ။',
-            'full_name..regex' => 'အမည်တွင် ကိန်းဂဏန်းများ (၁၂၃ / 123) ထည့်သွင်း၍ မရပါ။',
+            'full_name.regex' => 'အမည်တွင် ကိန်းဂဏန်းများ (၁၂၃ / 123) ထည့်သွင်း၍ မရပါ။', // Dot နှစ်ခု ဖြစ်နေတာ ပြင်ထားသည်
 
             'nrc_number.required' => 'မှတ်ပုံတင်နံပါတ်ကို အပြည့်အစုံ ရွေးချယ်/ဖြည့်သွင်းပေးရန် လိုအပ်ပါသည်။',
             'nrc_number.unique' => 'ဤမှတ်ပုံတင်နံပါတ်သည် စနစ်ထဲတွင် ရှိနှင့်ပြီးသားဖြစ်ပါသည်။',
 
+            // phone -> phone_number သို့ ပြင်ထားသည်
             'phone_number.required' => 'ဆက်သွယ်ရန်ဖုန်းနံပါတ်ကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
-            'phone.max' => 'ဖုန်းနံပါတ်သည် အများဆုံး ၁၅ လုံးထက် မပိုရပါ။',
-            'phone.regex' => 'မှန်ကန်သော မြန်မာဖုန်းနံပါတ် ဖြစ်ရပါမည်။ (ဥပမာ - 09661678119)',
+            'phone_number.max' => 'ဖုန်းနံပါတ်သည် အများဆုံး ၁၁ လုံးထက် မပိုရပါ။',
+            'phone_number.regex' => 'မှန်ကန်သော မြန်မာဖုန်းနံပါတ် ဖြစ်ရပါမည်။ (ဥပမာ - 09661678119)',
 
             'email.email' => 'မှန်ကန်သော အီးမေးလ် ပုံစံ ဖြစ်ရပါမည်။',
             'email.max' => 'အီးမေးလ် သည် စာလုံးရေ ၂၅၅ လုံးထက် မကျော်ရပါ။',
@@ -122,7 +126,7 @@ class BorrowerController extends Controller
             'phone' => [
                 'nullable',
                 'string',
-                'max:15',
+                'max:11',
                 'regex:/^(09|\+?959|၀၉|\+?၉၅၉)[0-9\x{1040}-\x{1049}]{7,9}$/u'
             ],
             'email' => 'nullable|email|max:255|unique:borrowers,email,' . $id,         // ၎င်း ID ကို ချန်လှပ်၍ စစ်ဆေးမည်
@@ -140,7 +144,7 @@ class BorrowerController extends Controller
             'nrc_number.unique' => 'ဤမှတ်ပုံတင်နံပါတ်သည် စနစ်ထဲတွင် ရှိနှင့်ပြီးသားဖြစ်ပါသည်။',
 
             'phone_number.required' => 'ဆက်သွယ်ရန်ဖုန်းနံပါတ်ကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
-            'phone.max' => 'ဖုန်းနံပါတ်သည် အများဆုံး ၁၅ လုံးထက် မပိုရပါ။',
+            'phone.max' => 'ဖုန်းနံပါတ်သည် အများဆုံး ၁၁  လုံးထက် မပိုရပါ။',
             'phone.regex' => 'မှန်ကန်သော မြန်မာဖုန်းနံပါတ် ဖြစ်ရပါမည်။ (ဥပမာ - 09661678119)',
 
             'email.email' => 'မှန်ကန်သော အီးမေးလ် ပုံစံ ဖြစ်ရပါမည်။',

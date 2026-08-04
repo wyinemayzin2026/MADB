@@ -32,16 +32,16 @@
                             <div class="flex gap-4">
                                 <i class="fas fa-map-marker-alt text-green-600 mt-1"></i>
                                 <p class="text-gray-600 leading-relaxed">
-                                    No. (240/A), Uyinmyout Block, Nat Maw Road, Hinthada 10061, Ayeyarwady Region, Myanmar
+                                    နံပါတ်240/က ဉယျာဉ်မြောက်ရပ်ကွက်/နတ်မော်လမ်း/ဟသာ်တမြိုနယ်/ဧရာဝတီတိုင်းဒေသကြီး
                                 </p>
                             </div>
                             <div class="flex gap-4">
                                 <i class="fas fa-phone-alt text-green-600 mt-1"></i>
-                                <p class="text-gray-600 font-bold">044-2022817 </p>
+                                <p class="text-gray-600 font-bold">၀၄၄-၂၀၂၂၈၁၇</p>
                             </div>
                             <div class="flex gap-4">
                                 <i class="fas fa-phone-alt text-green-600 mt-1"></i>
-                                <p class="text-gray-600 font-bold">+95 44 2022817</p>
+                                <p class="text-gray-600 font-bold">+၉၅ ၄၄၂၀၂၂၈၁၇</p>
                             </div>
                             <div class="flex gap-4">
                                 <i class="fas fa-envelope text-green-600 mt-1"></i>

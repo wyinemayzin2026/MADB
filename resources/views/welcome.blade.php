@@ -44,46 +44,50 @@
             <div class="w-24 h-1.5 bg-yellow-500 mx-auto rounded-full"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div
-                class="bg-white p-8 rounded-3xl border-t-8 border-green-600 shadow-sm hover:shadow-2xl transition duration-500 group">
-                <div
-                    class="w-16 h-16 bg-green-100 text-green-700 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-green-600 group-hover:text-white transition">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+        <!-- Card 1 -->
+        <div class="bg-white p-8 rounded-3xl border-t-8 border-green-600 shadow-sm hover:shadow-2xl transition duration-500 group flex flex-col justify-between">
+            <div>
+                <div class="w-16 h-16 bg-green-100 text-green-700 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-green-600 group-hover:text-white transition">
                     <i class="fas fa-tractor"></i>
                 </div>
                 <h4 class="text-xl font-bold text-gray-800 mb-4">စိုက်ပျိုးစရိတ်ချေးငွေ</h4>
-                <p class="text-gray-600 leading-relaxed">မိုးစပါး၊ ဆောင်းသီးနှံနှင့် အခြားသီးနှံများအတွက်
-                    စိုက်ပျိုးစရိတ်များကို အတိုးနှုန်းသက်သာစွာဖြင့် ထုတ်ချေးပေးပါသည်။</p>
-                {{-- <a href="#" class="mt-6 inline-block text-green-700 font-bold hover:underline italic">ပိုမိုဖတ်ရှုရန်
-                    →</a> --}}
+                <p class="text-gray-600 leading-relaxed text-justify">
+                    မိုးစပါး၊ ဆောင်းသီးနှံနှင့် အခြားသီးနှံများအတွက် စိုက်ပျိုးစရိတ်များကို အတိုးနှုန်းသက်သာစွာဖြင့် ထုတ်ချေးပေးပါသည်။
+                </p>
             </div>
+        </div>
 
-            <div
-                class="bg-white p-8 rounded-3xl border-t-8 border-yellow-500 shadow-sm hover:shadow-2xl transition duration-500 group">
-                <div
-                    class="w-16 h-16 bg-yellow-100 text-yellow-700 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-yellow-500 group-hover:text-white transition">
+        <!-- Card 2 -->
+        <div class="bg-white p-8 rounded-3xl border-t-8 border-yellow-500 shadow-sm hover:shadow-2xl transition duration-500 group flex flex-col justify-between">
+            <div>
+                <div class="w-16 h-16 bg-yellow-100 text-yellow-700 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-yellow-500 group-hover:text-white transition">
                     <i class="fas fa-tools"></i>
                 </div>
                 <h4 class="text-xl font-bold text-gray-800 mb-4">လယ်ယာသုံးစက်ကိရိယာချေးငွေ</h4>
-                <p class="text-gray-600 leading-relaxed">ထွန်စက်၊ ရိတ်သိမ်းခြွေလှေ့စက်များနှင့် အခြားစက်ကိရိယာများကို
-                    အရစ်ကျစနစ်ဖြင့် ဝယ်ယူနိုင်ရန် ကူညီပေးပါသည်။</p>
-                {{-- <a href="#" class="mt-6 inline-block text-yellow-600 font-bold hover:underline italic">ပိုမိုဖတ်ရှုရန်
-                    →</a> --}}
+                <p class="text-gray-600 leading-relaxed text-justify">
+                    ထွန်စက်၊ ရိတ်သိမ်းခြွေလှေ့စက်များနှင့် အခြားစက်ကိရိယာများကို အရစ်ကျစနစ်ဖြင့် ဝယ်ယူနိုင်ရန် ကူညီပေးပါသည်။
+                </p>
             </div>
+        </div>
 
-            <div
-                class="bg-white p-8 rounded-3xl border-t-8 border-green-600 shadow-sm hover:shadow-2xl transition duration-500 group">
-                <div
-                    class="w-16 h-16 bg-green-100 text-green-700 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-green-600 group-hover:text-white transition">
+        <!-- Card 3 -->
+        <div class="bg-white p-8 rounded-3xl border-t-8 border-green-600 shadow-sm hover:shadow-2xl transition duration-500 group flex flex-col justify-between">
+            <div>
+                <div class="w-16 h-16 bg-green-100 text-green-700 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-green-600 group-hover:text-white transition">
                     <i class="fas fa-piggy-bank"></i>
                 </div>
                 <h4 class="text-xl font-bold text-gray-800 mb-4">စုဆောင်းငွေဝန်ဆောင်မှု</h4>
-                <p class="text-gray-600 leading-relaxed">တောင်သူဦးကြီးများ၏ ပိုလျှံငွေများကို လုံခြုံစိတ်ချစွာ
-                    စုဆောင်းနိုင်ပြီး အတိုးနှုန်းကောင်းကောင်း ရရှိနိုင်ပါသည်။</p>
-                {{-- <a href="#" class="mt-6 inline-block text-green-700 font-bold hover:underline italic">ပိုမိုဖတ်ရှုရန်
-                    →</a> --}}
+                <p class="text-gray-600 leading-relaxed text-justify">
+                    တောင်သူဦးကြီးများ၏ ပိုလျှံငွေများကို လုံခြုံစိတ်ချစွာ စုဆောင်းနိုင်ပြီး အတိုးနှုန်းကောင်းကောင်း ရရှိနိုင်ပါသည်။
+                </p>
             </div>
         </div>
+
+    </div>
+</div>
     </section>
 
     <section class="bg-green-900 py-16 text-white overflow-hidden relative">

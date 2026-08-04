@@ -21,8 +21,8 @@
                         class="w-16 h-16 bg-green-100 text-green-700 rounded-2xl flex items-center justify-center text-3xl mb-6">
                         <i class="fas fa-eye"></i>
                     </div>
-                    <h2 class="text-3xl font-bold text-gray-800 mb-4">မျှော်မှန်းချက် (Vision)</h2>
-                    <p class="text-gray-600 leading-relaxed text-lg italic">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">မျှော်မှန်းချက်</h2>
+                    <p class="text-gray-600 leading-relaxed text-lg text-justify ">
                         "မြန်မာ့လယ်ယာစီးပွားကဏ္ဍ ဖွံ့ဖြိုးတိုးတက်ရေးအတွက် တောင်သူဦးကြီးများအား ငွေကြေးဝန်ဆောင်မှု
                         အထိရောက်ဆုံးပေးနိုင်သည့် ထိပ်တန်းဘဏ်တစ်ခု ဖြစ်လာစေရန်။"
                     </p>
@@ -34,20 +34,25 @@
                         class="w-16 h-16 bg-yellow-100 text-yellow-700 rounded-2xl flex items-center justify-center text-3xl mb-6">
                         <i class="fas fa-bullseye"></i>
                     </div>
-                    <h2 class="text-3xl font-bold text-gray-800 mb-4">ရည်မှန်းချက် (Mission)</h2>
-                    <ul class="text-gray-600 space-y-4 text-md">
-                        <li class="flex gap-3">
-                            <i class="fas fa-check-circle text-green-600 mt-1"></i>
-                            <span>တောင်သူလယ်သမားများအား လိုအပ်သော စိုက်ပျိုးစရိတ်ချေးငွေများကို အချိန်မီ
-                                ထုတ်ချေးပေးရန်။</span>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">ရည်မှန်းချက်</h2>
+                    <ul class="text-gray-600 space-y-4 text-base">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-green-600 text-lg mt-0.5 shrink-0"></i>
+                            <span class="leading-relaxed">
+                                တောင်သူလယ်သမားများအား လိုအပ်သော စိုက်ပျိုးစရိတ်ချေးငွေများကို အချိန်မီ ထုတ်ချေးပေးရန်။
+                            </span>
                         </li>
-                        <li class="flex gap-3">
-                            <i class="fas fa-check-circle text-green-600 mt-1"></i>
-                            <span>ခေတ်မီလယ်ယာသုံး စက်ကိရိယာများ ဝယ်ယူနိုင်ရန် ရေရှည်ချေးငွေများ ဝန်ဆောင်မှုပေးရန်။</span>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-green-600 text-lg mt-0.5 shrink-0"></i>
+                            <span class="leading-relaxed">
+                                ခေတ်မီလယ်ယာသုံး စက်ကိရိယာများ ဝယ်ယူနိုင်ရန် ရေရှည်ချေးငွေများ ဝန်ဆောင်မှုပေးရန်။
+                            </span>
                         </li>
-                        <li class="flex gap-3">
-                            <i class="fas fa-check-circle text-green-600 mt-1"></i>
-                            <span>ကျေးလက်နေ ပြည်သူများ၏ ငွေစုဆောင်းမှု အလေ့အထကို မြှင့်တင်ပေးရန်။</span>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check-circle text-green-600 text-lg mt-0.5 shrink-0"></i>
+                            <span class="leading-relaxed">
+                                ကျေးလက်နေ ပြည်သူများ၏ ငွေစုဆောင်းမှု အလေ့အထကို မြှင့်တင်ပေးရန်။
+                            </span>
                         </li>
                     </ul>
                 </div>

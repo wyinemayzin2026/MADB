@@ -119,7 +119,7 @@
             </div>
 
             <div>
-                <h3 class="text-lg font-bold border-b-2 border-yellow-500 w-fit pb-1 mb-6">အမြန်ကြည့်ရန်</h3>
+                <h3 class="text-lg font-bold border-b-2 border-yellow-500 w-fit pb-1 mb-6">ကြည့်ရန်</h3>
                 <ul class="space-y-3 text-gray-300 text-sm">
                     <li><a href="{{ url('/') }}" class="hover:text-yellow-400 flex items-center gap-2"><i
                                 class="fas fa-chevron-right text-[10px]"></i> ပင်မစာမျက်နှာ</a></li>

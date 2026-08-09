@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\BorrowerLoan;
 use App\Models\LoanRemainders;
+use App\Models\Payement;
+use App\Models\Payment;
 use Carbon\Carbon;
 
 class BorrowerLoanController extends Controller
@@ -13,11 +15,10 @@ class BorrowerLoanController extends Controller
     {
         $borrower_id = auth('borrower')->check() ? auth('borrower')->id() : '';
         $currentYear = Carbon::now()->year; // လက်ရှိနှစ် (ဥပမာ - 2026)
-        $appliedSeasons = BorrowerLoan::with(['borrower', 'loanRemainder'])
-            ->where('borrower_id', $borrower_id)
+        $appliedSeasons = BorrowerLoan::where('borrower_id', $borrower_id)
             ->whereYear('created_at', $currentYear)
-            ->whereNotIn('status', ['resubmitted']) // status စစ်ခြင်းကို pluck မတိုင်မီ ထည့်ပါ
-            ->pluck('season_type')                  // လိုချင်သည့် column ကိုမှ pluck လုပ်ပါ
+            ->whereIn('status', ['accepted', 'approved', 'rejected', 'pending']) // လိုချင်သော status များကိုသာ သီးသန့် စစ်မည်
+            ->pluck('season_type')
             ->toArray();
 
         $hasAppliedRainy = in_array('rainy', $appliedSeasons);
@@ -254,6 +255,43 @@ class BorrowerLoanController extends Controller
         $loan = BorrowerLoan::with('loanRemainder')->findOrFail($id);
         $remainder = $loan->loanRemainder;
 
+        $repaymentType = $request->input('repayment_type', $loan->repayment_type);
+
+        $screenshotPath = null;
+
+        if ($repaymentType === 'online') {
+            $rules = [
+                'payment_method'     => 'required|string',
+                'transaction_id'     => 'required|string|unique:payments,transaction_id',
+                'payment_screenshot' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            ];
+
+            if ($request->payment_method === 'BankTransfer') {
+                $rules['bank_name']           = 'required|string|max:255';
+                $rules['account_number']      = 'required|string|max:255';
+                $rules['account_holder_name'] = 'required|string|max:255';
+            }
+
+            $messages = [
+                'payment_method.required'     => 'ကျေးဇူးပြု၍ ငွေပေးချေမှုနည်းလမ်း ရွေးချယ်ပါ။',
+                'transaction_id.required'     => 'Transaction ID (လုပ်ငန်းစဉ် အမှတ်) ဖြည့်စွက်ရန် လိုအပ်ပါသည်။',
+                'transaction_id.unique'       => 'ဤ Transaction ID သည် အသုံးပြုပြီးသား ဖြစ်နေပါသည်။ ပြန်လည်စစ်ဆေးပေးပါ။',
+                'payment_screenshot.required' => 'ငွေလွှဲပြေစာ ဓာတ်ပုံ တင်ရန် လိုအပ်ပါသည်။',
+                'payment_screenshot.image'    => 'တင်ပြသော ဖိုင်သည် ဓာတ်ပုံ အမျိုးအစား (Image) ဖြစ်ရပါမည်။',
+                'payment_screenshot.mimes'    => 'ဓာတ်ပုံကို jpeg, png, jpg format များဖြင့်သာ လက်ခံပါသည်။',
+                'payment_screenshot.max'      => 'ဓာတ်ပုံဖိုင် အရွယ်အစားသည် 2MB ထက် မကျော်လွန်ရပါ။',
+                'bank_name.required'           => 'ဘဏ်အမည် ဖြည့်စွက်ရန် လိုအပ်ပါသည်။',
+                'account_number.required'      => 'အကောင့်အမှတ် ဖြည့်စွက်ရန် လိုအပ်ပါသည်။',
+                'account_holder_name.required' => 'အကောင့်ပိုင်ရှင်အမည် ဖြည့်စွက်ရန် လိုအပ်ပါသည်။',
+            ];
+
+            $validated = $request->validate($rules, $messages);
+
+            if ($request->hasFile('payment_screenshot')) {
+                $screenshotPath = $request->file('payment_screenshot')->store('payments', 'public');
+            }
+        }
+
         $today = Carbon::today();
         $repaymentDate = Carbon::parse($remainder->repayment_date);
 
@@ -262,9 +300,23 @@ class BorrowerLoanController extends Controller
             $penalty = $remainder->total_repayment_amount * 0.05;
         }
 
-        $remainder->net_total_repayment_amount = $remainder->total_repayment_amount + $penalty;
-        $remainder->status = 'repaid';
+        $netTotalAmount = $remainder->total_repayment_amount + $penalty;
 
+        if ($repaymentType === 'online') {
+            Payment::create([
+                'borrower_loan_id'    => $loan->id,
+                'amount'              => $netTotalAmount,
+                'payment_method'      => $request->payment_method,
+                'transaction_id'      => $request->transaction_id,
+                'payment_screenshot'  => $screenshotPath,
+                'bank_name'           => $request->bank_name ?? null,
+                'account_number'      => $request->account_number ?? null,
+                'account_holder_name' => $request->account_holder_name ?? null,
+            ]);
+        }
+
+        $remainder->net_total_repayment_amount = $netTotalAmount;
+        $remainder->status = 'repaid';
         $remainder->save();
 
         return back()->with('success', 'ချေးငွေကို အောင်မြင်စွာ ပြန်လည်ပေးချေပြီးပါပြီ။');
@@ -312,11 +364,9 @@ class BorrowerLoanController extends Controller
             return redirect()->back()->with('error', 'ဤလျှောက်လွှာကို ပြင်ဆင်ခွင့်မရှိတော့ပါ။');
         }
 
-        // လက်ရှိ edit လုပ်နေသည့် record မှလွဲ၍ ကျန်ရှိသော လျှောက်ထားပြီးသား ရာသီများကို စစ်မည်
         $appliedSeasons = BorrowerLoan::where('borrower_id', $borrower_id)
-            ->where('id', '!=', $id) // လက်ရှိ edit လုပ်နေသော loan record ကို ခေတ္တချန်လှပ်ထားမည်
             ->whereYear('created_at', $currentYear)
-            ->whereNotIn('status', ['resubmitted']) // သို့မဟုတ် 'rejected' စသည်ဖြင့်
+            ->whereIn('status', ['accepted', 'approved', 'rejected', 'pending']) // လိုချင်သော status များကိုသာ သီးသန့် စစ်မည်
             ->pluck('season_type')
             ->toArray();
 

@@ -17,11 +17,17 @@
 
             </div>
             <div>
-                <button id="btn-add-staff" type="button"
-                    class="inline-flex items-center px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm rounded-xl shadow-sm transition-all duration-200">
-                    <i class="fas fa-plus me-2"></i> ၀န်ထမ်းသစ်ထည့်မည်
-                </button>
-            </div>
+    @if($staffs->count() < 30)
+        <button id="btn-add-staff" type="button"
+            class="inline-flex items-center px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm rounded-xl shadow-sm transition-all duration-200">
+            <i class="fas fa-plus me-2"></i> ၀န်ထမ်းသစ်ထည့်မည်
+        </button>
+    @else
+        <span class="text-xs text-amber-600 font-medium">
+            ၀န်ထမ်းဦးရေ ၃၀ ပြည့်သွားပါပြီ
+        </span>
+    @endif
+</div>
         </div>
 
         <!-- Data Table Container -->

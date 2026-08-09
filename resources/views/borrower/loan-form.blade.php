@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="py-10 bg-gray-50 min-h-screen">
         <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
 
@@ -54,6 +53,7 @@
                             <p>• ချေးငွေသက်တမ်းမှာ စတင်ချေးသည့်နေ့မှစ၍ (၁) နှစ် တိတိ ဖြစ်သည်။ (အတိုးနှုန်း ၅%)</p>
                         </div>
 
+                        <!-- 1. Occupation & Personal Info -->
                         <div class="border-b border-gray-100 pb-5 mb-6">
                             <h3 class="text-lg font-bold text-gray-800 mb-4 text-green-600">၁။ အလုပ်အကိုင်နှင့် ကိုယ်ရေးအချက်အလက်</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -88,6 +88,7 @@
                             </div>
                         </div>
 
+                        <!-- 2. Loan Details -->
                         <div class="border-b border-gray-100 pb-5 mb-6">
                             <h3 class="text-lg font-bold text-gray-800 mb-4 text-green-600">၂။ ချေးငွေဆိုင်ရာ အချက်အလက်များ</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -139,6 +140,7 @@
                             </div>
                         </div>
 
+                        <!-- 3. Guarantor Info -->
                         <div class="border-b border-gray-100 pb-5 mb-6">
                             <h3 class="text-lg font-bold text-gray-800 mb-4 text-green-600">၃။ အာမခံသူ အချက်အလက်</h3>
                             <div>
@@ -150,7 +152,8 @@
                             </div>
                         </div>
 
-                        <div class="mb-6">
+                        <!-- 4. Required Documents -->
+                        <div class="border-b border-gray-100 pb-5 mb-6">
                             <h3 class="text-lg font-bold text-gray-800 mb-4 text-green-600">၄။ လိုအပ်သော စာရွက်စာတမ်း ဓာတ်ပုံများ တင်ရန်</h3>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
@@ -182,7 +185,6 @@
                                     @error('nrc_back_image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                                 </div>
 
-                                <!-- အာမခံသူ၏ မှတ်ပုံတင် အရှေ့ပုံ (Guarantor NRC Front Image) -->
                                 <div class="bg-gray-50 p-4 rounded-xl border @error('guarantor_front_image') border-red-500 bg-red-50 @else border-gray-200 @enderror">
                                     <label class="block text-sm font-medium text-gray-700 mb-2">အာမခံသူ မှတ်ပုံတင် အရှေ့ပုံ </label>
                                     <input type="file" name="guarantor_front_image" required
@@ -190,7 +192,6 @@
                                     @error('guarantor_front_image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                                 </div>
 
-                                <!-- အာမခံသူ၏ မှတ်ပုံတင် အနောက်ပုံ (Guarantor NRC Back Image) -->
                                 <div class="bg-gray-50 p-4 rounded-xl border @error('guarantor_nrc_back_image') border-red-500 bg-red-50 @else border-gray-200 @enderror">
                                     <label class="block text-sm font-medium text-gray-700 mb-2">အာမခံသူ မှတ်ပုံတင် အနောက်ပုံ</label>
                                     <input type="file" name="guarantor_nrc_back_image" required
@@ -201,6 +202,20 @@
                             </div>
                         </div>
 
+                        <!-- 5. Repayment Type (NEW SECTION) -->
+                        <div class="mb-6">
+                            <h3 class="text-lg font-bold text-gray-800 mb-4 text-green-600">၅။ ပြန်ဆပ်မည့် နည်းလမ်း</h3>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">ပြန်ဆပ်မည့် အမျိုးအစား ရွေးချယ်ပါ</label>
+                                <select name="repayment_type" required class="w-full border @error('repayment_type') border-red-500 @else border-gray-300 @enderror rounded-lg p-2.5 focus:ring-2 focus:ring-green-500 focus:outline-none">
+                                    <option value="online" {{ old('repayment_type') == 'online' ? 'selected' : '' }}>အွန်လိုင်းမှ ပြန်ဆပ်မည် </option>
+                                    <option value="outside" {{ old('repayment_type') == 'outside' ? 'selected' : '' }}>ဘဏ်သို့ လာရောက် ဆပ်မည်</option>
+                                </select>
+                                @error('repayment_type') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
                         <div class="pt-4">
                             <button type="submit"
                                 class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition duration-200 hover:-translate-y-0.5">
@@ -221,7 +236,6 @@
             const acresInput = document.getElementById('acres');
             const displayTotal = document.getElementById('display_total');
 
-            // မိုးသီးနှံက လျှောက်ဖူးလို့ပိတ်ထားရင် မပိတ်ထားတဲ့ ဆောင်းသီးနှံကို အလိုအလျောက် ရွေးခိုင်းစေခြင်း
             if (seasonSelect && seasonSelect.options[seasonSelect.selectedIndex].disabled) {
                 for (let i = 0; i < seasonSelect.options.length; i++) {
                     if (!seasonSelect.options[i].disabled) {
@@ -231,7 +245,6 @@
                 }
             }
 
-            // ငွေပမာဏ တွက်ချက်ခြင်း (မိုး: ၃ သိန်း၊ ဆောင်း: ၂ သိန်းခွဲ)
             function calculateLoan() {
                 const acres = parseInt(acresInput.value) || 0;
                 const pricePerAcre = (seasonSelect.value === 'rainy') ? 300000 : 250000;

@@ -24,6 +24,11 @@ class StaffController extends Controller
 
     public function store(Request $request)
     {
+        $staffCount = Staff::where('role', '!=', 'admin')->count();
+
+        if ($staffCount >= 30) {
+            return redirect()->back()->with('error', '၀န်ထမ်းအကောင့် အများဆုံး (၃၀) သာ ထည့်သွင်းခွင့်ရှိပါသည်။');
+        }
         $validated = $request->validate([
             'eid' => 'required|numeric|unique:staff,eid',
             'name' => [
@@ -61,7 +66,7 @@ class StaffController extends Controller
             'role.required' => 'Role ရွေးချယ်ရန် လိုအပ်ပါသည်။',
             'phone.max' => 'ဖုန်းနံပါတ်သည် အများဆုံး ၁၅ လုံးထက် မပိုရပါ။',
             'phone.regex' => 'မှန်ကန်သော မြန်မာဖုန်းနံပါတ် ဖြစ်ရပါမည်။ (ဥပမာ - 09661678119)',
-             'phone_number.required' => 'ဆက်သွယ်ရန်ဖုန်းနံပါတ်ကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
+            'phone_number.required' => 'ဆက်သွယ်ရန်ဖုန်းနံပါတ်ကို ဖြည့်စွက်ပေးရန် လိုအပ်ပါသည်။',
             'password.required' => 'လျှို့ဝှက်နံပါတ် ဖြည့်သွင်းရန် လိုအပ်ပါသည်။',
             'password.min' => 'လျှို့ဝှက်နံပါတ်သည် အနည်းဆုံး ၆ လုံး ရှိရပါမည်။',
 

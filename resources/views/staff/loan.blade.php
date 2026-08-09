@@ -255,6 +255,16 @@
         function viewLoan(loan) {
             let seasonMyanmar = (loan.season_type === 'rainy') ? 'မိုးရာသီ' : 'ဆောင်းရာသီ';
 
+            // Repayment Type display logic (Formats common database keys or falls back to raw value)
+            let repaymentTypeMap = {
+    'online': 'အွန်လိုင်းမှ ပြန်ဆပ်မည်',
+    'cash': 'ပြင်ပတွင် ပေးချေမည်',
+    'offline': 'ပြင်ပတွင် ပေးချေမည်'
+};
+
+let repaymentTypeDisplay = repaymentTypeMap[loan.repayment_type]
+    || loan.repayment_type
+    || 'မသတ်မှတ်ရသေးပါ';
             let remainderRows = '';
             if (loan.status === 'accepted' && loan.loan_remainder) {
                 remainderRows = `
@@ -298,6 +308,7 @@
                             <li class="list-group-item d-flex justify-content-between"><span>ဧက:</span> <strong>${loan.acres || '-'}</strong></li>
                             <li class="list-group-item d-flex justify-content-between"><span>ရာသီ:</span> <strong>${seasonMyanmar}</strong></li>
                             <li class="list-group-item d-flex justify-content-between"><span>ချေးငွေအမျိုးအစား:</span> <strong>${loan.loan_type || '-'}</strong></li>
+                            <li class="list-group-item d-flex justify-content-between"><span>ပေးချေမှုပုံစံ:</span> <strong>${repaymentTypeDisplay}</strong></li>
                             <li class="list-group-item d-flex justify-content-between"><span>အတိုးနှုန်း:</span> <strong>${loan.rate || 0}%</strong></li>
                             <li class="list-group-item d-flex justify-content-between"><span>မူရင်းချေးငွေ:</span> <strong>${parseFloat(loan.total_amount || 0).toLocaleString()} ကျပ်</strong></li>
                             <li class="list-group-item d-flex justify-content-between">

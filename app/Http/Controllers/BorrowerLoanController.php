@@ -40,6 +40,7 @@ class BorrowerLoanController extends Controller
             'season_type' => 'required|in:rainy,winter',
             'loan_type' => 'required|string',
             'atone_none' => 'required|string',
+            'repayment_type' => 'required|in:online,outside',
             'guarantor_name' => 'required|string|max:255',
             'tax_form_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'household_chart_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
@@ -61,6 +62,8 @@ class BorrowerLoanController extends Controller
             'season_type.required' => 'စိုက်ပျိုးမည့် ရာသီဥတုကို ရွေးချယ်ပေးပါ။',
             'atone_none.required' => 'အတိုး/အရင်း ဆပ်ရမည့်ပုံစံကို ရွေးချယ်ပေးပါ။',
             'guarantor_name.required' => 'အာမခံသူ အမည် ဖြည့်စွက်ရန် လိုအပ်ပါသည်။',
+            'repayment_type.required' => 'ပြန်ဆပ်မည့် နည်းလမ်းကို ရွေးချယ်ပေးပါ။', // <--- ထပ်ပေါင်းထားသည်
+            'repayment_type.in' => 'မှန်ကန်သော ပြန်ဆပ်မည့် နည်းလမ်းကို ရွေးချယ်ပေးပါ။',
             'tax_form_image.required' => 'ပုံစံ(၇) မူရင်းပုံ တင်ရန် လိုအပ်ပါသည်။',
             'household_chart_image.required' => 'အိမ်ထောင်စုစာရင်းပုံ တင်ရန် လိုအပ်ပါသည်။',
             'nrc_front_image.required' => 'မှတ်ပုံတင် အရှေ့ပုံ တင်ရန် လိုအပ်ပါသည်။',
@@ -107,6 +110,8 @@ class BorrowerLoanController extends Controller
         $loan->loan_start_date = $startDate->format('Y-m-d');
         $loan->loan_end_date = $endDate->format('Y-m-d');
         $loan->guarantor_name = $request->guarantor_name;
+        $loan->repayment_type = $request->repayment_type;
+
 
         // ဓာတ်ပုံများ သိမ်းဆည်းခြင်း
         if ($request->hasFile('tax_form_image')) {

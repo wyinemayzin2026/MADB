@@ -14,13 +14,7 @@
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
-    <!-- DataTables CDN (For Advanced Reporting) -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- DataTables CDN -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
 
@@ -32,7 +26,6 @@
             background-color: #f8fafc;
         }
 
-        /* Modal Smooth Premium Animation */
         #modalContent {
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
@@ -47,10 +40,9 @@
             opacity: 0;
         }
 
-        /* Custom Scrollbar styled for MADB Emerald Theme */
         ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
         }
 
         ::-webkit-scrollbar-track {
@@ -59,13 +51,7 @@
 
         ::-webkit-scrollbar-thumb {
             background: #059669;
-            /* emerald-600 */
             border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #047857;
-            /* emerald-700 */
         }
     </style>
 </head>
@@ -73,16 +59,11 @@
 <body class="antialiased text-slate-800">
 
     <!-- Top Navigation Bar -->
-    <nav
-        class="bg-white/80 backdrop-blur-md border-b border-slate-100 px-6 py-3 flex justify-between items-center sticky top-0 z-50 shadow-sm">
+    <nav class="bg-white/80 backdrop-blur-md border-b border-slate-100 px-6 py-3 flex justify-between items-center sticky top-0 z-50 shadow-sm">
         <div class="flex items-center gap-3">
-            <div
-                class="relative w-14 h-14 rounded-full flex items-center justify-center shadow-lg border-2 border-yellow-400 overflow-hidden transition-transform group-hover:scale-110">
-                <img src="http://127.0.0.1:8000/assets/img/logo.png" alt="MADB Logo"
-                    class="absolute inset-0 w-full h-full object-contain">
-
-                <div class="absolute inset-0 bg-gradient-to-tr from-green-800 to-transparent opacity-50 z-10">
-                </div>
+            <div class="relative w-14 h-14 rounded-full flex items-center justify-center shadow-lg border-2 border-yellow-400 overflow-hidden transition-transform group-hover:scale-110">
+                <img src="http://127.0.0.1:8000/assets/img/logo.png" alt="MADB Logo" class="absolute inset-0 w-full h-full object-contain">
+                <div class="absolute inset-0 bg-gradient-to-tr from-green-800 to-transparent opacity-50 z-10"></div>
             </div>
             <div>
                 <h1 class="text-green-800 font-bold text-lg leading-tight">MADB</h1>
@@ -104,8 +85,8 @@
                 position: '{{ auth()->user()->position }}',
                 eid: '{{ auth()->user()->eid }}',
                 email: '{{ auth()->user()->email }}',
-                phone: '{{ auth()->user()->phone ?? '၀၉---------' }}',
-                address: '{{ auth()->user()->address ?? 'နေပြည်တော်' }}',
+                phone: '{{ auth()->user()->phone ?? '' }}',
+                address: '{{ auth()->user()->address ?? '' }}',
                 image_path: '{{ auth()->user()->image_path ? asset('storage/' . auth()->user()->image_path) : asset('assets/img/default_profile.png') }}'
             })" class="relative group outline-none">
                 <img id="navAvatar"
@@ -133,27 +114,22 @@
                     </a>
                 @endif
 
-                <a href="{{ route('borrowers.list') }}"
-                    class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">
+                <a href="{{ route('borrowers.list') }}" class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">
                     <i class="fas fa-hand-holding-dollar me-3 w-5 text-lg text-emerald-600"></i> ငွေစုစာရင်းအကောင့်များ
                 </a>
 
-                <a href="{{ route('loans.index') }}"
-                    class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">
+                <a href="{{ route('loans.index') }}" class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">
                     <i class="fas fa-piggy-bank me-3 w-5 text-lg text-emerald-600"></i> ချေးငွေလျှောက်လွှာများ
                 </a>
 
-                <a href="{{ route('loans.repayments') }}"
-                    class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">
-                    <i class="fas fa-file-shield me-3 w-5 text-lg text-emerald-600"></i>
-                    တောင်သူချေးငွေ ပြန်ဆပ်စာရင်း
+                <a href="{{ route('loans.repayments') }}" class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">
+                    <i class="fas fa-file-shield me-3 w-5 text-lg text-emerald-600"></i> တောင်သူချေးငွေ ပြန်ဆပ်စာရင်း
                 </a>
 
                 <div class="pt-4 mt-4 border-t border-slate-100">
                     <form action="{{ route('staff.logout') }}" method="POST">
                         @csrf
-                        <button type="submit"
-                            class="w-full flex items-center p-3.5 text-blue-500 hover:bg-blue-50 rounded-2xl font-bold transition-all outline-none">
+                        <button type="submit" class="w-full flex items-center p-3.5 text-blue-500 hover:bg-blue-50 rounded-2xl font-bold transition-all outline-none">
                             <i class="fas fa-sign-out-alt me-3 w-5 text-lg"></i> စနစ်မှထွက်ရန်
                         </button>
                     </form>
@@ -167,127 +143,99 @@
         </main>
     </div>
 
-    <!-- Beautiful Profile Info / Photo Upload Modal -->
+    <!-- Editable Profile Info / Photo Upload Modal -->
     <div id="userModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
         <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" onclick="closeModal()"></div>
 
-        <div id="modalContent"
-            class="relative bg-white w-full max-w-[400px] rounded-[32px] shadow-2xl overflow-hidden scale-down transition-all">
+        <div id="modalContent" class="relative bg-white w-full max-w-[450px] rounded-[32px] shadow-2xl overflow-hidden scale-down transition-all">
             <!-- Modern Gradient Header Banner -->
-            <div class="h-32 bg-gradient-to-br from-emerald-800 via-emerald-950 to-slate-900 relative">
-                <button onclick="closeModal()"
-                    class="absolute top-5 right-5 w-8 h-8 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-white/20 transition outline-none">
+            <div class="h-28 bg-gradient-to-br from-emerald-800 via-emerald-950 to-slate-900 relative">
+                <button onclick="closeModal()" class="absolute top-4 right-4 w-8 h-8 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-white/20 transition outline-none">
                     <i class="fas fa-times text-xs"></i>
                 </button>
             </div>
 
             <!-- Profile Info Content Section -->
-            <div class="px-6 pb-8 -mt-14 relative text-center">
+            <div class="px-6 pb-6 -mt-12 relative text-center">
+                <!-- Avatar Upload -->
                 <div class="inline-block relative">
-                    <div class="w-28 h-28 rounded-[80px] border-4 border-white shadow-xl overflow-hidden bg-slate-100">
+                    <div class="w-24 h-24 rounded-full border-4 border-white shadow-xl overflow-hidden bg-slate-100 mx-auto">
                         <img id="modalImg" src="" class="w-full h-full object-cover">
                     </div>
-                    <button onclick="document.getElementById('profileInput').click()"
-                        class="absolute -bottom-1 -right-1 bg-emerald-600 text-white w-9 h-9 rounded-xl border-4 border-white shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all outline-none">
+                    <button onclick="document.getElementById('profileInput').click()" type="button"
+                        class="absolute bottom-0 right-0 bg-emerald-600 text-white w-8 h-8 rounded-full border-2 border-white shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all outline-none">
                         <i class="fas fa-camera text-xs"></i>
                     </button>
                     <input type="file" id="profileInput" class="hidden" accept="image/*" onchange="previewPhoto(this)">
                 </div>
 
-                <div class="mt-3">
-                    <h3 id="modalName" class="text-xl font-bold text-slate-800 tracking-tight"></h3>
-                    <p id="modalPosition"
-                        class="text-emerald-600 font-bold uppercase tracking-[1.5px] text-[10px] mt-0.5">
-                    </p>
+                <!-- EID & Position Badge -->
+                <div class="mt-2">
+                    <span id="modalPosition" class="inline-block bg-emerald-50 text-emerald-700 font-bold uppercase tracking-wider text-[10px] px-2.5 py-1 rounded-md"></span>
+                    <p class="text-[11px] font-semibold text-slate-400 mt-1">ဝန်ထမ်းအမှတ်: <span id="modalEid" class="font-bold text-slate-700"></span></p>
                 </div>
 
-                <!-- Info Grid -->
-                <div class="mt-6 space-y-2 text-left">
-                    <div class="flex items-center gap-3.5 p-3 bg-slate-50 rounded-xl border border-slate-100/80">
-                        <div
-                            class="w-9 h-9 bg-white rounded-lg flex items-center justify-center text-emerald-600 shadow-sm">
-                            <i class="fas fa-id-badge text-sm"></i>
-                        </div>
-                        <div>
-                            <p class="text-[9px] font-bold text-slate-400 uppercase tracking-wider leading-none mb-1">
-                                ဝန်ထမ်းအမှတ်</p>
-                            <p id="modalEid" class="text-xs font-bold text-slate-700"></p>
-                        </div>
+                <!-- Edit Form Fields -->
+                <div class="mt-4 space-y-3 text-left max-h-[50vh] overflow-y-auto px-1">
+                    <div>
+                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">အမည်</label>
+                        <input type="text" id="edit_name" class="w-full text-xs font-bold text-slate-700 bg-slate-50 border border-slate-200 rounded-xl p-2.5 focus:outline-none focus:border-emerald-500">
                     </div>
 
-                    <div class="flex items-center gap-3.5 p-3 bg-slate-50 rounded-xl border border-slate-100/80">
-                        <div
-                            class="w-9 h-9 bg-white rounded-lg flex items-center justify-center text-emerald-600 shadow-sm">
-                            <i class="fas fa-phone text-sm"></i>
-                        </div>
-                        <div>
-                            <p class="text-[9px] font-bold text-slate-400 uppercase tracking-wider leading-none mb-1">
-                                ဆက်သွယ်ရန်ဖုန်း</p>
-                            <p id="modalPhone" class="text-xs font-bold text-slate-700"></p>
-                        </div>
+                    <div>
+                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">ဆက်သွယ်ရန်ဖုန်း</label>
+                        <input type="text" id="edit_phone" class="w-full text-xs font-bold text-slate-700 bg-slate-50 border border-slate-200 rounded-xl p-2.5 focus:outline-none focus:border-emerald-500">
                     </div>
 
-                    <div class="flex items-center gap-3.5 p-3 bg-slate-50 rounded-xl border border-slate-100/80">
-                        <div
-                            class="w-9 h-9 bg-white rounded-lg flex items-center justify-center text-emerald-600 shadow-sm">
-                            <i class="fas fa-envelope text-sm"></i>
-                        </div>
-                        <div class="truncate">
-                            <p class="text-[9px] font-bold text-slate-400 uppercase tracking-wider leading-none mb-1">
-                                အီးမေးလ်လိပ်စာ</p>
-                            <p id="modalEmail" class="text-xs font-bold text-slate-700 truncate"></p>
-                        </div>
+                    <div>
+                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">အီးမေးလ်လိပ်စာ</label>
+                        <input type="email" id="edit_email" class="w-full text-xs font-bold text-slate-700 bg-slate-50 border border-slate-200 rounded-xl p-2.5 focus:outline-none focus:border-emerald-500">
                     </div>
 
-                    <div class="flex items-center gap-3.5 p-3 bg-slate-50 rounded-xl border border-slate-100/80">
-                        <div
-                            class="w-9 h-9 bg-white rounded-lg flex items-center justify-center text-emerald-600 shadow-sm">
-                            <i class="fas fa-map-marker-alt text-sm"></i>
-                        </div>
-                        <div class="truncate">
-                            <p class="text-[9px] font-bold text-slate-400 uppercase tracking-wider leading-none mb-1">
-                                တာဝန်ကျရုံးခွဲလိပ်စာ</p>
-                            <p id="modalAddress" class="text-xs font-bold text-slate-700 truncate"></p>
-                        </div>
+                    <div>
+                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">တာဝန်ကျရုံးခွဲလိပ်စာ</label>
+                        <input type="text" id="edit_address" class="w-full text-xs font-bold text-slate-700 bg-slate-50 border border-slate-200 rounded-xl p-2.5 focus:outline-none focus:border-emerald-500">
+                    </div>
+
+                    <div>
+                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">စကားဝှက်အသစ် (မပြောင်းလဲပါက လွတ်ထားပါ)</label>
+                        <input type="password" id="edit_password" placeholder="••••••••" class="w-full text-xs font-bold text-slate-700 bg-slate-50 border border-slate-200 rounded-xl p-2.5 focus:outline-none focus:border-emerald-500">
                     </div>
                 </div>
 
-                <!-- Confirm Upload Button -->
+                <!-- Submit Button -->
                 <button id="confirmBtn" onclick="confirmUpload()"
-                    class="w-full mt-6 bg-emerald-700 text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-emerald-800 transition-all shadow-lg shadow-emerald-100 active:scale-[0.98] outline-none">
+                    class="w-full mt-5 bg-emerald-700 text-white py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-emerald-800 transition-all shadow-lg shadow-emerald-100 active:scale-[0.98] outline-none">
                     အချက်အလက်ပြင်ဆင်မှု အတည်ပြုမည်
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- DataTables & Export Extensions Scripts -->
+    <!-- Scripts -->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <!-- Frontend Core Logic UI Scripts -->
     <script>
         let selectedFile = null;
 
-        // User Details Profile Modal Handler
         function openUserModal(data) {
             selectedFile = null;
-            document.getElementById('modalName').innerText = data.name;
-            document.getElementById('modalPosition').innerText = data.position;
-            document.getElementById('modalEid').innerText = data.eid;
-            document.getElementById('modalEmail').innerText = data.email;
-            document.getElementById('modalAddress').innerText = data.address;
-            document.getElementById('modalPhone').innerText = data.phone;
+            document.getElementById('edit_name').value = data.name || '';
+            document.getElementById('edit_email').value = data.email || '';
+            document.getElementById('edit_phone').value = data.phone || '';
+            document.getElementById('edit_address').value = data.address || '';
+            document.getElementById('edit_password').value = '';
+
+            document.getElementById('modalPosition').innerText = data.position || '';
+            document.getElementById('modalEid').innerText = data.eid || '';
             document.getElementById('modalImg').src = data.image_path;
             document.getElementById('modalImg').style.opacity = "1";
+
             document.getElementById('confirmBtn').innerText = "အချက်အလက်ပြင်ဆင်မှု အတည်ပြုမည်";
             document.getElementById('confirmBtn').disabled = false;
 
@@ -304,7 +252,6 @@
             setTimeout(() => modal.classList.add('hidden'), 400);
         }
 
-        // Live Profile Image File Previewing
         function previewPhoto(input) {
             if (input.files && input.files[0]) {
                 selectedFile = input.files[0];
@@ -318,54 +265,71 @@
             }
         }
 
-        // Ajax Profile Image Upload Controller Trigger
         function confirmUpload() {
-            if (!selectedFile) {
-                closeModal();
-                return;
+            const formData = new FormData();
+            formData.append('name', document.getElementById('edit_name').value);
+            formData.append('email', document.getElementById('edit_email').value);
+            formData.append('phone', document.getElementById('edit_phone').value);
+            formData.append('address', document.getElementById('edit_address').value);
+
+            const password = document.getElementById('edit_password').value;
+            if (password) {
+                formData.append('password', password);
             }
 
-            const formData = new FormData();
-            formData.append('profile_image', selectedFile);
+            if (selectedFile) {
+                formData.append('profile_image', selectedFile);
+            }
+
             formData.append('_token', document.querySelector('meta[name="csrf-token"]').content);
 
             const btn = document.getElementById('confirmBtn');
-            btn.innerText = "ဓါတ်ပုံတင်သွင်းနေပါသည်...";
+            btn.innerText = "ပြင်ဆင်နေပါသည်...";
             btn.disabled = true;
 
             fetch("{{ route('staff.profile.update') }}", {
                 method: "POST",
+                headers: {
+                    'Accept': 'application/json'
+                },
                 body: formData
             })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'အောင်မြင်ပါသည်',
-                            text: 'ပရိုဖိုင်ဓါတ်ပုံ ပြောင်းလဲပြီးပါပြီ။',
-                            confirmButtonColor: '#047857'
-                        }).then(() => {
-                            window.location.reload();
-                        });
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'လုပ်ဆောင်ချက်မအောင်မြင်ပါ',
-                            text: data.message
-                        });
-                        btn.innerText = "အချက်အလက်ပြင်ဆင်မှု အတည်ပြုမည်";
-                        btn.disabled = false;
+            .then(async res => {
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'အောင်မြင်ပါသည်',
+                        text: data.message || 'ပရိုဖိုင် အချက်အလက်များ ပြောင်းလဲပြီးပါပြီ။',
+                        confirmButtonColor: '#047857'
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                } else {
+                    let errorMessage = data.message || 'လုပ်ဆောင်ချက် မအောင်မြင်ပါ။';
+                    if (data.errors) {
+                        errorMessage = Object.values(data.errors).flat().join('<br>');
                     }
-                })
-                .catch(err => {
-                    console.error(err);
-                    btn.innerText = "အခြားပုံတစ်ပုံရွေးချယ်ပေးပါ";
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'ပြင်ဆင်မှု မအောင်မြင်ပါ',
+                        html: errorMessage
+                    });
+                    btn.innerText = "အချက်အလက်ပြင်ဆင်မှု အတည်ပြုမည်";
                     btn.disabled = false;
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'အမှားအယွင်းရှိပါသည်',
+                    text: 'စနစ်တွင် အမှားတစ်ခု ဖြစ်ပေါ်နေပါသည်။'
                 });
+                btn.innerText = "အချက်အလက်ပြင်ဆင်မှု အတည်ပြုမည်";
+                btn.disabled = false;
+            });
         }
     </script>
-
 </body>
-
 </html>

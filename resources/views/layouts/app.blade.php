@@ -62,6 +62,10 @@
                                 class="absolute right-0 w-48 mt-1 origin-top-right bg-white rounded-2xl shadow-xl border border-slate-100 p-1.5 hidden group-hover:block animate-fade-in z-50">
 
                                 <hr class="border-slate-100 my-1">
+                                 <a href="{{ route('complaint.create') }}"
+                            class="inline-flex items-center justify-center bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded-lg shadow transition text-sm">
+                            📩 တိုင်ကြားစာ ပေးပို့ရန်
+                        </a>
 
                                 <a href="#"
                                     onclick="event.preventDefault(); document.getElementById('borrower-logout-form').submit();"

@@ -75,3 +75,6 @@ Route::prefix('staff')->name('staff.')->group(function () {
 
 Route::get('/borrower/loans/{id}/edit', [BorrowerLoanController::class, 'loanEdit'])->name('borrower.loans.edit');
 Route::put('/borrower/loans/{id}', [BorrowerLoanController::class, 'loanUpdate'])->name('borrower.loans.update');
+
+Route::get('/complaint', [AuthController::class, 'create'])->name('complaint.create');
+Route::post('/complaint', [AuthController::class, 'store'])->name('complaint.store');

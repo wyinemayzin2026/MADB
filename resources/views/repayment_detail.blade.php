@@ -29,10 +29,18 @@
                 </span>
             </div>
 
+            {{-- ရက်လွန်နေပါက ရက်လွန်သွားသော လ အရေအတွက်ပါ ပြသမည် --}}
             @if($isOverdue)
                 <div class="flex justify-between items-center text-red-600">
-                    <span class="font-bold">ရက်လွန်ဒဏ်ကြေး</span>
-                    <span class="font-bold">+ {{ number_format($penalty) }} ကျပ်</span>
+                    <span class="font-bold flex items-center gap-2">
+                        <span>ရက်လွန်ဒဏ်ကြေး</span>
+                        <span class="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-semibold">
+    ({{ str_replace(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], ['၀', '၁', '၂', '၃', '၄', '၅', '၆', '၇', '၈', '၉'], round($monthsOverdue)) }} လကျော်)
+</span>
+                    </span>
+                    <span class="font-bold">
+                        + {{ str_replace(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], ['၀', '၁', '၂', '၃', '၄', '၅', '၆', '၇', '၈', '၉'], number_format($penalty)) }} ကျပ်
+                    </span>
                 </div>
             @endif
 
@@ -88,12 +96,12 @@
                         @enderror
                     </div>
 
-                    <!-- Payment Detail Fields Section (JS ဖြင့် ထိန်းချုပ်မည်) -->
+                    <!-- Payment Detail Fields Section -->
                     <div id="paymentDetailsSection" class="space-y-4 mb-6 hidden">
 
                         <!-- BankTransfer ရွေးချယ်မှသာ ပေါ်လာမည့် ဘဏ်အကောင့်အချက်အလက်များ -->
                         <div id="bankDetailsSection" class="p-4 bg-gray-50 border border-gray-200 rounded-xl space-y-3 hidden">
-                            <h4 class="font-bold text-gray-700 text-sm border-b pb-2">ဘဏ်အကောင့် အချက်အလက်များ </h4>
+                            <h4 class="font-bold text-gray-700 text-sm border-b pb-2">ဘဏ်အကောင့် အချက်အလက်များ</h4>
 
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">ဘဏ်အမည်</label>
@@ -159,12 +167,12 @@
                     </div>
                     <button type="submit"
                         class="w-full bg-amber-600 hover:bg-amber-700 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition transform active:scale-95">
-                        ပေးချေမှု အတည်ပြုမည် (Submit)
+                        ပေးချေမှု အတည်ပြုမည်
                     </button>
                 @else
                     <button type="submit"
                         class="w-full bg-red-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-red-700 transition shadow-lg active:scale-95">
-                        ပြန်လည်ပေးချေရန် (Retry)
+                        ပြန်လည်ပေးချေရန်
                     </button>
                 @endif
 
@@ -177,7 +185,7 @@
             @elseif($remainder->status === 'repaid')
                 <div class="bg-blue-100 p-6 rounded-xl text-center space-y-2 mt-6">
                     <div class="text-4xl">ℹ️</div>
-                    <p class="text-blue-800 font-bold">ချေး‌ ငွေ ပြန်လည်ပေးဆပ်ထားပီး အတည်ပြုမှုကိုစောင့်ဆိုင်းနေသည်</p>
+                    <p class="text-blue-800 font-bold">ချေးငွေ ပြန်လည်ပေးဆပ်ထားပြီး အတည်ပြုမှုကို စောင့်ဆိုင်းနေသည်</p>
                 </div>
             @endif
         </form>
@@ -191,12 +199,10 @@
 
             if (!detailsSection) return;
 
-            // Payment Method တစ်ခုခု ရွေးလိုက်ပါက detail section တစ်ခုလုံးကို ပြသမည်
             if (selectedMethod) {
                 detailsSection.classList.remove('hidden');
             }
 
-            // BankTransfer ဖြစ်ပါက ဘဏ်အချက်အလက်ဖြည့်ရမည့် field များကိုပါ ထပ်မံပြသမည်
             if (selectedMethod === 'BankTransfer' && bankDetailsSection) {
                 bankDetailsSection.classList.remove('hidden');
             } else if (bankDetailsSection) {
@@ -204,7 +210,6 @@
             }
         }
 
-        // Page reload သို့မဟုတ် Validation Error တက်၍ ပြန်လာပါက ရွေးထားပြီးသား Method ကို ဆက်လက်ပြသထားရန်
         document.addEventListener('DOMContentLoaded', function () {
             const selectedRadio = document.querySelector('input[name="payment_method"]:checked');
             if (selectedRadio) {

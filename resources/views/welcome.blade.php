@@ -45,7 +45,7 @@
         </div>
 
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+    <div class="grid grid-cols-1 md:grid-cols-1 gap-10">
 
         <!-- Card 1 -->
         <div class="bg-white p-8 rounded-3xl border-t-8 border-green-600 shadow-sm hover:shadow-2xl transition duration-500 group flex flex-col justify-between">
@@ -55,36 +55,16 @@
                 </div>
                 <h4 class="text-xl font-bold text-gray-800 mb-4">စိုက်ပျိုးစရိတ်ချေးငွေ</h4>
                 <p class="text-gray-600 leading-relaxed text-justify">
-                    မိုးစပါး၊ ဆောင်းသီးနှံနှင့် အခြားသီးနှံများအတွက် စိုက်ပျိုးစရိတ်များကို အတိုးနှုန်းသက်သာစွာဖြင့် ထုတ်ချေးပေးပါသည်။
+                    စိုက်ပျိုးစရိတ်ချေးငွေဆိုသည်မှာ တောင်သူလယ်သမားများ၏ စိုက်ပျိုးရေးလုပ်ငန်းများအတွက် လိုအပ်သော ငွေကြေးအရင်းအနှီးကို ကူညီပံ့ပိုးပေးသည့် ချေးငွေအမျိုးအစားတစ်ခုဖြစ်သည်။ တောင်သူများသည် မျိုးစေ့၊ မြေဩဇာ၊ ပိုးသတ်ဆေး၊ စိုက်ပျိုးရေးသုံးပစ္စည်းများ၊ လယ်ယာလုပ်သားခနှင့် စက်ယန္တရားအသုံးပြုခများကဲ့သိုသော စိုက်ပျိုးရေးဆိုင်ရာ ကုန်ကျစရိတ်များအတွက် ဤချေးငွေကို အသုံးပြုနိုင်သည်။ စိုက်ပျိုးစရိတ်ချေးငွေသည် တောင်သူများ၏ လုပ်ငန်းလည်ပတ်ငွေလိုအပ်ချက်ကို ဖြည့်ဆည်းပေးနိုင်ပြီး စိုက်ပျိုးထုတ်လုပ်မှုကို တိုးတက်စေရန် အထောက်အကူပြုသည်။ ထိုအပြင် သတ်မှတ်ထားသော စည်းမျဉ်းစည်းကမ်းများနှင့်အညီ ချေးငွေလျှောက်ထားခြင်း၊ စိစစ်အတည်ပြုခြင်းနှင့် သတ်မှတ်ကာလအတွင်း ပြန်လည်ပေးဆပ်ခြင်းတိုကို ဆောင်ရွက်ရသည်။ ထိုသို စနစ်တကျ စီမံခန့်ခွဲပေးခြင်းဖြင့် တောင်သူများအတွက် လိုအပ်သော စိုက်ပျိုးရေးအရင်းအနှီးကို အချိန်မီရရှိစေပြီး စိုက်ပျိုးရေးကဏ္ဍ ဖွံဖြိုးတိုးတက်ရေးကို အထောက်အကူပြုနိုင်သည်။
                 </p>
             </div>
         </div>
 
         <!-- Card 2 -->
-        <div class="bg-white p-8 rounded-3xl border-t-8 border-yellow-500 shadow-sm hover:shadow-2xl transition duration-500 group flex flex-col justify-between">
-            <div>
-                <div class="w-16 h-16 bg-yellow-100 text-yellow-700 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-yellow-500 group-hover:text-white transition">
-                    <i class="fas fa-tools"></i>
-                </div>
-                <h4 class="text-xl font-bold text-gray-800 mb-4">လယ်ယာသုံးစက်ကိရိယာချေးငွေ</h4>
-                <p class="text-gray-600 leading-relaxed text-justify">
-                    ထွန်စက်၊ ရိတ်သိမ်းခြွေလှေ့စက်များနှင့် အခြားစက်ကိရိယာများကို အရစ်ကျစနစ်ဖြင့် ဝယ်ယူနိုင်ရန် ကူညီပေးပါသည်။
-                </p>
-            </div>
-        </div>
+
 
         <!-- Card 3 -->
-        <div class="bg-white p-8 rounded-3xl border-t-8 border-green-600 shadow-sm hover:shadow-2xl transition duration-500 group flex flex-col justify-between">
-            <div>
-                <div class="w-16 h-16 bg-green-100 text-green-700 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:bg-green-600 group-hover:text-white transition">
-                    <i class="fas fa-piggy-bank"></i>
-                </div>
-                <h4 class="text-xl font-bold text-gray-800 mb-4">စုဆောင်းငွေဝန်ဆောင်မှု</h4>
-                <p class="text-gray-600 leading-relaxed text-justify">
-                    တောင်သူဦးကြီးများ၏ ပိုလျှံငွေများကို လုံခြုံစိတ်ချစွာ စုဆောင်းနိုင်ပြီး အတိုးနှုန်းကောင်းကောင်း ရရှိနိုင်ပါသည်။
-                </p>
-            </div>
-        </div>
+
 
     </div>
 </div>

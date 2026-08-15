@@ -57,9 +57,9 @@
                             <th>မူရင်းချေးငွေ</th>
                             <th>ပြန်ဆပ်ငွေ</th>
                             <th>ရက်လွန်ဒဏ်ကြေး</th>
-                            <th>ရက်စွဲ</th>
                             <th>လက်ရှိ အခြေအနေ</th>
                             <th class="text-center">လုပ်ဆောင်ချက်</th>
+                            <th class="text-center">ချလန်ကြည့်မည်</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -82,7 +82,6 @@
                                         <span class="badge bg-success">မလိုအပ်ပါ</span>
                                     @endif
                                 </td>
-                                <td>{{ \Carbon\Carbon::parse($item->repayment_date)->format('d-m-Y') }}</td>
                                 <td class="p-4 text-center">
                                     @if($item->status == 'accepted')
                                         <span class="px-3 py-1 bg-green-100 text-green-700 font-bold rounded-full text-[11px]">
@@ -132,6 +131,16 @@
                                                 <i class="fas fa-times"></i> ငြင်းပယ်
                                             </button>
                                         </form>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($item->status == 'accepted')
+                                        <a href="{{ route('challan.show', $item->id) }}" target="_blank"
+                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-blue-700 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                                            📄 ချလန် ကြည့်မည် / Print
+                                        </a>
+                                    @else
+                                        <span class="text-xs text-gray-400">-</span>
                                     @endif
                                 </td>
                             </tr>

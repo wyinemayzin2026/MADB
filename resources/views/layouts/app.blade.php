@@ -138,7 +138,6 @@
                 <h3 class="text-lg font-bold border-b-2 border-yellow-500 w-fit pb-1 mb-6">ဝန်ဆောင်မှုများ</h3>
                 <ul class="space-y-3 text-gray-300 text-sm">
                     <li>စိုက်ပျိုးစရိတ်ချေးငွေ</a></li>
-                    <li>လယ်ယာသုံးစက်ကိရိယာချေးငွေ</li>
                     <li>JICA Two Step Loan</li>
                     <li>စုဆောင်းငွေ ဝန်ဆောင်မှု</li>
                 </ul>

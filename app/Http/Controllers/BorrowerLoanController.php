@@ -179,7 +179,7 @@ class BorrowerLoanController extends Controller
             $remainder = new LoanRemainders();
             $remainder->loan_id = $loan->id;
             $remainder->total_repayment_amount = $totalRepayment;
-            $remainder->repayment_date = Carbon::parse($loan->created_at)->addYear();
+            $remainder->repayment_date = Carbon::parse($loan->loan_end_date)->addDay();
             $remainder->save();
 
             $loan->status = 'accepted';
@@ -234,20 +234,35 @@ class BorrowerLoanController extends Controller
         $repaymentDate = Carbon::parse($remainder->repayment_date)->startOfDay();
 
         $penalty = 0;
+        $monthsOverdue = 0;
         $isOverdue = $today->gt($repaymentDate);
 
         if ($isOverdue) {
-            $penalty = $remainder->total_repayment_amount * 0.05;
+            $monthsOverdue = (int) $repaymentDate->diffInMonths($today) + 1;
+            $penaltyRate = $monthsOverdue * 0.06;
+            if ($penaltyRate > 1.00) {
+                $penaltyRate = 1.00;
+            }
+
+            $penalty = $remainder->total_repayment_amount * $penaltyRate;
         }
 
         $netTotal = $remainder->total_repayment_amount + $penalty;
-
         $total = $remainder->total_repayment_amount;
 
+        // Update database record with the calculated net total
         $remainder->net_total_repayment_amount = $netTotal;
         $remainder->save();
 
-        return view('repayment_detail', compact('loan', 'remainder', 'penalty', 'netTotal', 'isOverdue', 'total'));
+        return view('repayment_detail', compact(
+            'loan',
+            'remainder',
+            'penalty',
+            'netTotal',
+            'isOverdue',
+            'total',
+            'monthsOverdue'
+        ));
     }
 
     public function processPayment(Request $request, $id)
@@ -293,11 +308,21 @@ class BorrowerLoanController extends Controller
         }
 
         $today = Carbon::today();
-        $repaymentDate = Carbon::parse($remainder->repayment_date);
+        $repaymentDate = Carbon::parse($remainder->repayment_date)->startOfDay();
 
         $penalty = 0;
-        if ($today->gt($repaymentDate)) {
-            $penalty = $remainder->total_repayment_amount * 0.05;
+        $monthsOverdue = 0;
+        $isOverdue = $today->gt($repaymentDate);
+
+        if ($isOverdue) {
+            $monthsOverdue = (int) $repaymentDate->diffInMonths($today) + 1;
+
+            $penaltyRate = $monthsOverdue * 0.06;
+            if ($penaltyRate > 1.00) {
+                $penaltyRate = 1.00;
+            }
+
+            $penalty = $remainder->total_repayment_amount * $penaltyRate;
         }
 
         $netTotalAmount = $remainder->total_repayment_amount + $penalty;
@@ -315,6 +340,7 @@ class BorrowerLoanController extends Controller
             ]);
         }
 
+        $remainder->months_overdue = $monthsOverdue;
         $remainder->net_total_repayment_amount = $netTotalAmount;
         $remainder->status = 'repaid';
         $remainder->save();

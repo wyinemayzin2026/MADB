@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Complaint;
 use App\Mail\ComplaintReplyMail;
 use App\Mail\ComplaintSubmittedMail;
+use App\Models\LoanRemainders;
 use App\Models\Staff;
 use Illuminate\Support\Facades\Mail;
 
@@ -268,5 +269,17 @@ class AuthController extends Controller
         }
 
         return redirect()->back()->with('success', 'တိုင်ကြားစာ အခြေအနေ ပြောင်းလဲ၍ အီးမေးလ် အကြောင်းပြန်ပြီးပါပြီ။');
+    }
+
+    public function showChanllen($id)
+    {
+        // 1. loan_remainders Table မှ ID ဖြင့် ရှာမည်
+        $challen = LoanRemainders::findOrFail($id);
+
+        // 2. သက်ဆိုင်ရာ BorrowerLoan Data ကို ရှာမည်
+        $item = BorrowerLoan::findOrFail($challen->loan_id);
+
+        // View တွင် နှစ်ခုစလုံး သုံးနိုင်ရန် $item ရော $challen ပါ ပို့ပေးမည်
+        return view('challan.show', compact('item', 'challen'));
     }
 }

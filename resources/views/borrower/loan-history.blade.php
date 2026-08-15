@@ -166,11 +166,11 @@
                         <p id="m_guarantor_name" class="text-gray-800 font-semibold mt-0.5">-</p>
                     </div>
                     <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
-                        <p class="text-xs font-bold">Start Date</p>
+                        <p class="text-xs font-bold">ချေးငွေစချေးပေးသည်ကာလ</p>
                         <p id="m_start_date" class="text-gray-800 font-semibold mt-0.5">-</p>
                     </div>
                     <div class="bg-gray-50 p-3 rounded-xl border border-gray-100">
-                        <p class="text-xs font-bold">End Date</p>
+                        <p class="text-xs font-bold">ချေးငွေ နောက်ဆုံးထားဆပ်ရမည့် ရက်</p>
                         <p id="m_end_date" class="text-red-600 font-semibold mt-0.5">-</p>
                     </div>
                     <div class="bg-gray-50 p-3 rounded-xl border border-gray-100 md:col-span-2">

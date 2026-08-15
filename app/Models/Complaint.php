@@ -21,4 +21,9 @@ class Complaint extends Model
     protected $casts = [
         'images' => 'array',
     ];
+
+    public function borrower()
+    {
+        return $this->belongsTo(Borrower::class, 'borrower_id');
+    }
 }

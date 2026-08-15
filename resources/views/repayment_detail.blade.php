@@ -8,7 +8,7 @@
             <p class="text-sm text-gray-500 mt-1">
                 ပေးချေမှုအမျိုးအစား -
                 <span class="font-semibold text-blue-600">
-                    {{ ($loan->repayment_type ?? 'online') === 'online' ? 'Online ပေးချေမှု' : 'အပြင်တွင် တိုက်ရိုက်ပေးချေမှု (Outside)' }}
+                    {{ ($loan->repayment_type ?? 'online') === 'online' ? 'အွန်လိုင်းမှ ပေးချေမှု' : 'အပြင်တွင် တိုက်ရိုက်ပေးချေမှု (Outside)' }}
                 </span>
             </p>
         </div>

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Complaint;
+use App\Mail\ComplaintReplyMail;
 use App\Mail\ComplaintSubmittedMail;
 use App\Models\Staff;
 use Illuminate\Support\Facades\Mail;
@@ -231,5 +232,41 @@ class AuthController extends Controller
         }
 
         return redirect()->back()->with('success', 'တိုင်ကြားစာ အောင်မြင်စွာ ပေးပို့ပြီးပါပြီ။');
+    }
+
+    public function index()
+    {
+        $complaints = Complaint::with('borrower')->latest()->paginate(10);
+        return view('staff.complaints.index', compact('complaints'));
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|in:pending,resolved,rejected',
+            'reply_note' => 'nullable|string',
+        ]);
+
+        $complaint = Complaint::findOrFail($id);
+        $complaint->status = $request->status;
+        $complaint->save();
+
+        // Reverse Emails: Original DB 'from_email' (Borrower) becomes recipient 'to_email'
+        $replyToEmail = $complaint->from_email;
+        $replyFromEmail = $complaint->to_email;   // Staff / Admin Email
+
+        // Send Email Back to Borrower
+        try {
+            Mail::to($replyToEmail)->send(new ComplaintReplyMail(
+                $complaint,
+                $request->reply_note,
+                $request->status,
+                $replyFromEmail
+            ));
+        } catch (\Exception $e) {
+            \Log::error('Reply Mail Error: ' . $e->getMessage());
+        }
+
+        return redirect()->back()->with('success', 'တိုင်ကြားစာ အခြေအနေ ပြောင်းလဲ၍ အီးမေးလ် အကြောင်းပြန်ပြီးပါပြီ။');
     }
 }

@@ -55,7 +55,7 @@
                                         💳
                                         @if($loan->repayment_type == 'online')
                                             အွန်လိုင်းမှ ပြန်ဆပ်မည်
-                                        @elseif($loan->repayment_type == 'cash' || $loan->repayment_type == 'offline')
+                                        @elseif($loan->repayment_type == 'cash' || $loan->repayment_type == 'outside')
                                             ပြင်ပတွင် ပေးချေမည်
                                         @else
                                             {{ $loan->repayment_type ?? 'မသတ်မှတ်ရသေးပါ' }}

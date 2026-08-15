@@ -126,6 +126,11 @@
                     <i class="fas fa-file-shield me-3 w-5 text-lg text-emerald-600"></i> တောင်သူချေးငွေ ပြန်ဆပ်စာရင်း
                 </a>
 
+                <a href="{{ route('staff.complaints.index') }}"
+                    class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all {{ request()->routeIs('staff.complaints.*') ? 'bg-emerald-50 text-emerald-700' : '' }}">
+                    <i class="fas fa-headset me-3 w-5 text-lg text-emerald-600"></i> တိုင်ကြားစာများ စာရင်း
+                </a>
+
                 <div class="pt-4 mt-4 border-t border-slate-100">
                     <form action="{{ route('staff.logout') }}" method="POST">
                         @csrf

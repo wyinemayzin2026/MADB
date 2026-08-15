@@ -78,3 +78,6 @@ Route::put('/borrower/loans/{id}', [BorrowerLoanController::class, 'loanUpdate']
 
 Route::get('/complaint', [AuthController::class, 'create'])->name('complaint.create');
 Route::post('/complaint', [AuthController::class, 'store'])->name('complaint.store');
+
+Route::get('/complaints', [AuthController::class, 'index'])->name('staff.complaints.index');
+Route::post('staff/complaints/{id}/status', [AuthController::class, 'updateStatus'])->name('staff.complaints.updateStatus');

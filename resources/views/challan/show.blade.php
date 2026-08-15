@@ -124,11 +124,7 @@
                     </tr>
 
                     <!-- Blank rows to mimic paper structure -->
-                    @for($i = 0; $i < 4; $i++)
-                    <tr class="h-8">
-                        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                    </tr>
-                    @endfor
+
                 </tbody>
             </table>
         </div>

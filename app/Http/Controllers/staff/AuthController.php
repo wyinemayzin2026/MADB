@@ -282,4 +282,14 @@ class AuthController extends Controller
         // View တွင် နှစ်ခုစလုံး သုံးနိုင်ရန် $item ရော $challen ပါ ပို့ပေးမည်
         return view('challan.show', compact('item', 'challen'));
     }
+
+    public function showBorrowerChanllen($id)
+    {
+        // Model ထဲရှိ Relationship နာမည် 'loanRemainder' ကို ခေါ်ယူရပါမည်
+        $item = BorrowerLoan::with('loanRemainder')->findOrFail($id);
+        $challen = $item->loanRemainder;
+
+        return view('challan.show', compact('item', 'challen'));
+    }
+
 }

@@ -82,3 +82,4 @@ Route::post('/complaint', [AuthController::class, 'store'])->name('complaint.sto
 Route::get('/complaints', [AuthController::class, 'index'])->name('staff.complaints.index');
 Route::post('staff/complaints/{id}/status', [AuthController::class, 'updateStatus'])->name('staff.complaints.updateStatus');
 Route::get('/challan/{id}', [AuthController::class, 'showChanllen'])->name('challan.show');
+Route::get('/borrower/challan/{id}', [AuthController::class, 'showBorrowerChanllen'])->name('borrower.challan.show');

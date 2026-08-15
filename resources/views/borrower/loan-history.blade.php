@@ -30,6 +30,7 @@
                             <th class="px-4 py-3">လျှောက်ထားသည့်နေ့</th>
                             <th class="px-4 py-3 text-center">အခြေအနေ</th>
                             <th class="px-4 py-3 text-center">လုပ်ဆောင်ချက်</th>
+                            <th class="px-4 py-3 text-center">ချလန်</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
@@ -93,6 +94,16 @@
                                         class="bg-green-600 hover:bg-green-700 text-white font-bold py-1.5 px-3 rounded-lg text-xs shadow transition inline-flex items-center">
                                         <i class="fa-solid fa-eye mr-1"></i> အပြည့်စုံပြပါ
                                     </button>
+                                </td>
+                               <td>
+                                @if($loan->status == 'accepted')
+                                    <a href="{{ route('borrower.challan.show', $loan->id) }}" target="_blank"
+                                        class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-blue-700 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                                        📄 ချလန် ကြည့်မည် / Print
+                                    </a>
+                                @else
+                                    <span class="text-xs text-gray-400">-</span>
+                                @endif
                                 </td>
                             </tr>
                         @empty
@@ -274,43 +285,43 @@
                     "p-3 rounded-xl text-sm font-bold flex items-center mb-2 bg-green-50 text-green-800 border border-green-200";
 
                 alertBox.innerHTML = `
-                    <div class="flex justify-between items-center w-full">
-                        <span>${isOverdue ? '⚠️ သတိပေးချက် - ရက်ကျော်လွန်နေပါသည်' : '✅ ချေးငွေ အောင်မြင်စွာ ချေးယူပြီးဖြစ်ပါသည်'}</span>
-                        <a href="/loan/repay-detail/${loan.id}" class="ml-4 bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded-lg text-xs shadow transition">
-                            ချေးငွေ ပြန်လည်ဆပ်ရန်သွားမည် ➔
-                        </a>
-                    </div>`;
+                        <div class="flex justify-between items-center w-full">
+                            <span>${isOverdue ? '⚠️ သတိပေးချက် - ရက်ကျော်လွန်နေပါသည်' : '✅ ချေးငွေ အောင်မြင်စွာ ချေးယူပြီးဖြစ်ပါသည်'}</span>
+                            <a href="/loan/repay-detail/${loan.id}" class="ml-4 bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded-lg text-xs shadow transition">
+                                ချေးငွေ ပြန်လည်ဆပ်ရန်သွားမည် ➔
+                            </a>
+                        </div>`;
 
                 if (loan.loan_remainder) {
                     const totalAmount = parseFloat(loan.loan_remainder.total_repayment_amount || 0).toLocaleString('en-US');
 
                     remainderContainer.innerHTML = `
-                    <div class="bg-white border-t-4 ${isOverdue ? 'border-red-600' : 'border-green-700'} rounded-lg shadow-xl p-6 mb-6 relative overflow-hidden">
-                        <div class="absolute -right-6 -top-6 opacity-5">
-                            <i class="fa-solid fa-file-invoice-dollar text-[120px]"></i>
-                        </div>
-                        <div class="flex justify-between items-start mb-6">
-                            <div>
-                                <h3 class="${isOverdue ? 'text-red-700' : 'text-green-900'} font-bold text-lg uppercase tracking-wider">ချေးငွေ ပြန်ဆပ်ရန် စာရင်း</h3>
+                        <div class="bg-white border-t-4 ${isOverdue ? 'border-red-600' : 'border-green-700'} rounded-lg shadow-xl p-6 mb-6 relative overflow-hidden">
+                            <div class="absolute -right-6 -top-6 opacity-5">
+                                <i class="fa-solid fa-file-invoice-dollar text-[120px]"></i>
                             </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-6">
-                            <div>
-                                <p class="text-[11px] uppercase font-bold mb-1">စုစုပေါင်းဆပ်ရန်ပမာဏ</p>
-                                <div class="flex items-baseline gap-1">
-                                    <span class="text-2xl font-black text-gray-900">${totalAmount}</span>
-                                    <span class="text-sm font-bold text-gray-500">ကျပ်</span>
-                                </div>
-                                ${isOverdue ? '<p class="text-[11px] font-bold text-red-600 mt-1">⚠️ နောက်ကျကြေး 5% ပေးဆောင်ရပါမည်</p>' : ''}
-                            </div>
-                            <div>
-                                <p class="text-[11px] uppercase font-bold mb-1">နောက်ဆုံးထားပေးချေရမည့်ရက်</p>
-                                <div class="flex items-baseline gap-1">
-                                    <span class="text-xl font-bold ${isOverdue ? 'text-red-600' : 'text-green-700'}">${loan.loan_remainder.repayment_date}</span>
+                            <div class="flex justify-between items-start mb-6">
+                                <div>
+                                    <h3 class="${isOverdue ? 'text-red-700' : 'text-green-900'} font-bold text-lg uppercase tracking-wider">ချေးငွေ ပြန်ဆပ်ရန် စာရင်း</h3>
                                 </div>
                             </div>
-                        </div>
-                    </div>`;
+                            <div class="grid grid-cols-2 gap-6">
+                                <div>
+                                    <p class="text-[11px] uppercase font-bold mb-1">စုစုပေါင်းဆပ်ရန်ပမာဏ</p>
+                                    <div class="flex items-baseline gap-1">
+                                        <span class="text-2xl font-black text-gray-900">${totalAmount}</span>
+                                        <span class="text-sm font-bold text-gray-500">ကျပ်</span>
+                                    </div>
+                                    ${isOverdue ? '<p class="text-[11px] font-bold text-red-600 mt-1">⚠️ နောက်ကျကြေး 5% ပေးဆောင်ရပါမည်</p>' : ''}
+                                </div>
+                                <div>
+                                    <p class="text-[11px] uppercase font-bold mb-1">နောက်ဆုံးထားပေးချေရမည့်ရက်</p>
+                                    <div class="flex items-baseline gap-1">
+                                        <span class="text-xl font-bold ${isOverdue ? 'text-red-600' : 'text-green-700'}">${loan.loan_remainder.repayment_date}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
                 }
             } else if (loan.status === 'resubmitted' || loan.status === 'rejected') {
                 let reasonText = loan.rejected_reason ?

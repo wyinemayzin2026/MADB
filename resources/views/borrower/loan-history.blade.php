@@ -27,7 +27,7 @@
                             <th class="px-4 py-3">ရာသီ / ဧက</th>
                             <th class="px-4 py-3">စုစုပေါင်းချေးငွေ</th>
                             <th class="px-4 py-3">ပေးချေမှုပုံစံ</th>
-                            <th class="px-4 py-3">လျှောက်ထားသည့်နေ့</th>
+                            {{-- <th class="px-4 py-3">လျှောက်ထားသည့်နေ့</th> --}}
                             <th class="px-4 py-3 text-center">အခြေအနေ</th>
                             <th class="px-4 py-3 text-center">လုပ်ဆောင်ချက်</th>
                             <th class="px-4 py-3 text-center">ချလန်</th>
@@ -63,7 +63,7 @@
                                         @endif
                                     </span>
                                 </td>
-                                <td class="px-4 py-4 text-gray-500 text-xs">{{ $loan->created_at->format('Y-m-d H:i') }}</td>
+                                {{-- <td class="px-4 py-4 text-gray-500 text-xs">{{ $loan->created_at->format('Y-m-d H:i') }}</td> --}}
                                 <td class="px-4 py-4 text-center">
                                     @if ($loan->is_closed)
                                         <span class="px-3 py-1 text-xs font-bold bg-gray-100 text-gray-800 rounded-full">
@@ -205,12 +205,12 @@
                                     class="w-full h-24 object-cover rounded-lg border hover:scale-105 transition shadow-sm"></a>
                         </div>
                         <div class="text-center">
-                            <p class="text-[11px] font-bold mb-1">မှတ်ပုံတင် (ရှေ့)</p>
+                            <p class="text-[11px] font-bold mb-1">လျှောက်ထားသူ မှတ်ပုံတင် (အရှေ့)</p>
                             <a id="link_nrc_front" href="#" target="_blank"><img id="img_nrc_front" src=""
                                     class="w-full h-24 object-cover rounded-lg border hover:scale-105 transition shadow-sm"></a>
                         </div>
                         <div class="text-center">
-                            <p class="text-[11px] font-bold mb-1">မှတ်ပုံတင် (နောက်)</p>
+                            <p class="text-[11px] font-bold mb-1">လျှောက်ထားသူ မှတ်ပုံတင် (အနောက်)</p>
                             <a id="link_nrc_back" href="#" target="_blank"><img id="img_nrc_back" src=""
                                     class="w-full h-24 object-cover rounded-lg border hover:scale-105 transition shadow-sm"></a>
                         </div>

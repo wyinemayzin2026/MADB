@@ -137,7 +137,7 @@
 
                             <!-- NRC Front -->
                             <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                                <label class="block text-sm font-medium text-gray-700 mb-2">မှတ်ပုံတင် အရှေ့ပုံ</label>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">လျှောက်ထားသူ မှတ်ပုံတင် အရှေ့ပုံ</label>
                                 @if($loan->nrc_front_image)
                                     <img src="/storage/{{ $loan->nrc_front_image }}" class="h-80 w-80 rounded mb-2 border">
                                 @endif
@@ -146,7 +146,7 @@
 
                             <!-- NRC Back -->
                             <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                                <label class="block text-sm font-medium text-gray-700 mb-2">မှတ်ပုံတင် အနောက်ပုံ</label>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">လျှောက်ထားသူ မှတ်ပုံတင် အနောက်ပုံ</label>
                                 @if($loan->nrc_back_image)
                                     <img src="/storage/{{ $loan->nrc_back_image }}" class="h-80 w-80 rounded mb-2 border">
                                 @endif

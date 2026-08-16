@@ -67,24 +67,27 @@
                 <table id="loanTable" class="table table-bordered table-striped align-middle">
                     <thead>
                         <tr>
+                            <th>စဉ်</th>
                             <th>ချေးငှားသူ</th>
-                            <th>ပမာဏ</th>
+                            <th>NRC</th>
                             <th>ရာသီ</th>
-                            <th>အခြေ အနေ</th>
+                            <th>ပမာဏ</th>
                             <th class="text-center">လုပ်ဆောင်ချက်</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($loans as $loan)
                             <tr>
+                                <td class="">{{ $loop->iteration }}</td>
                                 <td class="fw-semibold">{{ $loan->borrower->full_name ?? 'N/A' }}</td>
-                                <td>{{ number_format($loan->total_amount, 0) }} ကျပ်</td>
-                                <td>
+                                <td class="fw-semibold">{{ $loan->borrower->nrc_number ?? 'N/A' }}</td>
+                                  <td>
                                     <span class="badge bg-light text-dark border">
                                         {{ $loan->season_type == 'rainy' ? 'မိုးရာသီ' : ($loan->season_type == 'winter' ? 'ဆောင်းရာသီ' : ucfirst($loan->season_type)) }}
                                     </span>
                                 </td>
-                                <td>
+                                <td>{{ number_format($loan->total_amount, 0) }} ကျပ်</td>
+                                {{-- <td>
                                     @if($loan->is_closed)
                                         <span class="badge rounded-pill bg-secondary">အပြီးတိုင်ပိတ်ပြီး</span>
                                     @elseif($loan->status == 'pending')
@@ -96,7 +99,7 @@
                                     @else
                                         <span class="badge rounded-pill bg-danger">ငြင်းပယ်ပြီး</span>
                                     @endif
-                                </td>
+                                </td> --}}
                                 <td class="px-4 py-3 whitespace-nowrap text-center">
                                     <div class="inline-flex items-center justify-center gap-1.5">
 
@@ -306,18 +309,20 @@ let repaymentTypeDisplay = repaymentTypeMap[loan.repayment_type]
                             <li class="list-group-item d-flex justify-content-between"><span>လုပ်ငန်းလိပ်စာ:</span> <strong>${loan.workplace_address || '-'}</strong></li>
                             <li class="list-group-item d-flex justify-content-between"><span>စုငွေစာရင်းနံပါတ်:</span> <strong>000${loan.saving_account_number || '-'}</strong></li>
                             <li class="list-group-item d-flex justify-content-between"><span>ဧက:</span> <strong>${loan.acres || '-'}</strong></li>
-                            <li class="list-group-item d-flex justify-content-between"><span>ရာသီ:</span> <strong>${seasonMyanmar}</strong></li>
+                            <li class="list-group-item d-flex justify-content-between">
+    <span>ရာသီ:</span>
+    <strong>
+        ${seasonMyanmar}
+        <small class="text-muted ms-1">
+            (${new Date(loan.loan_start_date).toLocaleDateString('en-US', { month: 'short' })} - ${new Date(loan.loan_end_date).toLocaleDateString('en-US', { month: 'short' })})
+        </small>
+    </strong>
+</li>
                             <li class="list-group-item d-flex justify-content-between"><span>ချေးငွေအမျိုးအစား:</span> <strong>${loan.loan_type || '-'}</strong></li>
                             <li class="list-group-item d-flex justify-content-between"><span>ပေးချေမှုပုံစံ:</span> <strong>${repaymentTypeDisplay}</strong></li>
                             <li class="list-group-item d-flex justify-content-between"><span>အတိုးနှုန်း:</span> <strong>${loan.rate || 0}%</strong></li>
                             <li class="list-group-item d-flex justify-content-between"><span>မူရင်းချေးငွေ:</span> <strong>${parseFloat(loan.total_amount || 0).toLocaleString()} ကျပ်</strong></li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>ကာလ:</span>
-                                <strong>
-                                    ${new Date(loan.loan_start_date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })} -
-                                    ${new Date(loan.loan_end_date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
-                                </strong>
-                            </li>
+
                             <li class="list-group-item d-flex justify-content-between"><span>အာမခံသူ:</span> <strong>${loan.guarantor_name || '-'}</strong></li>
                         </ul>
                         ${remainderRows}
@@ -343,13 +348,13 @@ let repaymentTypeDisplay = repaymentTypeMap[loan.repayment_type]
 
                         <div class="row mb-3">
                             <div class="col-6">
-                                <p class="mb-1"><b>မှတ်ပုံတင် (အရှေ့):</b></p>
+                                <p class="mb-1"><b>လျှောက်ထားသူ မှတ်ပုံတင် (အရှေ့):</b></p>
                                 <a href="/storage/${loan.nrc_front_image}" target="_blank">
                                     <img src="/storage/${loan.nrc_front_image}" class="img-thumbnail w-100" style="max-height: 120px; object-fit: cover;">
                                 </a>
                             </div>
                             <div class="col-6">
-                                <p class="mb-1"><b>မှတ်ပုံတင် (အနောက်):</b></p>
+                                <p class="mb-1"><b>လျှောက်ထားသူ မှတ်ပုံတင် (အနောက်):</b></p>
                                 <a href="/storage/${loan.nrc_back_image}" target="_blank">
                                     <img src="/storage/${loan.nrc_back_image}" class="img-thumbnail w-100" style="max-height: 120px; object-fit: cover;">
                                 </a>

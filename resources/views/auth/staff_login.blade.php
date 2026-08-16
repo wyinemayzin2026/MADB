@@ -51,7 +51,7 @@
             <!-- MADB Logo Animation: Bounce In -->
             <div class="text-center mb-8 animate-bounce-in">
                 <h2 class="text-2xl font-black text-emerald-900 tracking-tight font-sans">၀န်ထမ်းအကောင့်သို့ ၀င်ရောက်ရန်</h2>
-                <p class="text-xs text-emerald-600 font-medium mt-1">မြန်မာ့လယ်ယာဖွံ့ဖြိုးရေးဘဏ်</p>
+                <p class="text-2xl font-black text-emerald-900 tracking-tight font-sans">မြန်မာ့လယ်ယာဖွံ့ဖြိုးရေးဘဏ်</p>
             </div>
 
             <!-- Login Card Animation: Fade Up -->
@@ -76,8 +76,8 @@
 
                     <!-- Employee ID Input -->
                     <div class="space-y-2">
-                        <label class=" font-black text-emerald-800/60 uppercase tracking-widest ml-1">ဝန်ထမ်းအမှတ်
-                            (EID)</label>
+                        <label class="text-2xl font-black text-emerald-900 tracking-tight font-sans">ဝန်ထမ်းအမှတ်
+                            </label>
                         <div class="relative group">
                             <input type="number" name="eid" value="{{ old('eid') }}" min="1" placeholder="ဥပမာ - ၁၀၀၁"
                                 required
@@ -91,7 +91,7 @@
                     <div class="space-y-2">
                         <div class="flex justify-between items-center px-1">
                             <label
-                                class=" font-black text-emerald-800/60 uppercase tracking-widest">လျှိဝှက်နံပါတ်</label>
+                                class="text-2xl font-black text-emerald-900 tracking-tight font-sans">လျှိဝှက်နံပါတ်</label>
 
                         </div>
                         <div class="relative group">

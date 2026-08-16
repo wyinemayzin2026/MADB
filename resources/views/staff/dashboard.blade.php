@@ -7,16 +7,16 @@
     </header>
 
     <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
-        </div>
+    </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-            <h4 class="font-bold mb-4">ရာသီအလိုက် ချေးငွေနှိုင်းယှဉ်ချက်</h4>
+            <h4 class="font-bold mb-4 text-slate-800">ရာသီအလိုက် ချေးငွေနှိုင်းယှဉ်ချက်</h4>
             <canvas id="seasonalChart"></canvas>
         </div>
 
         <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-            <h4 class="font-bold mb-4">ချေးငွေအမျိုးအစားအလိုက် အခြေအနေ</h4>
+            <h4 class="font-bold mb-4 text-slate-800">ချေးငွေအမျိုးအစားအလိုက် အခြေအနေ</h4>
             <canvas id="statusChart"></canvas>
         </div>
     </div>
@@ -24,6 +24,15 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+    // စာလုံးများ ထင်ရှားစေရန် ဘုံ Style သတ်မှတ်ချက်
+    const chartTextStyle = {
+        color: '#0f172a', // Dark Text Color
+        font: {
+            size: 15,
+            weight: '600' // Bold Font
+        }
+    };
+
     // Seasonal Chart
     const seasonData = {!! json_encode($chartDataSeason) !!};
     new Chart(document.getElementById('seasonalChart'), {
@@ -34,6 +43,20 @@
                 { label: 'မိုးရာသီ', data: Object.values(seasonData).map(i => i.rainy), backgroundColor: '#3b82f6' },
                 { label: 'ဆောင်းရာသီ', data: Object.values(seasonData).map(i => i.winter), backgroundColor: '#10b981' }
             ]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#0f172a',
+                        font: { size: 14, weight: 'bold' }
+                    }
+                }
+            },
+            scales: {
+                x: { ticks: chartTextStyle },
+                y: { ticks: chartTextStyle }
+            }
         }
     });
 
@@ -49,7 +72,20 @@
                 { label: 'rejected', data: Object.values(statusData).map(i => i.rejected ?? 0), backgroundColor: '#ef4444' }
             ]
         },
-        options: { scales: { x: { stacked: true }, y: { stacked: true } } }
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#0f172a',
+                        font: { size: 14, weight: 'bold' }
+                    }
+                }
+            },
+            scales: {
+                x: { stacked: true, ticks: chartTextStyle },
+                y: { stacked: true, ticks: chartTextStyle }
+            }
+        }
     });
 </script>
 @endsection

@@ -50,10 +50,11 @@
                 <table id="accountTable" class="w-full text-left border-collapse">
                     <thead>
                         <tr class="border-b border-slate-50">
-                            <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">နာမည်အပြည့်</th>
+                            <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">စဥ်</th>
+                            <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">နာမည်</th>
                             <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">မှတ်ပုံတင်နံပါတ်</th>
-                            <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">ဆက်သွယ်ရန်ဖုန်း</th>
-                            <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">အီးမေးလ်လိပ်စာ</th>
+                            <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">ဆက်သွယ်ရန်မိုလ်ဘိုင်းဖုန်း/ </th>
+                            <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">အီးမေး</th>
                             <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">မွေးနေ့</th>
                             <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">ကျား/မ</th>
                             <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">နေရပ်လိပ်စာ</th>
@@ -63,6 +64,7 @@
                     <tbody class="divide-y divide-slate-50">
                         @foreach ($accounts as $account)
                             <tr class="hover:bg-slate-50/80 transition-colors group">
+                                 <td class="">{{ $loop->iteration }}</td>
                                 <td class="px-6 py-6 text-xs font-bold text-slate-600 uppercase tracking-wider">
                                     {{ $account->full_name }}</td>
                                 <td class="px-6 py-6 text-xs font-bold text-slate-600 tracking-wider">{{ $account->nrc_number }}</td>
@@ -208,7 +210,6 @@
                             class="w-full p-2.5 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none">
                             <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>ကျား</option>
                             <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>မ</option>
-                            <option value="other" {{ old('gender') == 'other' ? 'selected' : '' }}>အခြား</option>
                         </select>
                         @error('gender') <p class="text-rose-500 text-xs mt-1 error-msg">{{ $message }}</p> @enderror
                     </div>

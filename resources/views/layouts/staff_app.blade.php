@@ -110,16 +110,16 @@
                 @if(auth()->check() && auth()->user()->role === 'admin')
                     <a href="{{ route('staff.list') }}"
                         class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">
-                        <i class="fas fa-hand-holding-dollar me-3 w-5 text-lg text-emerald-600"></i> ၀န်ထမ်းအကောင့်များ
+                        <i class="fas fa-hand-holding-dollar me-3 w-5 text-lg text-emerald-600"></i> ၀န်ထမ်းအကောင့်
                     </a>
                 @endif
 
                 <a href="{{ route('borrowers.list') }}" class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">
-                    <i class="fas fa-hand-holding-dollar me-3 w-5 text-lg text-emerald-600"></i> ငွေစုစာရင်းအကောင့်များ
+                    <i class="fas fa-hand-holding-dollar me-3 w-5 text-lg text-emerald-600"></i> ငွေစုစာရင်းအကောင့်
                 </a>
 
                 <a href="{{ route('loans.index') }}" class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">
-                    <i class="fas fa-piggy-bank me-3 w-5 text-lg text-emerald-600"></i> ချေးငွေလျှောက်လွှာများ
+                    <i class="fas fa-piggy-bank me-3 w-5 text-lg text-emerald-600"></i> ချေးငွေလျှောက်လွှာ
                 </a>
 
                 <a href="{{ route('loans.repayments') }}" class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">

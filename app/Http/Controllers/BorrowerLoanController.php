@@ -238,12 +238,11 @@ class BorrowerLoanController extends Controller
         $isOverdue = $today->gt($repaymentDate);
 
         if ($isOverdue) {
-            $monthsOverdue = (int) $repaymentDate->diffInMonths($today) + 1;
-            $penaltyRate = $monthsOverdue * 0.06;
-            if ($penaltyRate > 1.00) {
-                $penaltyRate = 1.00;
-            }
+            $calculatedMonths = (int) $repaymentDate->diffInMonths($today) + 1;
 
+            $monthsOverdue = min($calculatedMonths, 12);
+
+            $penaltyRate = $monthsOverdue * 0.06;
             $penalty = $remainder->total_repayment_amount * $penaltyRate;
         }
 
@@ -315,13 +314,11 @@ class BorrowerLoanController extends Controller
         $isOverdue = $today->gt($repaymentDate);
 
         if ($isOverdue) {
-            $monthsOverdue = (int) $repaymentDate->diffInMonths($today) + 1;
+            $calculatedMonths = (int) $repaymentDate->diffInMonths($today) + 1;
+
+            $monthsOverdue = min($calculatedMonths, 12);
 
             $penaltyRate = $monthsOverdue * 0.06;
-            if ($penaltyRate > 1.00) {
-                $penaltyRate = 1.00;
-            }
-
             $penalty = $remainder->total_repayment_amount * $penaltyRate;
         }
 

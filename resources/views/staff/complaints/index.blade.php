@@ -147,7 +147,7 @@
                     <!-- Email Reply Textarea -->
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1">
-                            တိုင်ကြားသူထံ အီးမေးလ် ပြန်လည် အကြောင်းပြန်စာ (Reply Mail Message):
+                            တိုင်ကြားသူထံ အီးမေးလ် ပြန်လည် အကြောင်းပြန်စာ:
                         </label>
                         <textarea name="reply_note" rows="3"
                             placeholder="တိုင်ကြားသူထံ ပြန်လည် ပေးပို့လိုသော စာလွှာ အကြောင်းအရာကို ဤနေရာတွင် ရေးပါ..."

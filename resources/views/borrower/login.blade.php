@@ -7,7 +7,7 @@
             class="bg-white rounded-[40px] shadow-[0_20px_50px_rgba(15,23,42,0.08)] border border-slate-100 max-w-5xl w-full grid md:grid-cols-12 overflow-hidden min-h-[600px]">
 
             <div
-                class="hidden md:flex md:col-span-5 bg-gradient-to-br from-emerald-600 via-emerald-700 to-green-800 p-12 flex-col justify-between text-white relative overflow-hidden">
+                class="hidden md:flex mt-5  md:col-span-5 bg-gradient-to-br from-emerald-600 via-emerald-700 to-green-800 p-12 flex-col  text-white relative overflow-hidden">
                 <div class="absolute -right-20 -top-20 w-60 h-60 bg-white/5 rounded-full blur-3xl"></div>
                 <div class="absolute -left-20 -bottom-20 w-65 h-65 bg-white/5 rounded-full blur-3xl"></div>
 
@@ -23,7 +23,7 @@
                     </div>
                 </div>
 
-                <div class="space-y-4 relative z-10 my-auto">
+                <div class="mt-5 mb-5">
                     <p class="text-emerald-100/80 text-sm leading-relaxed font-light">တောင်သူလယ်သမားများနှင့်
                         ကျေးလက်ပြည်သူများ၏ လူမှုစီးပွားဘဝ ဖွံ့ဖြိုးတိုးတက်ရေးအတွက် ယုံကြည်စိတ်ချရသော ဘဏ်လုပ်ငန်းဝန်ဆောင်မှု။
                     </p>
@@ -52,9 +52,9 @@
 
                 <div class="mb-8">
                     <h1 class="text-2xl font-bold text-slate-800 tracking-tight">ချေးငွေလျှောက်ထားသူ လော့ဂ်အင်</h1>
-                    <p class="text-slate-400 text-sm mt-1">ရှေ့ဆက်ရန် သင်၏ မှတ်ပုံတင်နှင့် လျှို့ဝှက်နံပါတ်ကို ရိုက်ထည့်ပါ
+                    <p class=" font-bold text-slate-800 tracking-tigh">ရှေ့ဆက်ရန် သင်၏ မှတ်ပုံတင်နှင့် လျှို့ဝှက်နံပါတ်ကို ရိုက်ထည့်ပါ
                     </p>
-                    <p class="text-slate-400 text-sm mt-1">ဦးစွာ ပထမ ငွေစုစာရင်းအကောင့်ဖွင့်ထားရန် လိုအပ်ပါသည်</p>
+                    <p class=" font-bold text-slate-800 tracking-tigh">ဦးစွာ ပထမ ငွေစုစာရင်းအကောင့်ဖွင့်ထားရန် လိုအပ်ပါသည်</p>
                 </div>
 
                 @error('login_error')

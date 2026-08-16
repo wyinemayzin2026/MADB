@@ -52,12 +52,15 @@
                 <table id="loanTable" class="table table-bordered table-striped align-middle">
                     <thead>
                         <tr>
+                            <th class="px-4 py-3">အမှတ်စဥ်</th>
                             <th>တောင်သူအမည်</th>
-                            <th>ပေးချေမှုအမျိုးအစား</th>
                             <th>မူရင်းချေးငွေ</th>
                             <th>ပြန်ဆပ်ငွေ</th>
+                            <th>စချေးရက်</th>
+                            <th>ပြန်ဆပ်ရက်</th>
+
                             <th>ရက်လွန်ဒဏ်ကြေး</th>
-                            <th>လက်ရှိ အခြေအနေ</th>
+                            <th>ပေးချေမှုအမျိုးအစား</th>
                             <th class="text-center">လုပ်ဆောင်ချက်</th>
                             <th class="text-center">ချလန်ကြည့်မည်</th>
                         </tr>
@@ -65,16 +68,20 @@
                     <tbody>
                         @foreach($repayments as $item)
                             <tr>
+                                <td class="">{{ $loop->iteration }}</td>
                                 <td class="fw-semibold">{{ $item->borrowerLoan->borrower->full_name ?? 'N/A' }}</td>
-                                <td>
+                                {{-- <td>
                                     @if(($item->borrowerLoan->repayment_type ?? 'online') === 'online')
                                         <span class="badge bg-primary">အွန်လိုင်းမှ ပြန်ဆပ်မည်</span>
                                     @else
                                         <span class="badge bg-secondary"> အပြင်တွင်လာရောက်ဆပ်သည် </span>
                                     @endif
-                                </td>
+                                </td> --}}
                                 <td>{{ number_format($item->borrowerLoan->total_amount ?? 0, 0) }} ကျပ်</td>
                                 <td>{{ number_format($item->net_total_repayment_amount ?? 0, 0) }} ကျပ်</td>
+                                <td>{{ $item->borrowerLoan->created_at }}</td>
+                                <td>{{ $item->created_at  }}</td>
+
                                 <td>
                                     @if($item->is_overdue)
                                         <span class="badge bg-danger">ပေးဆောင်ရန်လိုသည်</span>
@@ -82,7 +89,7 @@
                                         <span class="badge bg-success">မလိုအပ်ပါ</span>
                                     @endif
                                 </td>
-                                <td class="p-4 text-center">
+                                {{-- <td class="p-4 text-center">
                                     @if($item->status == 'accepted')
                                         <span class="px-3 py-1 bg-green-100 text-green-700 font-bold rounded-full text-[11px]">
                                             ✓ အတည်ပြုလက်ခံခဲ့သည်
@@ -95,6 +102,14 @@
                                         <span class="px-3 py-1 bg-amber-100 text-amber-700 font-bold rounded-full text-[11px]">
                                             ⏳ စိစစ်ဆဲ
                                         </span>
+                                    @endif
+                                </td> --}}
+
+                                 <td>
+                                    @if(($item->borrowerLoan->repayment_type ?? 'online') === 'online')
+                                        <span class="badge bg-primary">အွန်လိုင်းမှ ပြန်ဆပ်မည်</span>
+                                    @else
+                                        <span class="badge bg-secondary"> အပြင်တွင်လာရောက်ဆပ်သည် </span>
                                     @endif
                                 </td>
                                 <td class="text-center">
@@ -203,7 +218,7 @@
             let badgeClass = '';
             let penaltyText = item.is_overdue ? 'ပေးဆောင်ရန်လိုသည်' : 'မလိုအပ်ပါ';
             let isOverdue = item.is_overdue;
-            let penaltyAmount = isOverdue ? (parseFloat(item.total_repayment_amount) * 0.05) : 0;
+            let penaltyAmount = isOverdue ? (parseFloat(item.total_repayment_amount) * 0.06) : 0;
 
             if (item.status === 'repaid') {
                 statusMyanmar = 'တောင်သူမှ ငွေပြန်လည်ဆပ်ထားသည် (စစ်ဆေးရန်)';

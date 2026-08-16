@@ -54,6 +54,7 @@
                         <tr>
                             <th class="px-4 py-3">အမှတ်စဥ်</th>
                             <th>တောင်သူအမည်</th>
+                            <th>NRC</th>
                             <th>မူရင်းချေးငွေ</th>
                             <th>ပြန်ဆပ်ငွေ</th>
                             <th>စချေးရက်</th>
@@ -70,6 +71,7 @@
                             <tr>
                                 <td class="">{{ $loop->iteration }}</td>
                                 <td class="fw-semibold">{{ $item->borrowerLoan->borrower->full_name ?? 'N/A' }}</td>
+                                <td class="fw-semibold">{{ $item->borrowerLoan->borrower->nrc_number ?? 'N/A' }}</td>
                                 {{-- <td>
                                     @if(($item->borrowerLoan->repayment_type ?? 'online') === 'online')
                                         <span class="badge bg-primary">အွန်လိုင်းမှ ပြန်ဆပ်မည်</span>

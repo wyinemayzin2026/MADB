@@ -131,7 +131,7 @@
                             <div class="mt-4 bg-gray-50 rounded-xl p-4 grid grid-cols-2 gap-4 border border-dashed border-gray-200">
                                 <div>
                                     <p class="text-xs text-gray-500">သတ်မှတ်အတိုးနှုန်း</p>
-                                    <p class="text-lg font-bold text-gray-800">5 %</p>
+                                    <p class="text-lg font-bold text-gray-800">6 %</p>
                                 </div>
                                 <div>
                                     <p class="text-xs text-gray-500">ခန့်မှန်းရရှိမည့် စုစုပေါင်းချေးငွေ</p>

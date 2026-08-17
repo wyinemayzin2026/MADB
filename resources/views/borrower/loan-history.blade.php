@@ -312,7 +312,7 @@
                                         <span class="text-2xl font-black text-gray-900">${totalAmount}</span>
                                         <span class="text-sm font-bold text-gray-500">ကျပ်</span>
                                     </div>
-                                    ${isOverdue ? '<p class="text-[11px] font-bold text-red-600 mt-1">⚠️ နောက်ကျကြေး 5% ပေးဆောင်ရပါမည်</p>' : ''}
+                                    ${isOverdue ? '<p class="text-[11px] font-bold text-red-600 mt-1">⚠️ နောက်ကျကြေး 6% ပေးဆောင်ရပါမည်</p>' : ''}
                                 </div>
                                 <div>
                                     <p class="text-[11px] uppercase font-bold mb-1">နောက်ဆုံးထားပေးချေရမည့်ရက်</p>

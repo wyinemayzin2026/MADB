@@ -72,7 +72,8 @@
                             <th>NRC</th>
                             <th>ရာသီ</th>
                             <th>ပမာဏ</th>
-                            <th class="text-center">လုပ်ဆောင်ချက်</th>
+                            <th class="text-center">အခြေအနေ</th>
+                            <th class="text-center">အသေးစိတ်</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -87,7 +88,7 @@
                                     </span>
                                 </td>
                                 <td>{{ number_format($loan->total_amount, 0) }} ကျပ်</td>
-                                {{-- <td>
+                                <td>
                                     @if($loan->is_closed)
                                         <span class="badge rounded-pill bg-secondary">အပြီးတိုင်ပိတ်ပြီး</span>
                                     @elseif($loan->status == 'pending')
@@ -99,7 +100,7 @@
                                     @else
                                         <span class="badge rounded-pill bg-danger">ငြင်းပယ်ပြီး</span>
                                     @endif
-                                </td> --}}
+                                </td>
                                 <td class="px-4 py-3 whitespace-nowrap text-center">
                                     <div class="inline-flex items-center justify-center gap-1.5">
 

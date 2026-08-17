@@ -61,6 +61,7 @@
                             <th>ပြန်ဆပ်ရက်</th>
 
                             <th>ရက်လွန်ဒဏ်ကြေး</th>
+                            <th>အခြေ အနေ</th>
                             <th>ပေးချေမှုအမျိုးအစား</th>
                             <th class="text-center">လုပ်ဆောင်ချက်</th>
                             <th class="text-center">ချလန်ကြည့်မည်</th>
@@ -91,7 +92,7 @@
                                         <span class="badge bg-success">မလိုအပ်ပါ</span>
                                     @endif
                                 </td>
-                                {{-- <td class="p-4 text-center">
+                                <td class="p-4 text-center">
                                     @if($item->status == 'accepted')
                                         <span class="px-3 py-1 bg-green-100 text-green-700 font-bold rounded-full text-[11px]">
                                             ✓ အတည်ပြုလက်ခံခဲ့သည်
@@ -105,7 +106,7 @@
                                             ⏳ စိစစ်ဆဲ
                                         </span>
                                     @endif
-                                </td> --}}
+                                </td>
 
                                  <td>
                                     @if(($item->borrowerLoan->repayment_type ?? 'online') === 'online')

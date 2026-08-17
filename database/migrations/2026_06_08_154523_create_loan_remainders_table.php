@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('loan_id'); // This column is missing!
             $table->decimal('total_repayment_amount', 15, 2);
             $table->date('repayment_date');
+            $table->integer('months_overdue')->default(0);
             $table->string('status')->default('pending');
             $table->decimal('net_total_repayment_amount', 15, 2);
             $table->timestamps();

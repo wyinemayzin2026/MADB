@@ -65,7 +65,7 @@
                         <th rowspan="2" class="p-1">အစု အဖွဲ့ အမှတ်</th>
                         <th rowspan="2" class="p-1">ထုတ်ချေး သည့် နေ့စွဲ</th>
                         <th rowspan="2" class="p-1">ကောက်ခံ ရရှိသည့် နေ့စွဲ</th>
-                        <th rowspan="2" class="p-1">အတိုး တွက်သည့် ကာလ</th>
+                        {{-- <th rowspan="2" class="p-1">အတိုး တွက်သည့် ကာလ</th> --}}
                         <th colspan="5" class="p-1">ပြန်လည်ပေးဆပ်သည့်</th>
                         <th rowspan="2" class="p-1">စုစုပေါင်းငွေ</th>
                         <th rowspan="2" class="p-1">ငွေရ ပြေစာ အမှတ်</th>
@@ -92,7 +92,7 @@
                         <!-- ကောက်ခံရရှိသည့်နေ့စွဲ -->
                         <td class="p-2">{{ \Carbon\Carbon::parse($challen->repayment_date ?? $challen->updated_at)->format('d/m/Y') }}</td>
                         <!-- အတိုးတွက်သည့်ကာလ -->
-                        <td class="p-2">{{ $challen->months_overdue ?? 1 }} လ</td>
+                        {{-- <td class="p-2">{{ $challen->months_overdue ?? 1 }} လ</td> --}}
 
                         <!-- ပြန်လည်ပေးဆပ်သည့် အရင်း -->
                         <td class="p-2 text-right">

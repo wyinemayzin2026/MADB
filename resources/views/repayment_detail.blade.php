@@ -35,7 +35,7 @@
                     <span class="font-bold flex items-center gap-2">
                         <span>ရက်လွန်ဒဏ်ကြေး</span>
                         <span class="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-semibold">
-    ({{ str_replace(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], ['၀', '၁', '၂', '၃', '၄', '၅', '၆', '၇', '၈', '၉'], round($monthsOverdue)) }} လကျော်)
+    ({{ str_replace(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], ['၀', '၁', '၂', '၃', '၄', '၅', '၆', '၇', '၈', '၉'], round($monthsOverdue)) }} လ)
 </span>
                     </span>
                     <span class="font-bold">

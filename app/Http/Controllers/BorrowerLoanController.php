@@ -243,7 +243,7 @@ class BorrowerLoanController extends Controller
             $monthsOverdue = min($calculatedMonths, 12);
 
             $penaltyRate = $monthsOverdue * 0.06;
-            $penalty = $remainder->total_repayment_amount * $penaltyRate;
+            $penalty = $loan->total_amount * $penaltyRate;
         }
 
         $netTotal = $remainder->total_repayment_amount + $penalty;

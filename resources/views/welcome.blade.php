@@ -19,13 +19,13 @@
 
             <!-- Main Title from Image -->
             <h1 class="text-3xl sm:text-5xl font-black mb-6 leading-tight drop-shadow-xl max-w-3xl text-emerald-50">
-                လွယ်ကူမြန်ဆန်သော <br class="hidden sm:inline">
+                လွယ်ကူမြန်ဆန်သော <br class="hidden sm:inline"><br class="hidden sm:inline">
                 <span class="text-amber-400">ဒစ်ဂျစ်တယ်ချေးငွေ</span> ဝန်ဆောင်မှု
             </h1>
 
             <!-- Subtitle Description from Image -->
             <p class="text-lg sm:text-xl text-slate-100 mb-8 max-w-2xl leading-relaxed font-normal drop-shadow">
-                အွန်လိုင်းမှတစ်ဆင့် ချေးငွေလျှောက်ထားခြင်း၊ အတည်ပြုခြင်းနှင့် ပြန်လည်ပေးဆပ်ခြင်းတို့ကို လွယ်ကူမြန်ဆန်စွာ ဆောင်ရွက်နိုင်ပါသည်။
+                အွန်လိုင်းမှတစ်ဆင့် ချေးငွေလျှောက်ထားခြင်း၊ အတည်ပြုခြင်းနှင့် <br><br>ပြန်လည်ပေးဆပ်ခြင်းတို့ကို လွယ်ကူမြန်ဆန်စွာ ဆောင်ရွက်နိုင်ပါသည်။
             </p>
 
             <!-- CTA Button -->

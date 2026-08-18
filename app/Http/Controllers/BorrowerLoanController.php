@@ -179,7 +179,7 @@ class BorrowerLoanController extends Controller
             $remainder = new LoanRemainders();
             $remainder->loan_id = $loan->id;
             $remainder->total_repayment_amount = $totalRepayment;
-            $remainder->repayment_date = Carbon::parse($loan->loan_end_date)->addDay();
+            $remainder->repayment_date = Carbon::today()->addYear();
             $remainder->save();
 
             $loan->status = 'accepted';
@@ -239,10 +239,12 @@ class BorrowerLoanController extends Controller
 
         if ($isOverdue) {
             $calculatedMonths = (int) $repaymentDate->diffInMonths($today) + 1;
-
             $monthsOverdue = min($calculatedMonths, 12);
 
-            $penaltyRate = $monthsOverdue * 0.06;
+            // 6% per year = 0.5% (0.005) per month
+            $monthlyRate = 0.06 / 12;
+            $penaltyRate = $monthsOverdue * $monthlyRate;
+
             $penalty = $loan->total_amount * $penaltyRate;
         }
 

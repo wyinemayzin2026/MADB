@@ -97,7 +97,7 @@
                                 </td>
                                <td>
 
-                                @if($loan->loanRemainder->status == 'accepted')
+                                @if($loan->status == 'accepted')
                                     <a href="{{ route('borrower.challan.show', $loan->id) }}" target="_blank"
                                         class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-blue-700 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-600 hover:text-white transition">
                                         📄 ချလန် ကြည့်မည် / Print

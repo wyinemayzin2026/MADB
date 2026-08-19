@@ -76,7 +76,7 @@
     </section>
 
     <!-- Stats Section -->
-    <section class="bg-emerald-900 py-16 text-white overflow-hidden relative">
+    {{-- <section class="bg-emerald-900 py-16 text-white overflow-hidden relative">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center relative z-10">
             <div>
                 <p class="text-4xl sm:text-5xl font-black text-amber-400 mb-2">၂၀၀+</p>
@@ -96,6 +96,6 @@
             </div>
         </div>
         <i class="fas fa-wheat-awn absolute right-[-50px] bottom-[-50px] text-[300px] opacity-5 pointer-events-none"></i>
-    </section>
+    </section> --}}
 
 @endsection

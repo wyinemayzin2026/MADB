@@ -117,7 +117,7 @@
 
                         <!-- စုစုပေါင်းငွေ -->
                         <td class="p-2 text-right font-bold">
-                            {{ str_replace(['0','1','2','3','4','5','6','7','8','9'], ['၀','၁','၂','၃','၄','၅','၆','၇','၈','၉'], number_format($challen->net_total_repayment_amount)) }}
+                            {{ str_replace(['0','1','2','3','4','5','6','7','8','9'], ['၀','၁','၂','၃','၄','၅','၆','၇','၈','၉'], number_format((float) ($challen->net_total_repayment_amount ?? 0) != 0 ? $challen->net_total_repayment_amount : $challen->total_repayment_amount)) }}
                         </td>
                         <!-- ငွေရပြေစာအမှတ် -->
                         <td class="p-2 font-mono">#{{ str_pad($challen->id, 5, '0', STR_PAD_LEFT) }}</td>

@@ -43,13 +43,6 @@
                 @endif
             </div>
         </div>
-
-        <!-- Curve Separator -->
-        <div class="absolute bottom-0 left-0 right-0 z-30 pointer-events-none">
-            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 120L1440 120L1440 0C1160 80 280 80 0 0L0 120Z" fill="#f8fafc" />
-            </svg>
-        </div>
     </header>
 
     <!-- Services Section -->

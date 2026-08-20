@@ -34,7 +34,7 @@ class StaffSeeder extends Seeder
                 'eid' => 1000 + $index,
                 'name' => $name,
                 'address' => 'MADB ရုံးဝင်းအတွင်း',
-                'phone' => '0988279220' . $index,
+                'phone' => '09882792205',
                 'email' => 'staff' . $index . '@gmail.com',
                 'position' => $this->getPosition($index),
                 'role' => ($index === 1) ? 'admin' : 'staff',

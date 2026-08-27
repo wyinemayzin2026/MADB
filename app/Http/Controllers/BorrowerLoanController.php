@@ -365,6 +365,16 @@ class BorrowerLoanController extends Controller
         return view('staff.repaid', compact('repayments'));
     }
 
+    public function reaminLoanPaidList()
+    {
+        $repayments = LoanRemainders::with(['borrowerLoan.borrower'])
+            ->where('status', '=', 'pending')
+            ->latest()
+            ->get();
+
+        return view('staff.staff.remain', compact('repayments'));
+    }
+
     // BorrowerLoanController.php
     public function updateStatusReaminder(Request $request, $id)
     {

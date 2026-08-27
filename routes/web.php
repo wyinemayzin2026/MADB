@@ -59,6 +59,7 @@ Route::put('/loans/{id}/sstatus', [BorrowerLoanController::class, 'updateStatus'
 Route::get('/loan/repay-detail/{id}', [BorrowerLoanController::class, 'showRepaymentDetail'])->name('loan.repay.detail');
 Route::post('/loan/repay/process/{id}', [BorrowerLoanController::class, 'processPayment'])->name('loan.repay.process');
 Route::get('/loan-repayments', [BorrowerLoanController::class, 'loanPaidList'])->name('loans.repayments');
+Route::get('/remain/loan-repayments', [BorrowerLoanController::class, 'reaminLoanPaidList'])->name('loans.reamin.repayments');
 Route::put('/loans/{id}/status', [BorrowerLoanController::class, 'updateStatusReaminder'])->name('loans.updateStatus');
 
 Route::prefix('staff')->name('staff.')->group(function () {

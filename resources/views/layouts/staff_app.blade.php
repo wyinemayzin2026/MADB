@@ -115,7 +115,7 @@
                 @endif
 
                 <a href="{{ route('borrowers.list') }}" class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">
-                    <i class="fas fa-hand-holding-dollar me-3 w-5 text-lg text-emerald-600"></i> ငွေစုစာရင်းအကောင့်
+                    <i class="fas fa-hand-holding-dollar me-3 w-5 text-lg text-emerald-600"></i> ချေးငွေ စာရင်းအကောင့်သစ်ဖွင့်ရန်
                 </a>
 
                 <a href="{{ route('loans.index') }}" class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">
@@ -124,6 +124,10 @@
 
                 <a href="{{ route('loans.repayments') }}" class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">
                     <i class="fas fa-file-shield me-3 w-5 text-lg text-emerald-600"></i> တောင်သူချေးငွေ ပြန်ဆပ်စာရင်း
+                </a>
+
+                 <a href="{{ route('loans.reamin.repayments') }}" class="flex items-center p-3.5 text-slate-600 hover:bg-slate-50 rounded-2xl font-semibold transition-all">
+                    <i class="fas fa-file-shield me-3 w-5 text-lg text-emerald-600"></i> တောင်သူချေးငွေ ပြန်ဆပ်ရန် ကျန်နေသောစာရင်း
                 </a>
 
                 @if(auth()->check() && auth()->user()->role === 'admin')

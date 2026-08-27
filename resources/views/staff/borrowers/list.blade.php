@@ -53,7 +53,7 @@
                             <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">စဥ်</th>
                             <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">နာမည်</th>
                             <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">မှတ်ပုံတင်နံပါတ်</th>
-                            <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">ဆက်သွယ်ရန်မိုလ်ဘိုင်းဖုန်း/ </th>
+                            <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">ဆက်သွယ်ရန်မိုလ်ဘိုင်းဖုန်း</th>
                             <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">အီးမေး</th>
                             <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">မွေးနေ့</th>
                             <th class="px-6 py-6 text-[10px] uppercase tracking-[2px]">ကျား/မ</th>
@@ -64,7 +64,7 @@
                     <tbody class="divide-y divide-slate-50">
                         @foreach ($accounts as $account)
                             <tr class="hover:bg-slate-50/80 transition-colors group">
-                                 <td class="">{{ $loop->iteration }}</td>
+                                <td class="">{{ $loop->iteration }}</td>
                                 <td class="px-6 py-6 text-xs font-bold text-slate-600 uppercase tracking-wider">
                                     {{ $account->full_name }}</td>
                                 <td class="px-6 py-6 text-xs font-bold text-slate-600 tracking-wider">{{ $account->nrc_number }}</td>
@@ -109,7 +109,7 @@
         </div>
     </div>
 
-    <!-- Modal Box -->
+    <!-- Modal Box (novalidate ထည့်ထားပါသည်) -->
     <div id="account-modal"
         class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-xl transform transition-all">
@@ -120,7 +120,7 @@
                 </button>
             </div>
 
-            <form id="account-form" method="POST" action="{{ route('accounts.store') }}" class="p-6 space-y-4">
+            <form id="account-form" method="POST" action="{{ route('accounts.store') }}" class="p-6 space-y-4" novalidate>
                 @csrf
                 <div id="method-container"></div>
                 <input type="hidden" id="account-id" name="id">
@@ -136,7 +136,7 @@
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold mb-1 text-slate-700">မှတ်ပုံတင်နံပါတ်</label>
                         <div class="grid grid-cols-12 gap-2">
-                            {{-- တိုင်း/ပြည်နယ် Select (မြန်မာဂဏန်းများဖြင့် အစားထိုးထားပါသည်) --}}
+                            {{-- တိုင်း/ပြည်နယ် Select --}}
                             <div class="col-span-3 md:col-span-2">
                                 @php
                                     $mm_numbers = [
@@ -188,7 +188,12 @@
                     <div>
                         <label class="block text-sm font-semibold mb-1 text-slate-700">ဆက်သွယ်ရန်ဖုန်း</label>
                         <input type="text" id="phone_number" name="phone_number" value="{{ old('phone_number') }}" required
-                            class="w-full p-2.5 border rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none">
+                            maxlength="11" inputmode="numeric" placeholder="09123456789"
+                            class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none transition-all">
+
+                        <!-- Real-time Validation အနီရောင် Error စာသား -->
+                        <p id="phone-error" class="text-rose-500 text-xs mt-1 hidden">ဖုန်းနံပါတ် ၁၁ လုံး အတိအကျ ဖြည့်သွင်းပေးပါ။</p>
+
                         @error('phone_number') <p class="text-rose-500 text-xs mt-1 error-msg">{{ $message }}</p> @enderror
                     </div>
                     <div>
@@ -271,8 +276,59 @@
                 '၁၄': ['မမန', 'ဖပန', 'ပသန', 'ဟသတ', 'ဝခမ', 'ရဒန', 'အမန', 'ကလန', 'ကခန']
             };
 
-            // English Number များကို Myanmar Number ဖြင့် အလိုအလျောက် ပြောင်းပေးသည့် Map
             const enToMmMap = { '1': '၁', '2': '၂', '3': '၃', '4': '၄', '5': '၅', '6': '၆', '7': '၇', '8': '၈', '9': '၉', '10': '၁၀', '11': '၁၁', '12': '၁၂', '13': '၁၃', '14': '၁၄' };
+
+            // -------------------------------------------------------------
+            // ဖုန်းနံပါတ် Real-time Live Validation Control
+            // -------------------------------------------------------------
+            $('#phone_number').on('input keyup blur', function () {
+                // ဂဏန်းမဟုတ်သည်များကို ဖြတ်ထုတ်မည်
+                this.value = this.value.replace(/[^0-9]/g, '');
+
+                // ၁၁ လုံးထက် ပိုပါက ဖြတ်ထုတ်မည်
+                if (this.value.length > 11) {
+                    this.value = this.value.slice(0, 11);
+                }
+
+                var phoneLength = this.value.length;
+
+                // ၁ လုံးမှ ၁၀ လုံးအထိ ရိုက်ထားပါက အနီရောင် Border နှင့် အနီရောင် စာသားပြမည်
+                if (phoneLength > 0 && phoneLength < 11) {
+                    $(this).addClass('border-rose-500 focus:ring-rose-200').removeClass('border-slate-200 focus:ring-emerald-500');
+                    $('#phone-error').removeClass('hidden');
+                }
+                // ၁၁ လုံး အတိအကျ ပြည့်သွားပါက သို့မဟုတ် မရိုက်ရသေးပါက အနီရောင်များ ပြန်ဖျောက်မည်
+                else {
+                    $(this).removeClass('border-rose-500 focus:ring-rose-200').addClass('border-slate-200 focus:ring-emerald-500');
+                    $('#phone-error').addClass('hidden');
+                }
+            });
+
+            // Native Browser Validation Tooltip ကို တားဆီးခြင်း
+            $('#phone_number').on('invalid', function (e) {
+                e.preventDefault();
+            });
+
+            // Form Submit ချိန်တွင် ၁၁ လုံး မပြည့်ပါက တားဆီးပေးခြင်း
+            $('#account-form').on('submit', function (e) {
+                var phone = $('#phone_number').val().trim();
+
+                if (phone.length !== 11) {
+                    e.preventDefault();
+                    $('#phone_number').focus();
+
+                    $('#phone_number').addClass('border-rose-500 focus:ring-rose-200');
+                    $('#phone-error').removeClass('hidden');
+
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'ဖုန်းနံပါတ် စစ်ဆေးပါ',
+                        text: 'ဆက်သွယ်ရန်ဖုန်းနံပါတ်သည် ၁၁ လုံး အတိအကျ ဖြစ်ရပါမည်။',
+                        confirmButtonColor: '#0f172a'
+                    });
+                }
+            });
+            // -------------------------------------------------------------
 
             $('#nrc_state').on('change', function () {
                 var state = $(this).val();
@@ -283,7 +339,6 @@
                 var $townshipSelect = $('#nrc_township');
                 $townshipSelect.empty().append('<option value="">မြို့နယ်</option>');
 
-                // English ဂဏန်း ဝင်လာခဲ့ရင် မြန်မာဂဏန်းသို့ အလိုအလျောက်ပြောင်းပေးခြင်း
                 if (enToMmMap[state]) {
                     state = enToMmMap[state];
                 }
@@ -314,7 +369,7 @@
 
                 $('#account-id').val(id);
                 $('#full_name').val($(this).data('full_name'));
-                $('#phone_number').val($(this).data('phone_number'));
+                $('#phone_number').val($(this).data('phone_number')).trigger('input'); // Trigger live check
                 $('#email').val($(this).data('email'));
                 $('#gender').val($(this).data('gender'));
                 $('#address').val($(this).data('address'));
@@ -400,7 +455,6 @@
                 });
             });
 
-            // Validation Error များရှိခဲ့လျှင် Modal ပြန်ဖွင့်ပေးရန်နှင့် NRC ကို ပြန်လည် Selected လုပ်ပေးရန်
             @if($errors->any())
                 $('#account-modal').removeClass('hidden');
                 @if(old('id'))
@@ -429,6 +483,8 @@
                 $('#account-form')[0].reset();
                 $('#account-id').val('');
                 $('.error-msg').remove();
+                $('#phone-error').addClass('hidden');
+                $('#phone_number').removeClass('border-rose-500 focus:ring-rose-200').addClass('border-slate-200 focus:ring-emerald-500');
                 $('#nrc_township').empty().append('<option value="">မြို့နယ်</option>').prop('disabled', true);
             }
         });

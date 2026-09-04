@@ -60,7 +60,7 @@
         }
     });
 
-    // Status Chart
+    // Status Chart (Side-by-side bar chart)
     const statusData = {!! json_encode($chartDataStatus) !!};
     new Chart(document.getElementById('statusChart'), {
         type: 'bar',
@@ -82,8 +82,8 @@
                 }
             },
             scales: {
-                x: { stacked: true, ticks: chartTextStyle },
-                y: { stacked: true, ticks: chartTextStyle }
+                x: { ticks: chartTextStyle },
+                y: { ticks: chartTextStyle }
             }
         }
     });
